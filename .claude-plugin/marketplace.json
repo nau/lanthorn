@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "lanterdev",
+  "name": "lanthorn",
   "description": "Engineering skills for specification writing and disciplined development. Complements superpowers rather than replacing it.",
   "owner": {
     "name": "Alexander Nemish",
@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "lanterdev",
+      "name": "lanthorn",
       "source": "./",
       "description": "Engineering skills for specification writing and lazy-first design, plus selective forks of superpowers process skills.",
       "category": "productivity"

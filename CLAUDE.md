@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Guidance for an agent working on the `lanterdev` plugin itself. `AGENTS.md` is a
+Guidance for an agent working on the `lanthorn` plugin itself. `AGENTS.md` is a
 symlink to this file, so every harness reads the same guidance.
 
 ## What this repo is
@@ -54,7 +54,7 @@ Run `scripts/sync-version.sh` before any release. It fails on drift.
 
 ## Design rule: fork, do not copy
 
-lanterdev complements superpowers. Add a skill here only when you can name the
+lanthorn complements superpowers. Add a skill here only when you can name the
 specific behavior that must differ from the superpowers default, or when no
 superpowers skill covers the task at all.
 
@@ -64,7 +64,7 @@ without explanation. Project-specific conventions belong in that project's
 `CLAUDE.md`, not here.
 
 Record that reason in the new skill's Overview section. Then add a row to the
-routing table in `skills/using-lanterdev/SKILL.md`. A skill missing from that
+routing table in `skills/using-lanthorn/SKILL.md`. A skill missing from that
 table is unreachable in practice.
 
 ## Upstream superpowers
@@ -94,7 +94,7 @@ Two rules that this repo adds:
 - The `description` field states triggering conditions only. Never summarize the
   skill's workflow there. An agent that can read the workflow in the description
   will skip the body.
-- `using-lanterdev` loads in every session, so it pays its cost on every turn.
+- `using-lanthorn` loads in every session, so it pays its cost on every turn.
   Keep it under 500 words. Upstream `using-superpowers` is 485.
 - On-demand skills have no such budget. Superpowers' own skills run from 344 to
   3779 words, median around 1050. Write what the skill needs. The `<500` target
@@ -107,7 +107,7 @@ Two rules that this repo adds:
 ```bash
 claude plugin validate . --strict     # must pass before any commit
 scripts/sync-version.sh               # fails if a host manifest drifted
-claude plugin details lanterdev       # component inventory and token cost
+claude plugin details lanthorn        # component inventory and token cost
 wc -w skills/*/SKILL.md               # watch the session-loaded skills
 ```
 

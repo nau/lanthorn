@@ -174,7 +174,7 @@ not true before, which is what someone scanning `git log --oneline` is hunting f
 ## A worked body
 
 <Bad>
-Updated using-lanterdev/SKILL.md. Changed the routing table and the
+Updated using-lanthorn/SKILL.md. Changed the routing table and the
 precedence rule. Also updated CLAUDE.md with new word limits.
 </Bad>
 
