@@ -20,6 +20,7 @@ cover. Everything not listed below still comes from superpowers.
 | Implement a feature or a bugfix | `superpowers:test-driven-development` |
 | Debug a failure | `superpowers:systematic-debugging` |
 | Claim a task is done | `superpowers:verification-before-completion` |
+| Write a commit message or a PR description | `lanterdev:writing-commits` |
 | Author a new skill | `superpowers:writing-skills` |
 
 A task not in this table has no lanterdev fork. Use the superpowers skill.
