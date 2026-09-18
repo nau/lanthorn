@@ -26,17 +26,19 @@ template from memory.
 
 ## Install
 
-Clone the repository first. Then, for Claude Code:
+Claude Code:
 
 ```
-/plugin marketplace add <path-to-clone>
+/plugin marketplace add nau/lanthorn
 /plugin install lanthorn@lanthorn
 ```
 
-`marketplace add` also takes a URL or a GitHub `owner/repo` slug.
+Codex: clone the repository and install it as a plugin. Codex reads
+`.codex-plugin/plugin.json` and loads `skills/` from it.
 
-For Codex, install the clone as a plugin. Codex reads `.codex-plugin/plugin.json`
-and loads `skills/` from it.
+```
+git clone https://github.com/nau/lanthorn
+```
 
 lanthorn expects superpowers to be installed alongside it. Most rows in the
 routing table point there. Claude Code declares this in `plugin.json` and
@@ -52,8 +54,14 @@ installs it for you. On other hosts, install superpowers yourself.
 ## Develop
 
 ```
+git clone --recurse-submodules https://github.com/nau/lanthorn
+cd lanthorn
+claude --plugin-dir .          # load it without installing
 claude plugin validate . --strict
 ```
+
+`vendor/superpowers` is a submodule holding the upstream text to diff a fork
+against. Ordinary installs never fetch it.
 
 `CLAUDE.md` holds the rules for changing this plugin.
 
