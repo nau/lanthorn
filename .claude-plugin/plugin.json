@@ -1,0 +1,17 @@
+{
+  "name": "lanterdev",
+  "description": "Engineering skills for specification writing and lazy-first design. Complements superpowers, and forks its process skills only where they need to differ.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Alexander Nemish",
+    "email": "anemish@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "specification",
+    "technical-writing",
+    "yagni",
+    "workflow"
+  ]
+}
