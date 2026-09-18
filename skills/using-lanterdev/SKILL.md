@@ -23,6 +23,18 @@ cover. Everything not listed below still comes from superpowers.
 
 A task not in this table has no lanterdev fork. Use the superpowers skill.
 
+The `lanterdev:` and `superpowers:` prefixes are Claude Code namespacing. On
+other harnesses, use the bare skill name.
+
+## Platform adaptation
+
+If your harness appears here, read its reference file before you use the table:
+
+- Codex: `references/codex-tools.md`
+
+Claude Code needs no reference file. Its SessionStart hook injects this skill,
+and the `Skill` tool loads the rest by their prefixed names.
+
 ## Rule
 
 Read the routing table before you answer. If a row matches, invoke that skill

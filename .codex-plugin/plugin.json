@@ -1,0 +1,29 @@
+{
+  "name": "lanterdev",
+  "version": "0.1.0",
+  "description": "Engineering skills for specification writing and lazy-first design. Complements superpowers, and forks its process skills only where they need to differ.",
+  "author": {
+    "name": "Alexander Nemish",
+    "email": "anemish@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "specification",
+    "technical-writing",
+    "yagni",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "hooks": {},
+  "interface": {
+    "displayName": "lanterdev",
+    "shortDescription": "Specification writing and lazy-first engineering skills",
+    "longDescription": "lanterdev adds skills that superpowers does not cover, starting with spec-writing: one requirement per sentence, a named actor, RFC 2119 keywords in capitals, and stable traceability IDs. It forks a superpowers process skill only when that skill must behave differently.",
+    "developerName": "Alexander Nemish",
+    "capabilities": [
+      "Read",
+      "Write"
+    ]
+  }
+}
