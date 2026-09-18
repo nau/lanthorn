@@ -108,6 +108,43 @@ Three rules from the spec that cause real bugs when missed:
   allowed synonym, because a git trailer token cannot contain a space. Lowercase
   is not recognised and the release tool will miss it.
 
+### Choosing the type
+
+Pick by what the change does, not by which files it touched. A test file edited
+inside a bug fix is still `fix`.
+
+| The change | Type |
+|---|---|
+| Adds a capability a user can reach | `feat` |
+| Corrects wrong behaviour | `fix` |
+| Restructures code, behaviour identical | `refactor` |
+| Makes it faster, behaviour identical | `perf` |
+| Documentation only | `docs` |
+| Tests only | `test` |
+| Whitespace, formatting, no code meaning | `style` |
+| Build files, dependencies, tooling | `build` |
+| CI config | `ci` |
+| Nothing above fits | `chore` |
+
+`chore` is the fallback, not the default. Before using it, check the change is
+really invisible to users. See the Common mistakes table.
+
+### Choosing the scope
+
+Only use a scope if the project already does. Check tier 1 and tier 2 first: a
+commitlint config may restrict scopes to a fixed list, and a history with no
+scopes means do not start.
+
+If it does use them, take the nearest meaningful directory above the file:
+
+```
+src/api/users.js        -> feat(api):
+components/Button.tsx   -> fix(components):
+```
+
+When the change spans several directories, either drop the scope or name the one
+subsystem the change is about. Do not list two.
+
 A new repository with no commits is the common tier 3 case. Say which tier you
 used when the answer is not obvious.
 
