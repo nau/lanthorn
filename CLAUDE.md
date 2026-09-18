@@ -94,7 +94,13 @@ Two rules that this repo adds:
 - The `description` field states triggering conditions only. Never summarize the
   skill's workflow there. An agent that can read the workflow in the description
   will skip the body.
-- `using-lanterdev` loads in every session. Keep it under 300 words.
+- `using-lanterdev` loads in every session, so it pays its cost on every turn.
+  Keep it under 500 words. Upstream `using-superpowers` is 485.
+- On-demand skills have no such budget. Superpowers' own skills run from 344 to
+  3779 words, median around 1050. Write what the skill needs. The `<500` target
+  in `writing-skills` is for session-loaded skills, not for these.
+- Push per-host and heavy reference material into `references/`. It loads only
+  when the skill actually needs it.
 
 ## Verify
 

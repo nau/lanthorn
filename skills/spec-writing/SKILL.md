@@ -107,48 +107,26 @@ An empty field is information. Write "None" rather than dropping the heading.
 section without reading the section. A missing heading looks like an oversight,
 so the reader goes hunting for a rule that does not exist.
 
-## Math notation
-
-- Subscripted variables use LaTeX: `$Q_T$`, `$P_{edge}$`. This renders subscripts
-  and still reads as plain text.
-- Math expressions use LaTeX: `$R(Q_B \to Q_B + X)$`.
-- Multiplication uses the Unicode middle dot `·`, not `\cdot`. Same inside and
-  outside `$...$`.
-- Greek letters use Unicode (α, β) everywhere, including inside `$...$`.
-- Outside LaTeX, use Unicode operators (→, ≈, ×, −, ·) when you need no
-  subscripts or superscripts.
-
-## Navigating a large spec
-
-A spec of a few thousand lines does not fit a working context. Do not read the
-whole file.
-
-1. `grep -n '^#\{1,3\} ' <spec>` gives the section index.
-2. Read only the section you need, plus the Definitions section for its terms.
-3. Read the parameter registry, if the spec has one, to find where a parameter
-   is defined and which components read it.
-
 ## Common mistakes
+
+Each row is also a self-check. If you can find one in your draft, fix it before
+you hand the spec over.
 
 | Mistake | Fix |
 |---------|-----|
 | "The token is verified" | Name the actor: "the auth service MUST verify the token". |
 | "must" in lowercase for a rule | Use MUST. Lowercase is prose only. |
 | Two rules joined by "and" | Split into two bullets, two IDs. |
-| Rationale deleted as redundant | Restore it. It handles the unlisted case. |
 | A rule inside a parenthesis | Promote it to its own bullet. |
+| A rule with no ID | Assign the next number in that operation's series. |
+| Rationale deleted as redundant | Restore it. It handles the unlisted case. |
 | Renumbering after a deletion | Mark the old ID withdrawn. Keep the gap. |
 | A new synonym for an existing term | Repeat the defined term. |
 | A 5-word noun cluster | Rewrite with "of the". Maximum 3 words. |
+| A sentence longer than 25 words | Split it. One rule per sentence. |
+| "etc." or "and so on" in a normative list | List every case, or state the rule that generates them. |
+| The spec edited to match the code | Only as a recorded decision. Add an *Implementation status* note. |
 
-## Red flags
-
-- You wrote a sentence longer than 25 words.
-- You used a passive verb for a normative rule.
-- You added a rule with no ID.
-- You wrote "etc." or "and so on" in a normative list.
-- The spec and the code disagree, and you changed the spec to match the code
-  without an *Implementation status* note.
-
-**Where the spec and an implementation disagree, the spec wins.** Change the
-spec only as a deliberate, recorded decision.
+**Where the spec and an implementation disagree, the spec wins.** The last row is
+the one that costs the most. Changing the spec to match the code turns a bug into
+a requirement, silently.
