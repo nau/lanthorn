@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# SessionStart hook for the lanterdev plugin.
+# Injects the using-lanterdev routing table into every session, so the router
+# is read before the first response rather than only when an agent happens to
+# load it.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+SKILL="${PLUGIN_ROOT}/skills/using-lanterdev/SKILL.md"
+
+# A missing skill file must not break the session. Exit quietly instead.
+[ -r "$SKILL" ] || exit 0
+
+# JSON-escape with bash parameter substitution. Each pass is a single C-level
+# operation, and it keeps the hook free of any jq or python dependency.
+escape_for_json() {
+    local s="$1"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//$'\n'/\\n}"
+    s="${s//$'\r'/\\r}"
+    s="${s//$'\t'/\\t}"
+    printf '%s' "$s"
+}
+
+skill_escaped=$(escape_for_json "$(cat "$SKILL")")
+
+context="<EXTREMELY_IMPORTANT>\nThe lanterdev plugin is active. Below is the full content of its 'lanterdev:using-lanterdev' skill. Read its routing table before you answer. Load any other skill with the 'Skill' tool.\n\n${skill_escaped}\n</EXTREMELY_IMPORTANT>"
+
+# printf rather than a heredoc: bash 5.3+ hangs on heredocs in this position.
+printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$context"
+
+exit 0

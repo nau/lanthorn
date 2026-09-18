@@ -7,6 +7,7 @@
     "email": "anemish@gmail.com"
   },
   "license": "MIT",
+  "dependencies": ["superpowers@claude-plugins-official"],
   "keywords": [
     "skills",
     "specification",
