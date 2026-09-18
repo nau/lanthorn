@@ -21,11 +21,11 @@ Two principles do most of the work.
 Writing, amending, or rewording a commit message, or writing a PR title or body.
 Not needed for `git commit --fixup`, which carries no prose.
 
-- **REQUIRED BACKGROUND:** run the checks before you commit. Use
-  `superpowers:verification-before-completion`. "Tests pass" in a message is a
-  claim like any other.
-- Anthropic's `/commit` command stages and commits but says nothing about
-  content. Let it do the mechanics; this skill decides the message.
+**REQUIRED BACKGROUND:** run the checks before you commit. Use
+`superpowers:verification-before-completion`. "Tests pass" in a message is a
+claim like any other.
+
+This skill is self-contained. It needs no commit command or plugin.
 
 ## Step 1: Resolve the format
 
@@ -126,6 +126,40 @@ Four parts. Nothing else.
 
 Omit the body when the subject is the whole reason: a typo fix, a version bump.
 
+## Step 3: Commit it
+
+See exactly what you are about to commit. Stage deliberately; never `git add .`,
+which sweeps in scratch files and unrelated work.
+
+```bash
+git status --short      # staged versus not
+git diff --cached       # the exact content of this commit
+```
+
+Pass the message on stdin with a **quoted** heredoc delimiter:
+
+```bash
+git commit -F - <<'EOF'
+fix: reject refresh tokens revoked in the same request
+
+Rotation ran before revocation, so a replayed token passed both checks.
+EOF
+```
+
+`<<'EOF'` with quotes, not `<<EOF`. An unquoted delimiter lets the shell expand
+the message before git sees it:
+
+```
+message written:   subject with $V and $(echo INJECTED)
+message committed: subject with LEAKED and INJECTED
+```
+
+Commit messages routinely contain `$` and backticks around code, so this is a
+live hazard, not a theoretical one. `-F -` also keeps your paragraph wrapping,
+which repeated `-m` flags do not.
+
+To reword the last commit, same form: `git commit --amend -F - <<'EOF'`.
+
 ## Subjects
 
 | Instead of | Write |
@@ -194,4 +228,6 @@ Each row is a self-check. Find one in your draft, fix it before committing.
 | A trailer no tier turned up | Drop it. That includes tool attribution. |
 | Several unrelated changes in one commit | Split them. Each commit is one reason. |
 | Message claims the suite passes | Run it first. See `verification-before-completion`. |
+| `git add .` before committing | Stage the files this commit is about. Check `git status --short`. |
+| Unquoted `<<EOF` for the message | Use `<<'EOF'`. The shell expands `$` and backticks otherwise. |
 | Rationale dropped as "obvious" | It is obvious only while you hold the context. |
