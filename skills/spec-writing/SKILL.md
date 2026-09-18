@@ -29,11 +29,26 @@ Do not use it for README files, tutorials, or commit messages. Those are prose.
 
 - One requirement per sentence. Do not put two rules in one sentence.
 - Name the actor. Write the module or component that does the work.
-- Use RFC 2119 keywords in CAPITALS for normative force: MUST, MUST NOT, SHOULD,
-  SHOULD NOT, MAY. Lowercase "must" is descriptive prose only.
+- Use BCP 14 keywords in CAPITALS for normative force: MUST, MUST NOT, REQUIRED,
+  SHALL, SHALL NOT, SHOULD, SHOULD NOT, RECOMMENDED, MAY, OPTIONAL.
+- Lowercase "must" is descriptive prose and carries no normative force. This is
+  RFC 8174's rule, not RFC 2119's: the keywords mean what BCP 14 says they mean
+  only when they appear in all capitals.
 - Never hide a rule inside a parenthesis or an aside. Give it its own bullet.
 - Put rationale in a separate "Why" note. Never delete the rationale. The
   rationale is what lets a reader handle a case the spec did not list.
+
+A spec that uses these keywords should say so once, near the top. BCP 14 is
+RFC 2119 and RFC 8174 together, and this is their standard wording:
+
+> The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+> "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
+> interpreted as described in BCP 14 [RFC2119] [RFC8174] when, and only when,
+> they appear in all capitals, as shown here.
+
+**Why:** Without it, a reader cannot tell a normative MUST from an author writing
+emphatically. The clause is what makes capitalisation mean something, and it is
+what lets you write a lowercase "must" in prose without creating a requirement.
 
 <Bad>
 The token is checked for expiry and (if a refresh token is present) also

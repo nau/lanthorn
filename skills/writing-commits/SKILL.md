@@ -31,6 +31,12 @@ Not needed for `git commit --fixup` or an autosquash, which carry no prose.
 `superpowers:verification-before-completion`. A commit message that claims tests
 pass is a claim like any other.
 
+**Works alongside `/commit`.** Anthropic's `commit-commands` plugin gathers the
+status, the diff and the recent log, then stages and commits. It says nothing
+about what the message should contain. If that command is available, let it do
+the mechanics and let this skill decide the message. Neither replaces the other,
+so this plugin does not depend on it.
+
 ## Step 1: Resolve the format
 
 Three sources, in strict order. Stop at the first one that answers.
@@ -84,15 +90,31 @@ With no declaration and no usable history, default to Conventional Commits v1.0.
 [optional footer(s)]
 ```
 
-- `feat:` a new feature. `fix:` a bug fix. Both map to SemVer minor and patch.
+- `feat:` a new feature. `fix:` a bug fix.
 - Other common types: `docs`, `refactor`, `test`, `perf`, `build`, `ci`, `chore`.
 - Scope is a noun in parentheses: `feat(parser): ...`.
-- A breaking change takes `!` before the colon, a `BREAKING CHANGE:` footer, or
-  both. `feat(api)!: drop v1 endpoints`.
 - Description is lowercase imperative, no trailing period.
+- A breaking change takes `!` before the colon, a `BREAKING CHANGE:` footer, or
+  both: `feat(api)!: drop v1 endpoints`.
+
+Three rules from the spec that cause real bugs when missed:
+
+- **Only `feat` and `fix` carry SemVer meaning**, minor and patch. Every other
+  type implies no version bump at all. This is why labelling a user-visible fix
+  as `chore:` silently skips its release.
+- **A breaking change means a major bump regardless of type.** `fix!:` is a major
+  release, not a patch.
+- **`BREAKING CHANGE` must be uppercase** in a footer. `BREAKING-CHANGE` is the
+  allowed synonym, because a git trailer token cannot contain a space. Lowercase
+  is not recognised and the release tool will miss it.
 
 A new repository with no commits is the common tier 3 case. Say which tier you
 used when the answer is not obvious.
+
+Read the linked spec for the full grammar. Do not reproduce it here: it is a
+living document under CC BY 3.0, and a vendored copy goes stale without saying
+so. That is the same argument as reading `git log` rather than a remembered
+style.
 
 **Why the order:** a declaration is a decision, and it is the only source that can
 express intent the history has not caught up with. History beats a default
