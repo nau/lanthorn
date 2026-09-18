@@ -33,6 +33,23 @@ Record that reason in the new skill's Overview section. Then add a row to the
 routing table in `skills/using-lanterdev/SKILL.md`. A skill missing from that
 table is unreachable in practice.
 
+## Upstream superpowers
+
+`vendor/superpowers` is a git submodule pinned to the upstream tag that matches
+the installed version. It is read-only reference. Claude Code scans only
+`skills/` at the plugin root, so nothing under `vendor/` ever registers as a
+skill. This is verified, not assumed.
+
+Read it before you fork a skill, and diff against it afterwards:
+
+```bash
+git submodule update --init                       # first checkout
+diff vendor/superpowers/skills/<name>/SKILL.md skills/<name>/SKILL.md
+```
+
+To move to a newer upstream version, check out the new tag inside
+`vendor/superpowers`, then commit the changed gitlink here.
+
 ## Authoring a skill
 
 Use `superpowers:writing-skills`. It defines the frontmatter, the discovery
