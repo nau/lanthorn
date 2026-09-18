@@ -13,9 +13,9 @@ cover. Everything not listed below still comes from superpowers.
 
 | Task | Skill |
 |------|-------|
-| Write or edit a spec, protocol doc, or normative requirement | `lanterdev:spec-writing` |
-| Turn an idea into a design | `superpowers:brainstorming` |
+| Turn an idea into a design, including a new spec | `superpowers:brainstorming` |
 | Brainstorming wrote a design spec, before planning starts | `lanterdev:spec-writing` |
+| Edit an existing spec, or word a single requirement | `lanterdev:spec-writing` |
 | Write an implementation plan | `superpowers:writing-plans` |
 | Implement a feature or a bugfix | `superpowers:test-driven-development` |
 | Debug a failure | `superpowers:systematic-debugging` |
@@ -24,9 +24,10 @@ cover. Everything not listed below still comes from superpowers.
 
 A task not in this table has no lanterdev fork. Use the superpowers skill.
 
-Row 3 is a handoff, not a fork. Brainstorming decides what the spec says.
-`spec-writing` decides how each requirement is worded. Apply it to the spec file
-before `writing-plans` reads it.
+**"Write a spec for X" starts at brainstorming, not at `spec-writing`.** A spec
+that does not exist yet has no requirements to word. Brainstorming decides what
+the spec says. `spec-writing` then decides how each requirement reads, on the
+file brainstorming produced, before `writing-plans` consumes it.
 
 The `lanterdev:` and `superpowers:` prefixes are Claude Code namespacing. On
 other harnesses, use the bare skill name.
@@ -45,8 +46,13 @@ and the `Skill` tool loads the rest by their prefixed names.
 Read the routing table before you answer. If a row matches, invoke that skill
 first. Announce which skill you use and why.
 
-When both a lanterdev skill and a superpowers skill match, the lanterdev skill
-wins. A fork exists because the default was wrong for this work.
+Precedence depends on whether the lanterdev skill is a fork or an addition.
+
+- A lanterdev **fork** of a superpowers skill replaces the original. It exists
+  because the default was wrong for this work.
+- A lanterdev **addition** covers something superpowers does not. It runs
+  alongside the superpowers skills, not instead of them. `spec-writing` is an
+  addition. It never displaces brainstorming, planning, or TDD.
 
 ## Adding a fork
 
