@@ -36,6 +36,53 @@ Do not use it for README files, tutorials, or commit messages. Those are prose.
 - Never hide a rule inside a parenthesis or an aside. Give it its own bullet.
 - Put rationale in a separate "Why" note. Never delete the rationale. The
   rationale is what lets a reader handle a case the spec did not list.
+- Give an example for any rule that is not trivial. See below for the test.
+
+## Examples
+
+A rule states the law. An example proves you and the reader read it the same way.
+Most disagreements between a spec and an implementation are not disputes about
+the rule; they are two honest readings of one sentence.
+
+**Give an example when any of these is true:**
+
+| Signal | Why prose alone fails |
+|---|---|
+| A boundary is involved | "in the past" does not say what happens at exactly now |
+| Encoding, ordering, or format matters | Byte order and field order are invisible in prose |
+| The sentence has two defensible readings | The example picks one |
+| The rule interacts with another rule | Prose describes each rule alone |
+| A concrete value, unit, or limit appears | "10 per minute" needs a window definition |
+
+**Skip the example when** the rule restates a type (`amount` is a non-negative
+integer), or when only one reading is possible. An example for a trivial rule is
+noise, and noise trains readers to skip examples that matter.
+
+Worked case. The rule is trivial-looking and is not:
+
+> The auth service MUST reject an access token whose `exp` claim is in the
+> past. `[TR-1]`
+>
+> *Example, illustrative.* With `exp = 1700000000`:
+>
+> | Server time | Result |
+> |---|---|
+> | 1699999999 | accept |
+> | 1700000000 | accept, `exp` is not yet past |
+> | 1700000001 | reject |
+
+Two implementers read "in the past" as `<` and `<=`. The table costs three lines
+and removes a class of bug that only shows up under clock skew.
+
+**Mark every example illustrative or normative.**
+
+- *Illustrative* is the default. If it disagrees with the rule, the rule wins.
+- *Normative* means conformance depends on it. Test vectors, wire formats, and
+  reference encodings are normative. Say so, and say which rule each one tests.
+
+An example MUST NOT be the only place a rule appears. If the example shows
+behaviour the prose never states, move that behaviour into a numbered rule. That
+is the same failure as hiding a rule in a parenthesis.
 
 ## How formal to be
 
@@ -139,6 +186,10 @@ you hand the spec over.
 | Renumbering after a deletion | Mark the old ID withdrawn. Keep the gap. |
 | A new synonym for an existing term | Repeat the defined term. |
 | A 5-word noun cluster | Rewrite with "of the". Maximum 3 words. |
+| A boundary rule with no example | Add the table. "In the past" hides `<` versus `<=`. |
+| An example for a rule with one reading | Cut it. Noise trains readers to skip the examples that matter. |
+| An example nobody labelled | Mark it illustrative or normative. |
+| Behaviour that appears only in an example | Promote it to a numbered rule. |
 | A sentence longer than 25 words | Split it. One rule per sentence. |
 | "etc." or "and so on" in a normative list | List every case, or state the rule that generates them. |
 | The spec edited to match the code | Only as a recorded decision. Add an *Implementation status* note. |
