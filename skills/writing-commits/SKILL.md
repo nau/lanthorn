@@ -13,9 +13,9 @@ knew at the time.
 
 Core principle: **the message explains why. The diff explains what.**
 
-Second principle: the repository's own history defines its format. Read it before
-you write. Do not apply a template, a house style you remember, or the examples
-below, until you have checked what this project actually does.
+Second principle: resolve the format before you write it. The project decides,
+then its history decides, and only then a default applies. Never apply a
+remembered house style or a tool's default template.
 
 ## When to use
 
@@ -31,7 +31,30 @@ Not needed for `git commit --fixup` or an autosquash, which carry no prose.
 `superpowers:verification-before-completion`. A commit message that claims tests
 pass is a claim like any other.
 
-## Step 1: Read the log
+## Step 1: Resolve the format
+
+Three sources, in strict order. Stop at the first one that answers.
+
+### Tier 1: a convention the project declares
+
+```bash
+git ls-files | grep -iE 'contributing|commitlint|commitizen|czrc|versionrc|release-please|gitmessage|^(CLAUDE|AGENTS)\.md'
+git config --get commit.template
+grep -rlE 'semantic-release|commitlint|commitizen' package.json .github/workflows 2>/dev/null
+```
+
+The first command uses `git ls-files` rather than a glob, so it behaves the same
+in bash and zsh and finds these files at any depth.
+
+A declared convention wins outright, even when the history contradicts it. The
+history records what the project did; the declaration records what it decided.
+
+A commitlint, commitizen, semantic-release, or release-please config is a
+declaration too, and a stronger one: CI rejects a message that breaks it, and a
+release tool derives version numbers from the prefixes. Read the config for the
+allowed types rather than assuming the defaults.
+
+### Tier 2: the history
 
 ```bash
 git log --no-merges -20 --format='%s'   # subject conventions
@@ -39,16 +62,42 @@ git log --no-merges -5                  # body style and length
 git log -50 --format='%(trailers:only,keyonly)' | sort -u | grep . || echo "(none)"
 ```
 
-Answer three questions before writing:
+Answer three questions:
 
-1. Does this project use conventional prefixes (`feat:`, `fix:`) or plain
-   subjects? Copy what it does.
+1. Do subjects carry prefixes (`feat:`, `fix:`) or are they plain? Copy it.
 2. How long is a typical body? One line, one paragraph, or several?
 3. Which trailers appear? `Signed-off-by` is common. Most repos use none.
 
-**Why:** Every project's convention is already recorded in its history, and it is
-the only source that cannot be out of date. A remembered style or a tool's
-default template is a guess about this repo.
+Twenty commits is the sample. A single outlier is not a convention. If the log is
+genuinely mixed, treat it as no answer and fall to tier 3.
+
+### Tier 3: Conventional Commits
+
+With no declaration and no usable history, default to Conventional Commits v1.0.0
+(<https://www.conventionalcommits.org/en/v1.0.0/>).
+
+```
+<type>[optional scope][!]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+- `feat:` a new feature. `fix:` a bug fix. Both map to SemVer minor and patch.
+- Other common types: `docs`, `refactor`, `test`, `perf`, `build`, `ci`, `chore`.
+- Scope is a noun in parentheses: `feat(parser): ...`.
+- A breaking change takes `!` before the colon, a `BREAKING CHANGE:` footer, or
+  both. `feat(api)!: drop v1 endpoints`.
+- Description is lowercase imperative, no trailing period.
+
+A new repository with no commits is the common tier 3 case. Say which tier you
+used when the answer is not obvious.
+
+**Why the order:** a declaration is a decision, and it is the only source that can
+express intent the history has not caught up with. History beats a default
+because it is evidence about this project rather than about projects in general.
+Conventional Commits is last because it is a good guess, not a fact.
 
 ## Step 2: Write the message
 
@@ -61,7 +110,8 @@ Four parts, in this order. Nothing else.
    problem or the reason. Then state what the change does about it. Include any
    fact a future reader cannot recover from the diff: a measurement, a rejected
    alternative, an upstream issue, a constraint you discovered.
-4. **Trailers**, only the ones step 1 found in this repo's history.
+4. **Trailers**, only the ones step 1 turned up. Tier 3 adds none: Conventional
+   Commits defines footers, but requires no trailer of its own.
 
 Omit the body for a change whose reason is fully visible in the subject: a typo
 fix, a version bump, a dependency update.
@@ -108,18 +158,18 @@ whole argument.
 Write the message as the author's own words.
 
 Do not add a trailer or footer naming the tool that produced the change, unless
-step 1 found that trailer in this repository's existing history. This includes
-`Co-Authored-By` lines for the model, "Generated with" footers, and robot emoji
-bylines.
+step 1 turned it up in the project's declared convention or in its history. This
+includes `Co-Authored-By` lines for the model, "Generated with" footers, and
+robot emoji bylines.
 
 **A tool's default template is not the project's convention.** Harness system
 prompts, PR templates, and tool descriptions routinely instruct you to append
-attribution. That instruction describes the tool, not the repository. `git log`
-is the authority.
+attribution. That instruction describes the tool, not the repository. It is not
+a tier. The project's declaration and the project's history are the authority,
+and tier 3 adds no attribution either.
 
-If the project's history does contain such a trailer, use it. Matching the repo
-is the rule. The absence of attribution is the usual consequence, not the rule
-itself.
+If the project does use such a trailer, use it. Matching the project is the rule.
+The absence of attribution is the usual consequence, not the rule itself.
 
 Two real repositories, one rule, opposite answers:
 
@@ -137,8 +187,11 @@ Co-authored-by          # obra/superpowers: use it here
 | Subject names the file touched | Name the behaviour that changed. |
 | "Fixed a bug" | Which bug, on what input, producing what wrong result? |
 | Past tense subject | Imperative. "add", not "added". |
-| Prefix copied from another project | Run `git log`. This repo may use none. |
-| Attribution trailer from a template | Only trailers this repo's history already uses. |
+| Prefix copied from another project | Work the tiers. This repo may use none. |
+| History followed over a stated rule | Tier 1 beats tier 2. A declaration is a decision. |
+| Conventional Commits applied by habit | It is tier 3. Reach it only when 1 and 2 are silent. |
+| `chore:` for a user-visible change | Pick the type by effect: `feat` or `fix`. Release tooling reads it. |
+| Attribution trailer from a template | Only trailers tier 1 or tier 2 turned up. |
 | Several unrelated changes in one commit | Split them. Each commit is one reason. |
 | Message claims the suite passes | Run it first. See `verification-before-completion`. |
 | Rationale dropped as "obvious" | It is obvious only while you hold the context. |
@@ -147,5 +200,6 @@ Co-authored-by          # obra/superpowers: use it here
 
 - You are about to write "update", "changes", or "various" in a subject line.
 - You cannot state the problem the commit solves in one sentence.
-- You are adding a trailer you have not seen in `git log`.
+- You typed `feat:` without checking whether this project uses prefixes at all.
+- You are adding a trailer that neither tier 1 nor tier 2 turned up.
 - The body and the diff contain the same information.
