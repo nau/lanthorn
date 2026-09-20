@@ -54,9 +54,3 @@ Precedence depends on whether the lanthorn skill is a fork or an addition.
 - A lanthorn **addition** covers something superpowers does not. It runs
   alongside the superpowers skills, not instead of them. `spec-writing` is an
   addition. It never displaces brainstorming, planning, or TDD.
-
-## Adding a fork
-
-Do not copy a superpowers skill into `skills/` because it looks useful. Fork it
-only after you can name the specific behavior you must change. Record that reason
-in the new skill's Overview section.
