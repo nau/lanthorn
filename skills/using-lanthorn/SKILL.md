@@ -18,6 +18,7 @@ cover. Everything not listed below still comes from superpowers.
 | Edit an existing spec, or word a single requirement | `lanthorn:spec-writing` |
 | Write an implementation plan | `superpowers:writing-plans` |
 | Implement a feature or a bugfix | `superpowers:test-driven-development` |
+| Write or change a test, or test code that is private | `lanthorn:writing-tests` |
 | Debug a failure | `superpowers:systematic-debugging` |
 | Claim a task is done | `superpowers:verification-before-completion` |
 | Write a commit message or a PR description | `lanthorn:writing-commits` |
@@ -52,5 +53,5 @@ Precedence depends on whether the lanthorn skill is a fork or an addition.
 - A lanthorn **fork** of a superpowers skill replaces the original. It exists
   because the default was wrong for this work.
 - A lanthorn **addition** covers something superpowers does not. It runs
-  alongside the superpowers skills, not instead of them. `spec-writing` is an
-  addition. It never displaces brainstorming, planning, or TDD.
+  alongside the superpowers skills, not instead of them. `spec-writing` and
+  `writing-tests` are additions. Neither displaces brainstorming, planning, or TDD.

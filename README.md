@@ -15,6 +15,7 @@ to superpowers. `skills/using-lanthorn` holds the routing table.
 | `using-lanthorn` | Any task. It routes to the right skill. |
 | `spec-writing` | Writing or editing a spec, protocol doc, or normative requirement. |
 | `writing-commits` | Writing a commit message or a pull request description. |
+| `writing-tests` | Writing or changing a test, or testing code that is private or internal. |
 
 ## The name
 
