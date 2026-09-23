@@ -9,12 +9,14 @@ description: Use when writing a git commit message, amending one, or drafting a 
 
 Two principles do most of the work.
 
-1. **The message explains why. The diff explains what.** A reader who wants the
-   what runs `git show`. What no tool recovers later is why the change was
-   needed.
+1. **The message explains why. The diff explains what.** The body may say what
+   changed in one sentence, at the level of behaviour. The file-level what
+   belongs to the diff, and `git show` recovers it. What no tool recovers
+   later is why the change was needed.
 2. **Resolve the format before writing it.** The project decides, then its
    history decides, then a default applies. Never use a remembered house style
-   or a tool's template.
+   or a tool's template. When the history decided, record it, so the project
+   decides next time.
 
 ## When to use
 
@@ -112,6 +114,27 @@ does use them, take the nearest meaningful directory: `src/api/users.js` gives
 `feat(api):`. Spanning several directories, name the one subsystem the change is
 about, or drop the scope. Never list two.
 
+### Record the answer
+
+Tier 2 costs six commands and a judgment call on every commit, and two agents
+can read one log differently. A declaration costs one grep. So when tier 2
+answered, promote it to tier 1.
+
+- The project has `AGENTS.md` or `CLAUDE.md`, and the file has no commit
+  section: add one. Both files present: use `CLAUDE.md`. State the three
+  things tier 2 inspected: subject convention, body length and wrap, trailers. Commit it
+  on its own, after the requested commit, in the style you resolved. Tell the
+  user.
+- The project has neither file: ask before you create one.
+- Tier 3 answered: ask before you record anything. A guess written into the
+  file becomes a decision nobody made.
+
+```markdown
+## Commits
+
+Plain imperative subjects, no type prefix. Bodies wrapped at 72. No trailers.
+```
+
 ## Step 2: Write the message
 
 Four parts. Nothing else.
@@ -119,9 +142,14 @@ Four parts. Nothing else.
 1. **Subject.** One line, 72 characters or fewer, imperative, no trailing period.
    Name the outcome, not the activity.
 2. **Blank line.**
-3. **Body.** One to three paragraphs, wrapped at 72. Lead with the problem, then
-   what the change does about it. Include what the diff cannot show: a
-   measurement, a rejected alternative, an upstream issue, a constraint you found.
+3. **Body.** Up to three parts, in this order, wrapped at 72. Each part is as
+   short as it can be. One sentence is a valid paragraph.
+   - **What.** What the change does, at the level of behaviour. Skip it when
+     the subject already says it.
+   - **Why.** The problem, or the reason the change was needed. Nothing else
+     recovers this later.
+   - **Details.** Facts the diff cannot show: a measurement, a rejected
+     alternative, an upstream issue, a constraint. Only when one exists.
 4. **Trailers**, only the ones step 1 turned up. Tier 3 requires none.
 
 Omit the body when the subject is the whole reason: a typo fix, a version bump.
@@ -179,18 +207,21 @@ precedence rule. Also updated CLAUDE.md with new word limits.
 </Bad>
 
 <Good>
-The handoff row introduced a precedence bug. "Write a spec for X" matched
-both the spec-writing row and the brainstorming row, and the tie-break
-rule handed it to spec-writing. That skipped brainstorming and pointed
-spec-writing at a file with no requirements in it.
+The tie-break rule now keys on fork versus addition, not on plugin name.
 
-The tie-break rule now keys on fork versus addition rather than on plugin
-name, because spec-writing forks nothing.
+"Write a spec for X" matched both the spec-writing row and the
+brainstorming row, and the old rule handed it to spec-writing. That
+skipped brainstorming and pointed spec-writing at a file with no
+requirements in it.
+
+spec-writing forks nothing, so no rule keyed on plugin name could rank it.
 </Good>
 
-The bad version is the diff in prose. The good one names the failing input, the
-wrong result, and why the old rule was wrong, so a reader hitting the same
-conflict in two years gets the whole argument.
+The bad version is the diff in prose. The good one has the three parts in
+order: one sentence of what, the failing input and the wrong result, and the
+constraint that ruled out the old rule. A reader hitting the same conflict in
+two years gets the whole argument. When one sentence carries the why, one
+sentence is the whole body.
 
 ## Attribution
 
@@ -217,6 +248,9 @@ Each row is a self-check. Find one in your draft, fix it before committing.
 | Mistake | Fix |
 |---------|-----|
 | Body restates the diff file by file | Delete it. Write why the change was needed. |
+| Body narrates the fix line by line | The diff shows the fix. One sentence of what, then why. |
+| Style resolved from history and not recorded | Add a Commits section to the instruction file. Tier 1 answers next time. |
+| Style recorded after tier 3, or into a new file | Ask first. |
 | Subject names the file touched | Name the behaviour that changed. |
 | "update", "changes", "various" in a subject | Say what is now true that was not. |
 | "Fixed a bug" | Which bug, on what input, producing what wrong result? |
