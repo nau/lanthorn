@@ -58,10 +58,12 @@ lanthorn complements superpowers. Add a skill here only when you can name the
 specific behavior that must differ from the superpowers default, or when no
 superpowers skill covers the task at all.
 
-Skills here are general purpose. A skill MUST work for any language and any
-project. Keep a worked example concrete, but pick a domain most engineers read
-without explanation. Project-specific conventions belong in that project's
-`CLAUDE.md`, not here.
+Skills here are general purpose. A skill MUST work for any project. It MUST
+also work for any language, unless the language is in its name, as in
+`writing-scala`. A language skill MUST yield to the project's own rules. Keep a
+worked example concrete, but pick a domain most engineers read without
+explanation. Project-specific conventions belong in that project's `CLAUDE.md`,
+not here.
 
 Record that reason in the new skill's Overview section. Then add a row to the
 routing table in `skills/using-lanthorn/SKILL.md`. A skill missing from that

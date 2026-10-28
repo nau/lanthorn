@@ -21,6 +21,7 @@ cover. Everything not listed below still comes from superpowers.
 | Write or change a test, or test code that is private | `lanthorn:writing-tests` |
 | Add or change a log statement, or pick a log level or field name | `lanthorn:writing-logs` |
 | Add an abstraction, a dependency, a config option, or code for a "later" need, or review a diff for over-engineering | `lanthorn:writing-less-code` |
+| Write, change, or review Scala code, pick a Scala library, or find usages of a Scala symbol | `lanthorn:writing-scala` |
 | Debug a failure | `superpowers:systematic-debugging` |
 | Claim a task is done | `superpowers:verification-before-completion` |
 | Write a commit message or a PR description | `lanthorn:writing-commits` |
@@ -56,5 +57,6 @@ Precedence depends on whether the lanthorn skill is a fork or an addition.
   because the default was wrong for this work.
 - A lanthorn **addition** covers something superpowers does not. It runs
   alongside the superpowers skills, not instead of them. `spec-writing`,
-  `writing-tests`, `writing-logs` and `writing-less-code` are additions. None
+  `writing-tests`, `writing-logs`, `writing-less-code` and `writing-scala` are
+  additions. None
   displaces brainstorming, planning, or TDD.
