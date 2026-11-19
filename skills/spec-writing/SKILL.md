@@ -14,6 +14,9 @@ dictionary. Keep exact domain terms. Precision beats simple words.
 
 Core principle: **one requirement, one sentence, one named actor, one stable ID.**
 
+Second principle: **story before rules.** A reader needs a model of the system
+before a list of exact rules.
+
 ## When to use
 
 Use this skill when you:
@@ -37,6 +40,62 @@ Do not use it for README files, tutorials, or commit messages. Those are prose.
 - Put rationale in a separate "Why" note. Never delete the rationale. The
   rationale is what lets a reader handle a case the spec did not list.
 - Give an example for any rule that is not trivial. See below for the test.
+
+## Story before rules
+
+A list of exact rules is hard to read without a model of the system. Give the
+reader that model first. A spec has two layers:
+
+| Layer | Says | Form | Binds |
+|---|---|---|---|
+| Informative | How the system works, and why it exists | Paragraphs, in time order | Nothing |
+| Normative | What each actor MUST do | One rule per bullet, with an ID | The implementation |
+
+The informative layer is the Overview of the document, its goals and non-goals,
+and the Overview of each operation. Write it like this:
+
+- Label it *Informative*.
+- Tell the flow in time order. Start with the normal case. Then say what happens
+  on failure.
+- Write paragraphs. Connect the sentences with "then", "so", and "because".
+- State behaviour in the present tense: "the auth service revokes the family".
+  The present tense describes the design. A keyword in capitals states a rule,
+  and rules live in the normative layer.
+- Use the defined terms. The limit of 25 words per sentence still applies.
+- Keep it short: at most 200 words for the document, 2 to 4 sentences for an
+  operation.
+
+Every behaviour of a specified component that the informative layer describes
+MUST also appear as a numbered rule. Where the two layers disagree, the rule
+wins.
+
+Order is behaviour. When the story says "then" or "before" and the order
+matters, state that order in a numbered rule too.
+
+A non-goal names work that the spec leaves out. Write each one down, so that no
+reader builds it.
+
+**Why:** A reviewer checks the design against the story, and the code against
+the rules. An agent uses the story to handle a case that no rule lists. A spec
+with rules only gives the reader 40 exact sentences and nothing to attach them
+to.
+
+## Assumptions
+
+An assumption is a fact that the spec relies on and does not enforce. It is not
+informative text. If it is false, the rules no longer give the result that the
+spec promises.
+
+- One assumption per entry, with a stable ID in its own series: `[A-1]`.
+- Name who or what makes it true.
+- Cite the ID from each rule or "Why" note that depends on it.
+
+> The clocks of all auth service instances agree within 1 second. The
+> deployment platform runs NTP on each instance. `[A-1]`
+
+**Why:** An auditor must know which guarantees come from the system and which
+come from its environment. An assumption stated in passing gets no owner, and
+nobody checks it.
 
 ## Examples
 
@@ -104,6 +163,11 @@ rotated, and the old token must be revoked.
 </Bad>
 
 <Good>
+*Informative.* A client trades a refresh token for a new access token and a new
+refresh token. Each refresh token works once, because the auth service revokes
+it during the trade. A second use of a refresh token means that someone copied
+it, so the auth service revokes every token in that family.
+
 - The auth service MUST reject an access token whose `exp` claim is in the past. `[TR-1]`
 - The auth service MUST issue a new refresh token on every refresh. `[TR-2]`
 - The auth service MUST revoke the presented refresh token before it returns
@@ -121,7 +185,8 @@ The bad version packs three rules into one sentence, hides one in a parenthesis,
 and drops the actor from all three. It uses a lowercase "must" for a normative
 rule. It never says that revocation completes before the new token is returned,
 and `[TR-4]` is missing entirely, so an implementer builds rotation that cannot
-detect theft.
+detect theft. The good version also opens with the story, so the reader knows
+what the four rules achieve before the first one.
 
 ## Terminology
 
@@ -155,9 +220,24 @@ code. A renumbered ID breaks both links silently, and no test catches it.
 ## Structure
 
 Keep one template per repeated kind of section, and fill every field every time.
+
+For the document, in this order:
+
+1. **Overview** - *informative.* The main flow as a story, in at most 200 words.
+2. **Goals and non-goals** - *informative.* The problem, why it matters now,
+   and the work that the spec leaves out.
+3. **Assumptions** - each fact that the spec relies on and does not enforce,
+   with its `[A-n]` ID.
+4. **Definitions** - one entry per domain term.
+5. One section per operation, endpoint, or transaction.
+6. **Open questions** - *informative.* Each point that the source left
+   undecided. For each one, cite the rule that decides it, or say that it is
+   still open.
+
 For an operation, an endpoint, or a transaction:
 
-1. **Purpose** - what it achieves, in one sentence.
+1. **Overview** - *informative.* What it achieves and how the flow runs, in 2 to
+   4 sentences.
 2. **Who** - the actor that invokes it.
 3. **Trigger** - the condition that makes it valid to run.
 4. **Structure** - a table of inputs, outputs, and their types.
@@ -182,6 +262,11 @@ you hand the spec over.
 | Two rules joined by "and" | Split into two bullets, two IDs. |
 | A rule inside a parenthesis | Promote it to its own bullet. |
 | A rule with no ID | Assign the next number in that operation's series. |
+| Rules with no Overview above them | Write the story first: the flow in time order, labelled informative. |
+| A keyword in capitals inside an Overview | Move the rule to a numbered bullet. The Overview uses the present tense. |
+| Behaviour that appears only in an Overview | Promote it to a numbered rule. |
+| An assumption stated in passing | Move it to Assumptions. Give it an `[A-n]` ID and name who makes it true. |
+| A point the source left undecided, settled inside a "Why" note | List it in Open questions. Cite the rule that decides it. |
 | Rationale deleted as redundant | Restore it. It handles the unlisted case. |
 | Renumbering after a deletion | Mark the old ID withdrawn. Keep the gap. |
 | A new synonym for an existing term | Repeat the defined term. |
