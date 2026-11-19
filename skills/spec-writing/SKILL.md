@@ -210,12 +210,34 @@ what the four rules achieve before the first one.
 - Give every normative check a stable ID: a short prefix for the operation, then
   a number. Example: `[TR-3]` is the third check of "Token refresh".
 - Cite the ID from the implementation and from the tests: `// spec [TR-3]`.
-- Never renumber an ID. Mark a removed rule as withdrawn and keep its number.
 - Record any divergence from the implementation in an *Implementation status*
   note on that rule.
 
+**An ID is frozen from the moment it is published.** An ID is *published* when
+it exists on the main branch, in a released version of the spec, or in a copy
+that someone outside the team holds. Until then it is a *draft* ID. The state
+belongs to each ID, not to the document. A branch that adds two rules to a
+published spec has two draft IDs next to the published ones.
+
+| Change | Draft ID | Published ID |
+|---|---|---|
+| Renumber or reorder | Yes. Keep the numbers in reading order. | Never. |
+| Remove the rule | Delete it. Leave no trace. | Mark it withdrawn. Keep its number. |
+| Add a rule | Renumber the draft IDs, so that they stay in reading order. | Give the new rule the next free number. |
+
+- Draft IDs take the numbers after the highest published number of the series.
+  A withdrawn number counts as published.
+- When you renumber a draft ID, update each citation in the same change. Search
+  the plan, the code, and the tests for the old ID.
+- To find the state of an ID, compare the spec with its version on the main
+  branch: `git diff main -- <spec file>`. An ID that the main branch already
+  holds is published.
+- If you cannot find the state of an ID, treat it as published.
+
 **Why:** An auditor traces a finding to a rule. An implementer traces a rule to
-code. A renumbered ID breaks both links silently, and no test catches it.
+code. A renumbered published ID breaks both links silently, and no test catches
+it. A draft ID has no reader outside the branch. A gap or a "withdrawn" marker
+there records a history that nobody needs.
 
 ## Structure
 
@@ -268,7 +290,8 @@ you hand the spec over.
 | An assumption stated in passing | Move it to Assumptions. Give it an `[A-n]` ID and name who makes it true. |
 | A point the source left undecided, settled inside a "Why" note | List it in Open questions. Cite the rule that decides it. |
 | Rationale deleted as redundant | Restore it. It handles the unlisted case. |
-| Renumbering after a deletion | Mark the old ID withdrawn. Keep the gap. |
+| Renumbering a published ID after a deletion | Mark the old ID withdrawn. Keep the gap. |
+| A gap or a "withdrawn" marker among draft IDs | Renumber the draft IDs in reading order. Update each citation. |
 | A new synonym for an existing term | Repeat the defined term. |
 | A 5-word noun cluster | Rewrite with "of the". Maximum 3 words. |
 | A boundary rule with no example | Add the table. "In the past" hides `<` versus `<=`. |
