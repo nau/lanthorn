@@ -248,11 +248,13 @@ For the document, in this order:
 1. **Overview** - *informative.* The main flow as a story, in at most 200 words.
 2. **Goals and non-goals** - *informative.* The problem, why it matters now,
    and the work that the spec leaves out.
-3. **Assumptions** - each fact that the spec relies on and does not enforce,
+3. **Approaches** - *informative.* Only if the source weighed more than one way
+   to build it. Each way, its trade-off, and why the chosen one won.
+4. **Assumptions** - each fact that the spec relies on and does not enforce,
    with its `[A-n]` ID.
-4. **Definitions** - one entry per domain term.
-5. One section per operation, endpoint, or transaction.
-6. **Open questions** - *informative.* Each point that the source left
+5. **Definitions** - one entry per domain term.
+6. One section per operation, endpoint, or transaction.
+7. **Open questions** - *informative.* Each point that the source left
    undecided. For each one, cite the rule that decides it, or say that it is
    still open.
 
