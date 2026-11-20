@@ -14,7 +14,7 @@ cover. Everything not listed below still comes from superpowers.
 | Task | Skill |
 |------|-------|
 | Turn an idea into a design, including a new spec | `superpowers:brainstorming` |
-| Brainstorming wrote a design spec, before planning starts | `lanthorn:spec-writing` |
+| Brainstorming wrote a design doc, before the builder check and the approval | `lanthorn:spec-writing` |
 | Edit an existing spec, or word a single requirement | `lanthorn:spec-writing` |
 | Write an implementation plan | `superpowers:writing-plans` |
 | Implement a feature or a bugfix | `superpowers:test-driven-development` |
@@ -31,8 +31,11 @@ A task not in this table has no lanthorn fork. Use the superpowers skill.
 
 **"Write a spec for X" starts at brainstorming, not at `spec-writing`.** A spec
 that does not exist yet has no requirements to word. Brainstorming decides what
-the spec says. `spec-writing` then decides how each requirement reads, on the
-file brainstorming produced, before `writing-plans` consumes it.
+the spec says.
+
+**Every design doc that brainstorming writes then gets `spec-writing`.** It
+decides how each requirement reads. Run it before the builder check and before
+your human partner approves the doc. An approved doc is not reworded.
 
 The `lanthorn:` and `superpowers:` prefixes are Claude Code namespacing. On
 other harnesses, use the bare skill name.
