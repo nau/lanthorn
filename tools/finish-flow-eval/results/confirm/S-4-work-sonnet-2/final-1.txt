@@ -1,0 +1,9 @@
+Tests pass. This is a named-branch worktree, and the base branch is `main`, as the git context shows.
+
+Implementation complete. What would you like to do?
+
+1. Merge back to `main` locally
+2. Push and create a Pull Request
+3. Keep the branch as-is (I'll handle it later)
+
+Which option? `AGENTS.md` says to land through pull requests, so option 2 is the one that matches it.

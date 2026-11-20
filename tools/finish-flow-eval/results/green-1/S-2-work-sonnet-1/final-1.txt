@@ -1,0 +1,23 @@
+The history is clean and the tree is identical to the backup. Landing changes the remote base branch, so I need your yes first.
+
+```
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate a refresh token and revoke the old one
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run after the rebase onto b45e668)
+Conflicts resolved: None
+Adjustments for base changes: None (the teammate's "docs: add the opening hours" only touched README.md)
+
+Land these 4 commits on origin/main by fast-forward?
+```
+
+Notes:
+- The base is `main`, tracking `origin/main`. `AGENTS.md` declares no landing policy and the last 20 commits show no pull requests, so the default is fast-forward.
+- The fast check, `sh build.sh`, passed on each of the 4 commits.
+- `AGENTS.md` has no commit section. The history has only two commits, both with conventional prefixes, which is too thin to record as a convention, so I wrote conventional subjects and recorded nothing.
+- I added no `Co-Authored-By` trailer. The history has no trailers.

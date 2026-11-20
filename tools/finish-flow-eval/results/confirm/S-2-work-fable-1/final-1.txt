@@ -1,0 +1,22 @@
+The branch is rebased, tested and cleaned up, but nothing has landed yet — I need your yes before I touch `main`.
+
+Ready to land on `origin/main`:
+
+Commits:
+- `feat: rotate refresh tokens`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: describe token rotation`
+- `docs: declare the commit convention`
+
+Full suite: `sh test.sh` – all tests passed, run on the rebased tip. The history rewrite afterwards changed no file, and `sh build.sh` passes on each of the 5 commits.
+Conflicts resolved: None
+Adjustments for base changes: None. A teammate landed `docs: add the opening hours` on `origin/main` since the branch split; it only touches `README.md`, so the feature needed no change.
+
+Two things you did not ask for:
+- **Extra commit:** `docs: declare the commit convention` adds a short "Commits" section to `AGENTS.md`, recording the convention I inferred from the history (Conventional Commits subjects, no scope, no trailers). It rests on only two commits on `main`, so say so if you'd rather drop it.
+- **No `Co-Authored-By` trailer:** the commits carry no Claude attribution line, because the project's history uses no trailers.
+
+The two fix commits are folded into the commits they fixed. The pre-rewrite tip is kept at `refs/lanthorn/backup/add-token-rotation` until the landing is done.
+
+Land these 5 commits on `origin/main` by fast-forward? After a yes I'll push, fast-forward your local `main`, and remove this worktree and the branch.

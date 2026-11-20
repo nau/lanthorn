@@ -1,0 +1,13 @@
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run on the rebased tip; the history rewrite changed no file, and `git diff` against the backup ref is empty). `sh build.sh` passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The only new base commit, `docs: add the opening hours`, edits README.md, which the feature doesn't touch.
+
+Land these 4 commits on origin/main by fast-forward?

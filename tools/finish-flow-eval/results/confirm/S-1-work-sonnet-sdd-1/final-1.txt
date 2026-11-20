@@ -1,0 +1,12 @@
+Task 1 (slugify) is done and reviewed, and I've stopped as you asked. Task 2 hasn't been started.
+
+- **Commit:** `94cfbca feat: add slugify`. It adds `src/text.sh` and `tests/text.test.sh`.
+- **Tests:** the implementer wrote the test first and saw it fail, then saw `sh test.sh` print `all tests passed` after the implementation. `sh build.sh` printed `build ok`. I didn't re-run either command myself.
+- **Review:** the task reviewer found the change matches the brief and approved it, with no Critical or Important issues.
+- **One thing the reviewer couldn't confirm:** whether `test.sh` picks up the new test file. I checked, and it runs every `tests/*.test.sh`.
+- **Minor notes, not fixed:**
+  - `slugify` uses `echo "$1"`, which can mangle input starting with `-n` or `-e`, or containing backslashes. `printf '%s\n' "$1"` would be safer. The plan didn't ask for this.
+  - The test has one case, as the plan specifies.
+- **Commit trailer:** the implementer flagged a mismatch about the `Co-Authored-By` line. I had told it to use Sonnet 5.5, which is what the attribution reminder says, so the commit is correct.
+
+Say the word and I'll run Task 2 (`word_count`) the same way.

@@ -1,0 +1,15 @@
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate a refresh token and revoke the old one
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+- docs: record the commit conventions (new; it records the prefix, no-scope and no-trailer style the base history showed, and it's your call to keep or drop it)
+
+Full suite: `sh test.sh` – all tests passed on the final tip. The fast check, `sh build.sh`, passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The base only gained a README docs commit, "docs: add the opening hours".
+History rewrite: the six working commits became four logical ones. `git diff` against the backup ref printed nothing.
+
+Land these 5 commits on origin/main by fast-forward?

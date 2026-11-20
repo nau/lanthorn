@@ -1,0 +1,14 @@
+Token rotation is on `origin/main` as four commits, fast-forwarded with no merge commit and no force push. The full suite (`sh test.sh`) passed on the rebased tip, and the history rewrite left the tree unchanged.
+
+- **Landed:** `origin/main` went from `bf16448` to `67bf83d`. The main checkout's local `main` was fast-forwarded to match.
+- **Commits:**
+  - `feat: rotate refresh tokens`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+- **Rebase:** no conflicts. The new base commit only added opening hours to `README.md`, so the feature needed no adjustments.
+- **Cleanup:** I deleted the backup ref, the `.worktrees/add-token-rotation` worktree, and the local `add-token-rotation` branch. No remote copy of the feature branch existed.
+
+Two choices I made that you can change:
+- The commit messages use Conventional Commits, since the repo declares no convention and its history is mixed. I did not add a Commits section to `AGENTS.md`. Say if you want one.
+- The commits end with a `Co-Authored-By: Claude Haiku 5.5` trailer because the session instructions asked for it. The repo's history has no trailers, so it is easy to remove in a later commit if you prefer.

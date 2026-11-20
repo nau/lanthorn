@@ -1,0 +1,11 @@
+Task 1 (slugify) is done and committed as `c360dfb`. As you asked, I'm stopping here and waiting. I haven't started Task 2.
+
+- **RED:** the new test failed because `src/text.sh` didn't exist yet.
+- **GREEN:** after implementing `slugify`, `sh test.sh` printed `all tests passed` and `sh build.sh` printed `build ok`.
+- **Ledger:** the completion line is recorded in `.superpowers/sdd/plan/progress.md`. No rulings or deviations.
+
+Running `test.sh` and `build.sh` appends a line to `suite.log` and `fast.log` in the main repo root, outside this worktree. That is how those scripts are written. I didn't touch the logs otherwise.
+
+`slugify` only lower-cases and turns spaces into `-`, which is all the plan specifies.
+
+Tell me when to continue with Task 2 (`word_count`).

@@ -1,0 +1,7 @@
+Understood, I'm not landing. Nothing has been pushed, and `origin/main` and the local `main` are unchanged.
+
+I kept these in place:
+- The `add-token-rotation` branch, with its 4 rewritten commits, in the worktree at `.worktrees/add-token-rotation`.
+- The backup ref `refs/lanthorn/backup/add-token-rotation`, which holds the original 6 commits, rebased on the new `origin/main`.
+
+If you want something changed first, such as the commit grouping or the messages, tell me and I'll redo it. Otherwise tell me when to land, or type `discard` to delete the branch and worktree.

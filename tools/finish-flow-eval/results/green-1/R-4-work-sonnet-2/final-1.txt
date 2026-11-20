@@ -1,0 +1,17 @@
+The branch is rebased and cleaned up, and nothing has been pushed or changed on `main`. I'm waiting for your yes before landing.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` passed on the rebased tip, and passed again after the history rewrite. The fast check (`sh build.sh`) passed on each commit. The rewrite changed no file: `git diff` against the backup ref is empty.
+Conflicts resolved: None
+Adjustments for base changes: None. A teammate added "docs: add the opening hours" to `origin/main`, which touches only `README.md`.
+
+I rewrote the six working commits into four, and followed the repo's `type:` prefix style. The two fix commits were folded into the commits they fix.
+
+Land these 4 commits on origin/main by fast-forward?

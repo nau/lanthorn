@@ -1,0 +1,23 @@
+Ready to land on origin/main:
+
+Commits:
+- docs: add the plan for two text functions
+- feat: add slugify
+- feat: add word_count
+
+Full suite: `sh test.sh` – all tests passed (run on the rebased tip)
+Conflicts resolved: None
+Adjustments for base changes: None. The teammate's new commit only edits `README.md`.
+
+The commits are already logical, so I didn't rewrite them.
+
+Rulings I made:
+- **`slugify` scope:** The final reviewer noted that `slugify` passes punctuation and slashes through and can emit repeated or edge hyphens. The plan specifies exactly "lower case, spaces become `-`", the test pins that, and nothing calls it yet, so I left it as is. If a future caller uses it as a URL or path segment, it must be tightened with tests first. For example, `"a/b ../c"` currently gives `a/b-../c`.
+
+Deferred minors:
+- The tests cover only the happy path.
+- `tr 'A-Z '` uses locale-dependent ranges and is ASCII-only.
+- Extra or missing arguments are silently ignored.
+- The functions are undocumented.
+
+Land these 3 commits on origin/main by fast-forward?

@@ -1,0 +1,16 @@
+Steps 1 to 5 are done: the history is clean, the tree is identical to the backup ref, and the fast check passed on every commit. Nothing has been pushed yet.
+
+Ready to land on origin/main (base: named by the session's git context):
+
+Commits:
+- feat: rotate refresh tokens and revoke the old one
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed, run on the tip after the rebase. The rewrite changed no file (`git diff <backup> HEAD` is empty).
+Conflicts resolved: None
+Adjustments for base changes: None. The only new base commit, `docs: add the opening hours`, touches only `README.md`.
+Proposals: `AGENTS.md` has no commit-style section. The history uses Conventional Commits prefixes, with no trailers and no scopes. I can record that in its own commit if you want it. I added nothing during the landing.
+
+Land these 4 commits on origin/main by fast-forward?

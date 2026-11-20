@@ -1,0 +1,16 @@
+Steps 1–5 are done. Landing changes `origin/main`, so I need your yes first.
+
+Ready to land on origin/main (base guessed: `main`, the only candidate, and it tracks `origin/main`):
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed on the rebased tip. The history rewrite changed no file (`git diff` against the backup ref is empty). The fast check `sh build.sh` passed on every commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The only new base commit, "docs: add the opening hours", touches `README.md` and not the feature.
+Proposals: None
+
+Land these 4 commits on origin/main by fast-forward?

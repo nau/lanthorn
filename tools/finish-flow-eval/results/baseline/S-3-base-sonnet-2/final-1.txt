@@ -1,0 +1,9 @@
+Tests pass (`all tests passed`) and the tree is clean. This is a named-branch worktree. The branch split from `main`, as the git status context says.
+
+Implementation complete. What would you like to do?
+
+1. Merge back to `main` locally
+2. Push and create a Pull Request
+3. Keep the branch as-is (I'll handle it later)
+
+Which option?

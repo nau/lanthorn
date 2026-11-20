@@ -1,0 +1,12 @@
+Token rotation is landed. `origin/main` and the local `main` are both at `a79fd54`, with the four commits on top of the teammate's README change.
+
+- **Commits:**
+  - `feat: rotate refresh tokens`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+- **Push:** it went through without force on the first try.
+- **Cleanup:** I deleted the backup ref, removed the `.worktrees/add-token-rotation` worktree and deleted the `add-token-rotation` branch. No remote copy of the feature branch ever existed.
+- **Verification:** the full suite passed on the rebased tip before the history cleanup, and the fast check passed on each rewritten commit. I did not re-run the suite after the push.
+
+I did not record the commit style in `AGENTS.md`, because the base had only two commits to infer it from.

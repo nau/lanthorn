@@ -1,0 +1,6 @@
+The four token-rotation commits are now on `origin/main` (`b54dc2b`), landed by fast-forward with no merge commit and no pull request. Local `main` matches it.
+
+- **Full suite:** `sh test.sh` passed on the rebased tip before the history rewrite. I didn't re-run it afterward, but the rewrite changed no file, since the diff against the backup ref was empty. `sh build.sh` passed on each of the four commits.
+- **Rename fix:** `origin/main` renamed `now_ts` to `clock_now`, so I switched `rotate_token` and `revoke_family` to the new name. The fix is folded into the commits that introduced those calls.
+- **Cleanup:** I deleted the backup ref, the `add-token-rotation` worktree and the local branch. No remote copy of the branch existed.
+- **Commit style:** `AGENTS.md` has no commit section, so I didn't record the prefix style there.

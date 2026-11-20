@@ -1,0 +1,19 @@
+Steps 1 to 5 are done, and I haven't touched `main` yet. Landing it changes `main` locally and on the remote, so I need your yes first.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens and revoke the old one
+- refactor: extract the token store
+- feat: revoke the token family
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed on the rebased tip. The history rewrite changed no file (`git diff` against the backup ref is empty), and `sh build.sh` passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The one new commit on `origin/main` only edits `README.md`.
+
+Two other things:
+- `AGENTS.md` has no landing or commit section, and the history shows no pull requests, so I'm using the fast-forward default.
+- I left Co-Authored-By trailers off. The repo's history has none, and `lanthorn:writing-commits` says to match the project.
+
+Land these 4 commits on origin/main by fast-forward?

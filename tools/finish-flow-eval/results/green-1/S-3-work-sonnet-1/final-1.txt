@@ -1,0 +1,13 @@
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (exit 0) on the rebased tip. The history rewrite changed no file, because `git diff` against the backup ref prints nothing. `sh build.sh` passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The only base change was a README docs edit (opening hours).
+
+Land these 4 commits on origin/main by fast-forward?

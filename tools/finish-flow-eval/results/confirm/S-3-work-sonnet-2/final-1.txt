@@ -1,0 +1,15 @@
+The history is clean, the tree is identical to the backup, and the fast check passed on each commit. The policy says to ask before landing.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens and revoke the old one
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed, run after the rebase. The history rewrite changed no file, and `sh build.sh` passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The only new base commit was a README-only edit ("docs: add the opening hours").
+
+Land these 4 commits on origin/main by fast-forward?

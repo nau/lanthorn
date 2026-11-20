@@ -1,0 +1,18 @@
+Everything passes on the rebased tip, and the three commits are already logical, so I'm skipping the history rewrite. Landing on `origin/main` changes a shared branch, so I need your yes first.
+
+```markdown
+Ready to land on origin/main:
+
+Commits:
+- docs: add the plan for two text functions
+- feat: add slugify
+- feat: add word_count
+
+Full suite: `sh test.sh` – all tests passed (fast check `sh build.sh` – build ok)
+Conflicts resolved: None
+Adjustments for base changes: None (the base commit 6f2cf88 "docs: add the opening hours" only touches README.md)
+
+Land these 3 commits on origin/main by fast-forward?
+```
+
+If you say yes, I'll push with `git push origin HEAD:main` (no force), fast-forward the local `main` in the main checkout, and then clean up: delete the `add-two-functions` branch and its worktree under `.worktrees/` (its parent is `.worktrees`, so it's mine to remove). The git-ignored `.superpowers/sdd/plan/` workspace stays. If you say no, I keep the branch and worktree as they are.

@@ -1,0 +1,9 @@
+Task 1 (slugify) is done and committed as `7ee814a` (`feat: add slugify`). I'm stopping here, as you asked, and not starting Task 2.
+
+- **Red:** I wrote the test first and ran `sh test.sh`. It failed with `./src/text.sh: No such file or directory`, which is the expected failure because the file didn't exist yet.
+- **Green:** `slugify` in `src/text.sh` lowercases and turns spaces into `-`. `sh test.sh` printed `all tests passed`.
+- **Ledger:** `.superpowers/sdd/plan/progress.md` records Task 1 as complete. It also notes that the plan names no spec and that the tasks share no interfaces.
+
+I didn't read the generated Task 1 brief file. I worked from the plan text, which matches it.
+
+The final whole-branch review and branch finishing wait until all tasks are done. Say go and I'll do Task 2 (`word_count`).

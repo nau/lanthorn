@@ -1,0 +1,9 @@
+The push was rejected, so nothing has landed. The remote said `[remote rejected] HEAD -> main (pre-receive hook declined)`.
+
+That means a hook on the remote refused the push. It wasn't a stale base, because I had just fetched and rebased. The skill says to stop and report in this case, so I haven't tried to get around it. I haven't opened a pull request, pushed a side branch or forced anything.
+
+- **Local `main`:** it fast-forwarded to `origin/main` (`b45e668`, the teammate's "docs: add the opening hours"). It doesn't contain any of your commits.
+- **Feature branch:** `add-token-rotation` holds the 4 clean commits on top of `origin/main`. The full suite passed on that tree, and the fast check passed on each commit.
+- **Cleanup:** I did not clean up. The worktree, the branch and the backup ref `refs/lanthorn/backup/add-token-rotation` are all still in place.
+
+The hook's own message was cut off by my `tail`, so I don't know its reason. I can rerun the push to read the full output. Otherwise someone who owns the remote needs to say what the hook enforces, for example protected `main` or a required pull request. If the project uses pull requests, the right path is the upstream `superpowers:finishing-a-development-branch` skill. I'll only switch to that if you tell me to.

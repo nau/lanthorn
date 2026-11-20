@@ -1,0 +1,23 @@
+Four logical commits are ready. Nothing has been pushed, and the base branch is unchanged.
+
+```
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens and revoke the old one
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run after the rebase, before the rewrite)
+Fast check: `sh build.sh` – passed on each commit
+Tree check: `git diff` against the backup ref prints nothing
+Conflicts resolved: None
+Adjustments for base changes: None (origin/main gained only a README opening-hours commit)
+
+Land these 4 commits on origin/main by fast-forward?
+```
+
+Two things to know:
+- **Commit format:** `AGENTS.md` declares no commit convention. I followed the two commits on main, which use type prefixes, and did not record it in `AGENTS.md`.
+- **Policy:** The history shows no pull requests, so this lands by fast-forward with no PR.

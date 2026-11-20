@@ -1,0 +1,19 @@
+Ready to land on origin/main:
+
+Commits:
+- feat: revoke a refresh token when it is rotated
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+- docs: record the commit message convention
+
+Full suite: `sh test.sh` – all tests passed on the final tip. `sh build.sh` also passed on each of the first four commits.
+Conflicts resolved: None
+Adjustments for base changes: None. The base gained `docs: add the opening hours`, which only touches README.md.
+
+Two notes:
+- **History rewrite:** the review and test-name fixes are folded into the commits they fix. Against the backup ref, the tree differs only by the AGENTS.md addition.
+- **Convention commit:** the last commit records the commit convention in AGENTS.md. I inferred it from the base history, and AGENTS.md had no commit section.
+- **No trailer:** the messages carry no Co-Authored-By line, because the history has no trailers.
+
+Land these 5 commits on origin/main by fast-forward?

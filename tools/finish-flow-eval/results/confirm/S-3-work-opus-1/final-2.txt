@@ -1,0 +1,10 @@
+Token rotation is on `origin/main`: five commits on top of a straight history, with no merge commit and no force-push.
+
+My first push was rejected because a teammate had just pushed `docs: say the shop closes on Sundays` to main, and it only touches `README.md`. I rebased onto it with no conflicts and no changes needed, ran `sh test.sh` again (all tests passed), and the second push went through.
+
+Cleanup:
+- Your local `main` in the main checkout is fast-forwarded to `a99bd81`, the same as `origin/main`.
+- The `.worktrees/add-token-rotation` worktree, the backup ref and the local `add-token-rotation` branch are deleted.
+- The feature branch was never pushed, so there's no remote copy.
+
+Your working directory for this session was the worktree, which no longer exists. Run any further commands from the main checkout at `.../tmp.gkRlU6nNpb/shop`.

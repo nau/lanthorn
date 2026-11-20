@@ -1,0 +1,22 @@
+Tree is identical to the backup (empty diff), fast check passes on each commit, and the full suite passes. Landing needs your yes.
+
+```
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run on the rebased tip; the history rewrite changed no file)
+Conflicts resolved: None
+Adjustments for base changes: None (the teammate's change was a README line, "docs: add the opening hours", unrelated to the feature)
+
+Land these 4 commits on origin/main by fast-forward?
+```
+
+Notes:
+- The base is `main`, which tracks `origin/main`. The last 20 commits show no pull requests, and `AGENTS.md` declares no policy, so the default is fast-forward.
+- I added no `Co-Authored-By` trailer. The repo history has no trailers, and `lanthorn:writing-commits` says to follow the project.
+- `AGENTS.md` has no commit section. I did not add one, since the history sample is only two commits. Say if you want me to record the convention.

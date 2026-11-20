@@ -1,0 +1,10 @@
+Task 1 (slugify) is done and committed as `b1cf566` (`feat: add slugify`).
+
+- **Red:** I wrote the test first. `sh test.sh` failed because `src/text.sh` didn't exist.
+- **Green:** I added `slugify` to `src/text.sh`, which lowercases the text and turns spaces into `-`. `sh test.sh` then printed `all tests passed`.
+- **Ledger:** `task-done` re-ran the suite, it passed, and the completion line went into the ledger.
+- **Rulings:** none.
+
+`test.sh` appends to a `suite.log` outside this worktree, as the repo's own script does. I left that alone.
+
+I'm stopping here as you asked. Task 2 (`word_count`) and the final whole-branch review are not started.

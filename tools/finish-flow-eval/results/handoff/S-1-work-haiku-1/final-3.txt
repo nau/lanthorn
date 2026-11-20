@@ -1,0 +1,31 @@
+The plan is complete, and the branch is ready to land on `origin/main`. Nothing has been pushed yet.
+
+Ready to land on origin/main:
+
+Commits:
+- `docs: add the plan for two text functions`
+- `feat: add slugify`
+- `feat: add word_count`
+
+Full suite: `sh test.sh` – all tests passed. Fast check `sh build.sh` – build ok.
+Conflicts resolved: None. The base commit `docs: add the opening hours` only touched README.md.
+Adjustments for base changes: None.
+
+Land these 3 commits on origin/main by fast-forward?
+
+**Rulings I made** (in order):
+1. Task 1: created an empty `src/text.sh` so the RED failure was the expected `slugify: wrong result`. Cost if wrong: one extra plan step.
+2. Review fix: `slugify` now turns any run of characters outside `a-z0-9` into one hyphen and trims hyphens at both ends. The plan only said "spaces become `-`", but the output must be URL-safe. Cost if wrong: punctuation-bearing input gives different slugs than the literal plan.
+3. `slugify` is ASCII-only, so `ÄBC` becomes `bc`. Non-ASCII letters are dropped, not transliterated. Cost if wrong: non-ASCII titles lose letters.
+4. `word_count` counts punctuation-only tokens as words (`a - b` gives 3), matching `wc -w`. Cost if wrong: symbol-only tokens count.
+5. The plan names no spec and has no Review Focus section, so the final review was judged against the plan and normal use. Cost if wrong: the review is provisional.
+
+**Deferred minors:**
+- `slugify` with no argument prints an empty line, and `word_count` prints `0`. Acceptable for a shell helper.
+
+**Notes:**
+- The review was done by a fresh reviewer on the most capable model. Its Important findings (unsafe slugs, thin tests) were fixed with a RED→GREEN pass.
+- The history was rebuilt so the review fix folded into the `slugify` commit. The backup ref is `refs/lanthorn/backup/add-two-functions`, and the rewritten tree matches it exactly.
+- The plan workspace is deleted. I kept a copy of the ledger at `/tmp/shop-add-two-functions-ledger.md`.
+
+Reply **yes** to fast-forward `origin/main` to these commits, or **no** to keep the branch and worktree as they are.

@@ -1,0 +1,23 @@
+Everything up to landing is done. I haven't changed `main` or pushed anything. I need your yes before I land.
+
+```
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run after rebasing on origin/main, 5906831)
+Conflicts resolved: None
+Adjustments for base changes: None (the teammate's "docs: add the opening hours" only touched README.md)
+
+Land these 4 commits on origin/main by fast-forward?
+```
+
+- **History cleanup:** the six working commits became four logical ones. The review fix is folded into the rotation commit and the test-name fix into the revocation commit. I checked that `git diff` against the backup ref prints nothing, and `sh build.sh` passes on every commit.
+- **Backup ref:** the pre-rewrite tip is saved at `refs/lanthorn/backup/add-token-rotation`.
+- **Commit style:** `AGENTS.md` declares no commit convention. I used Conventional Commit prefixes, matching the two commits on `main`, and added no trailers. I recorded nothing in `AGENTS.md`. Say if you want a Commits section added.
+
+On yes, I push with `git push origin HEAD:main`, without force, and fast-forward local `main`. Then I remove the `.worktrees/add-token-rotation` worktree and delete the branch and the backup ref.

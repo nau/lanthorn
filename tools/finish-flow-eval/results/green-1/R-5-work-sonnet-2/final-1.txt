@@ -1,0 +1,10 @@
+I'm using lanthorn's finishing-a-development-branch skill to land this work.
+
+I need your decision on the landing policy before going on. `AGENTS.md` doesn't say how work lands here. The recent history on `origin/main` has subjects ending in pull request numbers: `docs: say how to run the tests (#13)` and `fix: reject an empty user (#12)`. That suggests this project may use pull requests.
+
+Which policy applies?
+
+1. **Fast-forward.** I rebase onto `origin/main`, run the full suite, tidy the history, and push straight to `main`. No pull request.
+2. **Pull requests.** I stop here and use the upstream `superpowers:finishing-a-development-branch` skill instead.
+
+Whichever you pick, I'll record it in `AGENTS.md` as its own commit on the feature branch. Nothing has changed yet. I only fetched, and `origin/main` has one new commit (`1e478bd docs: add the opening hours`).

@@ -1,0 +1,21 @@
+I've rebased the branch onto the latest main and cleaned up its history. Nothing has been pushed and main hasn't changed yet. I need your go-ahead for that.
+
+Ready to land on origin/main (base named in the session's git context):
+
+Commits:
+- `feat: rotate refresh tokens` (now includes "fix review: revoke before return")
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay` (now includes "fix test name")
+- `docs: describe token rotation`
+
+Full suite: `sh test.sh` passed ("all tests passed") after the rebase. The cleanup didn't change any file contents, so that result still holds. The fast check (`sh build.sh`) also passed on each of the four commits.
+
+Conflicts resolved: None. A teammate added "docs: add the opening hours" to main, which only touches `README.md`.
+
+Adjustments for base changes: None.
+
+Proposals:
+- **Record the commit style.** Add a "Commits" section to `AGENTS.md`: "Conventional Commits prefixes, short bodies, no trailers." I didn't add it now so that only your four commits land.
+- **No `Co-Authored-By` line.** I left it off the messages because this repo's history has no trailers and the commit-writing skill says to follow the repo. I can add it back if you want it.
+
+Land these 4 commits on origin/main by fast-forward?

@@ -1,0 +1,28 @@
+Both tasks are done and reviewed. I haven't landed anything, so the base branch is unchanged until you say yes.
+
+```
+Ready to land on origin/main:
+
+Commits:
+- docs: add the plan for two text functions
+- feat: add slugify
+- feat: add word_count
+
+Full suite: `sh test.sh` – all tests passed (run on the rebased tip; `build.sh` passed on every commit)
+Conflicts resolved: None
+Adjustments for base changes: None. origin/main gained one commit, "docs: add the opening hours", which only touches README.md.
+
+Land these 3 commits on origin/main by fast-forward?
+```
+
+- **Review:** the final whole-branch review found that `echo "$1"` mangles backslashes and a leading `-n` and behaves differently across shells. I replaced it with `printf '%s\n' "$1"` in both functions and added a backslash test for each. A scoped re-review found no remaining problems.
+- **History:** the fix commit is folded into `feat: add word_count`, so that commit also changes `slugify`, and its message says so. Backup ref: `refs/lanthorn/backup/add-two-functions`, and the tree is identical to before the rewrite.
+- **Not tested:** the regression tests cover a backslash input but not a leading `-n` or `-e`.
+- **Left as is:** `slugify` turns each space into a `-` and does nothing else, so `"Hello  World"` gives `hello--world`. The plan doesn't say more.
+
+**Rulings I made**
+1. I amended the implementer's `Claude Haiku 5.5` trailer on the `word_count` commit to `Claude Sonnet 5.5`, per the session's attribution rule. The commit was local only. If that's wrong, re-amend it.
+2. I fixed the `echo` issue and added its regression test in one fix wave, rather than only the `echo` change. If that's wrong, drop one test line.
+3. I left `slugify`'s handling of repeated spaces, trimming and punctuation unchanged. If that's wrong, odd input produces double dashes.
+
+I deleted the plan's scratch workspace under `.superpowers/sdd/plan`. After a yes, I'll push, fast-forward local `main`, and clean up the backup ref and the `.worktrees/add-two-functions` worktree.

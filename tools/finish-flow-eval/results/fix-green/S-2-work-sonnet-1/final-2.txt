@@ -1,0 +1,13 @@
+Token rotation is landed on `main` by fast-forward, locally and on `origin/main` (now at `fb8cedb`), with no merge commit and no force push.
+
+The four commits are:
+- `67adb82` feat: rotate refresh tokens
+- `fe367ba` refactor: extract the token store
+- `a43c62c` feat: revoke the token family on replay
+- `fb8cedb` docs: describe token rotation
+
+I ran the full suite after the rebase and it passed. The history rewrite changed no file, and the fast check passed on each commit.
+
+I deleted the backup ref, the `add-token-rotation` worktree and the local branch. I never pushed the feature branch, so there is no remote copy of it.
+
+I did not add a commit-style section to `AGENTS.md`. Say so if you want one.

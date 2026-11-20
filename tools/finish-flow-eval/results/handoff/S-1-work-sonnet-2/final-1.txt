@@ -1,0 +1,9 @@
+Task 1 (slugify) is done and committed as `feat: add slugify`. I stopped there, as you asked, and have not started Task 2.
+
+- **RED:** `sh test.sh` failed because `src/text.sh` didn't exist yet.
+- **GREEN:** `slugify` lowercases and turns spaces into `-`. `sh test.sh` printed `all tests passed`.
+- **Ledger:** `task-done` re-ran `sh test.sh`, which passed, and recorded `Task 1: complete (commits 3acc10a..3197863)`.
+
+I didn't run `sh build.sh`, since the plan only asks for the full suite. Note that `test.sh` appends a line to `suite.log` at the repo root on every run.
+
+Ready for Task 2 (`word_count`) when you say so.

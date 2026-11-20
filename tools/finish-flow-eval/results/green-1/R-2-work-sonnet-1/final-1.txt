@@ -1,0 +1,19 @@
+Step 6: the history is clean, the tree matches the passing one, and the base is unchanged since my fetch. The landing question needs your answer before I touch the base branch.
+
+```
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run on the rebased tip; the history rewrite changed no file)
+Conflicts resolved: None
+Adjustments for base changes: None (the base added only opening hours to the README)
+
+Land these 4 commits on origin/main by fast-forward?
+```
+
+Landing means `git push origin HEAD:main` without force, then a fast-forward of the local `main` in the main checkout. Yes or no?

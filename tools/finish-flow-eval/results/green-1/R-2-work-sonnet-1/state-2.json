@@ -1,0 +1,13 @@
+{
+  "remote_refs": {
+    "refs/heads/main": "b45e6685646b7a80e795f9df52db3ff7841be440"
+  },
+  "shop_refs": {
+    "refs/heads/add-token-rotation": "56dd4a627ebe6848aa76d6a79e21851efb3e65fc",
+    "refs/heads/main": "b45e6685646b7a80e795f9df52db3ff7841be440",
+    "refs/lanthorn/backup/add-token-rotation": "102a1ce8737b22c25a36896b9a0e00e2134b09b0",
+    "refs/remotes/origin/HEAD": "b45e6685646b7a80e795f9df52db3ff7841be440",
+    "refs/remotes/origin/main": "b45e6685646b7a80e795f9df52db3ff7841be440"
+  },
+  "worktree_exists": true
+}

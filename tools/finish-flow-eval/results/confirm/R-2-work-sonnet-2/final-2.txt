@@ -1,0 +1,22 @@
+I did not land the work. The push to `origin/main` was rejected by a protected-branch hook:
+
+```
+remote: protected branch hook declined: main accepts changes from the merge bot only
+ ! [remote rejected] HEAD -> main (pre-receive hook declined)
+```
+
+The skill says to stop and report when a rejection isn't a plain "fetch first" case, so I didn't work around it. I didn't open a pull request, push the feature branch, or touch local `main`. Someone set that protection on purpose, and it conflicts with the fast-forward landing policy.
+
+**Current state**
+- `add-token-rotation` holds 4 clean commits on top of `origin/main` (`d9f0199`):
+  - `feat: rotate refresh tokens`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+- The full suite passed on this tree, and the fast check passed on each commit.
+- The worktree and the backup ref `refs/lanthorn/backup/add-token-rotation` are kept.
+
+**How do you want to proceed?**
+- If this repo lands through a merge bot, which is probably a pull request or merge-request flow, I can switch to `superpowers:finishing-a-development-branch`. I'd also record that policy in `AGENTS.md`.
+- If you have bot access or a different remote or branch to land on, tell me which.
+- Otherwise I'll leave the branch as it is.

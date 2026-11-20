@@ -1,0 +1,5 @@
+Understood, I'm not landing. `main` and `origin/main` are unchanged.
+
+I kept the branch `add-token-rotation`, its worktree, and the backup ref `refs/lanthorn/backup/add-token-rotation`. The backup points at the pre-cleanup tip, so you can undo the history rewrite if you want. The branch is rebased on `origin/main` and has 4 clean commits. The suite passes.
+
+Tell me what you'd like to change. I can reword the commits, add the `Co-Authored-By` trailer, split or merge commits differently, or land it later.

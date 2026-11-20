@@ -1,0 +1,13 @@
+{
+  "fast_lines": 4,
+  "remote_refs": {
+    "refs/heads/main": "ba9a41fa277fa0750fa8e362a92a146705076fe0"
+  },
+  "shop_refs": {
+    "refs/heads/main": "ba9a41fa277fa0750fa8e362a92a146705076fe0",
+    "refs/remotes/origin/HEAD": "ba9a41fa277fa0750fa8e362a92a146705076fe0",
+    "refs/remotes/origin/main": "ba9a41fa277fa0750fa8e362a92a146705076fe0"
+  },
+  "suite_lines": 1,
+  "worktree_exists": false
+}

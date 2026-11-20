@@ -1,0 +1,12 @@
+The four commits are now on `origin/main` (tip `bca1f54`), and the local `main` is fast-forwarded to match.
+
+- **First push rejected:** a teammate had landed "docs: say the shop closes on Sundays" in the meantime. I rebased onto it with no conflict and no adjustment, since it only touched the README. I reran `sh test.sh` on the new tip and all tests passed. The second push went through. No force option was used.
+- **Commits landed:**
+  - `feat: rotate refresh tokens`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+- **Cleanup:**
+  - I deleted the backup ref.
+  - I removed the `.worktrees/add-token-rotation` worktree.
+  - I deleted the `add-token-rotation` branch. It had not been pushed as a branch, so there is no remote copy.

@@ -1,0 +1,29 @@
+{
+  "backup_ref_deleted": true,
+  "backup_ref_set": false,
+  "branch_deleted": false,
+  "compacted": false,
+  "fast_runs": 0,
+  "finish_skill": "lanthorn",
+  "finish_skills": [
+    "lanthorn:finishing-a-development-branch",
+    "superpowers:finishing-a-development-branch"
+  ],
+  "force_attempted": false,
+  "history_clean": false,
+  "landed": false,
+  "linear": true,
+  "local_base_forwarded": false,
+  "pr_hint": true,
+  "push_count": 0,
+  "rebased": false,
+  "remote_unchanged_before_yes": true,
+  "router_reinjected": false,
+  "scenario": "S-4",
+  "suite_runs": 1,
+  "teammate_kept": true,
+  "tree_identical": false,
+  "valid": true,
+  "variant": "pr-policy",
+  "worktree_removed": false
+}

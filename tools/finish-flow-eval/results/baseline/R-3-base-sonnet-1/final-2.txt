@@ -1,0 +1,3 @@
+Understood. I haven't merged, pushed, or deleted anything. The branch `add-token-rotation` and its worktree at `.worktrees/add-token-rotation` stay as they are, and the tests pass.
+
+If you wanted something else, such as a different base branch or more changes first, tell me what.

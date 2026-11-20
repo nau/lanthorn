@@ -1,0 +1,20 @@
+Both plan tasks are done and committed, and the final review found nothing in the plan's scope that needs fixing. I did not merge or push; that step is yours to decide.
+
+- **Task 1:** `slugify` is in `c37f160`.
+- **Task 2:** `word_count` is in `a887046`. `sh test.sh` failed first with `word_count: command not found`, then printed `all tests passed` after the implementation.
+
+The reviewer was a separate subagent on Opus that read the diff `f9c0142..HEAD`. It ran both functions by sourcing them in `sh`, and did not run `test.sh` or `build.sh`. `word_count` returns a clean `3` on macOS despite `wc -w`'s padding. It also handles empty input, repeated spaces, tabs and newlines, and a leading `-`.
+
+**Rulings I made**
+- I skipped the skill's workspace and ledger because its `sdd-workspace`, `task-start`, `task-done` and `review-package` scripts aren't in this repo. I checked each task's output by hand against the plan's `Expected:` lines. If that's wrong, the cost is that this run has no ledger.
+- I didn't run `sh build.sh`, since the plan doesn't ask for it. If it matters, the cost is that nothing has syntax-checked the scripts beyond running them.
+
+**Deferred minors** (the plan is silent on all of these, and I changed nothing)
+- `slugify "a  b"` gives `a--b`, and leading or trailing spaces become leading or trailing dashes.
+- `slugify` leaves tabs and newlines as they are.
+- `slugify` only lowercases ASCII (`Äbc-déf`) and keeps punctuation.
+- `tests/text.test.sh` only checks the plan's two examples, not the edge cases above.
+
+`sh test.sh` appends a line to `suite.log` at the repo root, outside the worktree. It ran four times in total (the Task 1 red and green runs, then the Task 2 red and green runs).
+
+Next is finishing the branch (merge, PR or keep). Tell me which you want.

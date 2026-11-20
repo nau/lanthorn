@@ -1,0 +1,9 @@
+Task 1 (slugify) is done and committed as `44d19f2` (`feat: add slugify`).
+
+- **Red:** with only the test in place, `sh test.sh` failed because `src/text.sh` didn't exist.
+- **Green:** after adding `slugify` (lowercase, spaces become `-`), `sh test.sh` printed `all tests passed`.
+- **Ledger:** `task-done` re-ran the suite, it passed, and the ledger records Task 1 as complete.
+
+`test.sh` appends a line to `suite.log` in the main repo root, outside this worktree. That is how the script is written, and I didn't change it.
+
+As you asked, I've stopped before Task 2 (`word_count`). The final whole-branch review and branch finishing also still lie ahead, once the plan is complete.

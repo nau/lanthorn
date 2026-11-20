@@ -1,0 +1,5 @@
+The 5 commits are on `origin/main` as a fast-forward, `7bdbb88..cf3f8c0`. I pushed without force, and no merge commit was created. Local `main` is at `cf3f8c0` too.
+
+The full suite passed on the rebased tip, and the history rewrite changed no file.
+
+I removed the `.worktrees/add-token-rotation` worktree, deleted the `add-token-rotation` branch and deleted the backup ref. The branch was never pushed, so no remote copy exists.

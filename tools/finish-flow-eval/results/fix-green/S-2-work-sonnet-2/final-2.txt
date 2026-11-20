@@ -1,0 +1,5 @@
+The four commits are now on `origin/main`, landed by fast-forward with no merge commit, and local `main` is up to date at 98c6e64. I ran `sh test.sh` on the rebased tip before landing, and it passed. I didn't run it again after the push.
+
+- **Commits:** feat: rotate refresh tokens; refactor: extract the token store; feat: revoke the token family on replay; docs: describe token rotation.
+- **Cleanup:** I removed the backup ref, the `.worktrees/add-token-rotation` worktree and the `add-token-rotation` branch. The branch was never pushed, so there is no remote copy to report.
+- **Not recorded:** I didn't add a commit-style section to `AGENTS.md`. The history was too thin to settle a convention, so I used Conventional Commits with no trailers. Say the word if you want that written down.

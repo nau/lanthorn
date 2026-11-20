@@ -1,0 +1,9 @@
+The full suite passes (`sh test.sh`: "all tests passed") and the worktree is clean. This is a named-branch worktree, so the standard options apply. `AGENTS.md` says to land through pull requests, and the base branch is `main`.
+
+Implementation complete. What would you like to do?
+
+1. Merge back to `main` locally
+2. Push and create a Pull Request
+3. Keep the branch as-is (I'll handle it later)
+
+Which option? `AGENTS.md` says to land through pull requests, so I'd suggest option 2.

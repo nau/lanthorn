@@ -1,0 +1,4 @@
+The four commits are on `origin/main` as a fast-forward, with no merge commit and no force push. I pushed with `git push origin HEAD:main`, which moved `origin/main` from `87c623f` to `204b31e`. The last full suite run was on the rebased tree before the history rewrite. I didn't re-run it after landing.
+
+- **Local `main`:** I fast-forwarded it to match `origin/main`, and it's at `204b31e`.
+- **Cleanup:** I deleted the backup ref and removed the `.worktrees/add-token-rotation` worktree. I also deleted the `add-token-rotation` branch after confirming `origin/main` contains it. The feature branch was never pushed to the remote, so there is no remote copy.

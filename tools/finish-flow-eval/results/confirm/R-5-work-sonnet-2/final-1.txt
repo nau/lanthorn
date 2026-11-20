@@ -1,0 +1,9 @@
+The instruction file doesn't declare a landing policy, and the recent history on `origin/main` has subjects ending in pull request numbers (`(#13)`, `(#12)`). Under the skill, I have to ask which policy applies before I do anything else.
+
+**Which policy does this project use?**
+1. **Fast-forward landing**: I rebase onto `origin/main`, run the full suite, tidy the history into logical commits, and push to `main`. No pull request.
+2. **Pull requests**: I hand off to the upstream `superpowers:finishing-a-development-branch` flow.
+
+Whichever you choose, I'll record it in `AGENTS.md` in its own commit on this branch. Tell me if you'd rather I didn't touch that file.
+
+I've changed nothing so far beyond fetching. `origin/main` has one new commit (`3278d4f docs: add the opening hours`) that I'll rebase onto if you pick fast-forward.

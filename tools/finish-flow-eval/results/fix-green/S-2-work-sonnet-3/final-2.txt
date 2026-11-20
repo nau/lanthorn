@@ -1,0 +1,4 @@
+The four commits are on `origin/main`, and local `main` is at the same commit (`3c64f8b`). The push was a plain fast-forward with no force and no merge commit.
+
+- **Cleanup:** I removed the backup ref, the `add-token-rotation` worktree and the local branch. No feature branch was ever pushed, so nothing is left on the remote.
+- **Pending decision:** `AGENTS.md` has no commit-style section, and the history uses Conventional Commits prefixes with no trailers. I haven't recorded that. Say if you want it added in its own commit.

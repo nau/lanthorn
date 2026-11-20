@@ -1,0 +1,15 @@
+Ready to land on origin/main:
+
+Commits:
+- docs: add the plan for two text functions
+- feat: add slugify
+- feat: add word_count
+
+Full suite: `sh test.sh` – all tests passed (also `sh build.sh` – build ok), run after the rebase.
+Final review: a fresh reviewer found no Critical issues. Its one Important finding was the Task 1-only scope note, and your "Continue the plan to the end" instruction resolves it. Three minors are deferred: `slugify` gives ragged slugs for repeated spaces, punctuation and non-ASCII input; the `tr` range depends on locale; and each function has only a happy-path test.
+Conflicts resolved: None.
+Adjustments for base changes: None. origin/main gained `docs: add the opening hours` since I started, and I rebased onto it. It touches no code.
+
+The commits are already logical, so I skipped the history rewrite.
+
+Land these 3 commits on origin/main by fast-forward?

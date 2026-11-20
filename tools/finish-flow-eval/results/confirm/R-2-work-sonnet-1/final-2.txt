@@ -1,0 +1,8 @@
+The push was rejected, and I'm stopping here. The remote's pre-receive hook said `protected branch hook declined: main accepts changes from the merge bot only`. That isn't a "fetch first" rejection, so the skill says someone else made this decision and I shouldn't work around it. I haven't tried a force push, a pull request, or another route to `main`.
+
+Current state:
+- `origin/main` and the local `main` are unchanged.
+- The four commits sit on `add-token-rotation` in this worktree. The full suite passed on that tip.
+- The backup ref `refs/lanthorn/backup/add-token-rotation` is still there, and I haven't cleaned up the worktree or the branch.
+
+The merge bot might pick the branch up if it were pushed. But the skill says never to push the feature branch, and I don't know how your bot takes changes. If you want that, tell me how it works, or tell me another way you want to get these commits onto `main`.

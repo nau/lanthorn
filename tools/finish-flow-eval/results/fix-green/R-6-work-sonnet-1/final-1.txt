@@ -1,0 +1,16 @@
+Tree identical to backup, fast check passes on each commit, suite passes. Summary, then the one question.
+
+Ready to land on origin/main (base guessed: `main`, the only candidate):
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run after the rebase on origin/main 29801ac; the rewrite changed no file, `git diff` against the backup is empty). Fast check `sh build.sh` passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The only base change was a README line (opening hours), unrelated to the feature.
+Proposals: AGENTS.md declares no commit format or landing policy. The history gave no evidence, so I used Conventional Commits and the default fast-forward landing. I recorded neither. I added the `Co-Authored-By` trailer from the session's attribution instruction, although the writing-commits skill would omit it. Say if you'd rather drop it.
+
+Land these 4 commits on origin/main by fast-forward?

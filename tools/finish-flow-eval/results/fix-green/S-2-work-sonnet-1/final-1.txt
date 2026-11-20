@@ -1,0 +1,14 @@
+Ready to land on origin/main (base guessed: `main` is the only branch, and it tracks `origin/main`):
+
+Commits:
+- `feat: rotate refresh tokens` (the review fix is folded in)
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay` (the test-name fix is folded in)
+- `docs: describe token rotation`
+
+Full suite: `sh test.sh` – all tests passed on the rebased tip. The rewrite changed no file (`git diff` against the backup ref prints nothing). The fast check, `sh build.sh`, passed on every commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The one new base commit (`docs: add the opening hours`) only touches `README.md`.
+Proposals: `AGENTS.md` has no commit-style section. The log is mixed, so I used Conventional Commits with no trailers. I did not record this. Tell me if you want it added. I also left off the `Co-Authored-By` line, because the project's history has no trailers.
+
+Land these 4 commits on origin/main by fast-forward?

@@ -1,0 +1,11 @@
+Task 1 (slugify) is done and reviewed clean. I've stopped before Task 2, as you asked.
+
+- **Commit:** `0d6e17d feat: add slugify`, which adds `src/text.sh` and `tests/text.test.sh`.
+- **Tests:** The implementer saw the test fail first (`./src/text.sh: No such file or directory`), then `sh test.sh` printed `all tests passed`. `sh build.sh` printed `build ok`. I did not re-run either myself.
+- **Review:** Spec compliance passed, with no Critical or Important issues. The reviewer made three Minor notes, and I did not act on them:
+  - `slugify` only converts single spaces, so `"a  b"` becomes `a--b`, and leading or trailing spaces become `-`. The brief says only "spaces become `-`", so this matches it.
+  - The test covers a single case.
+  - The function ends its output with a newline.
+- **Log side effect:** `test.sh` and `build.sh` append a line to `suite.log` and `fast.log` in the main repo root, outside this worktree. That is how the scripts are written. The log files weren't in the commit or the worktree status.
+
+Progress is recorded in `.superpowers/sdd/plan/progress.md`. Tell me when to start Task 2 (`word_count`).

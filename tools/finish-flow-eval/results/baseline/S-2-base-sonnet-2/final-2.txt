@@ -1,0 +1,5 @@
+Thanks, that confirms `main` as the base. You haven't picked an option yet, though. Which one do you want?
+
+1. Merge back to `main` locally
+2. Push and create a Pull Request
+3. Keep the branch as-is

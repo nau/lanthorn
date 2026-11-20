@@ -1,0 +1,8 @@
+Understood, I'm not landing. Nothing on `origin/main` or the local `main` has changed.
+
+I left these in place:
+- **Branch:** `add-token-rotation`, rebased onto `origin/main` and rewritten into 4 commits.
+- **Worktree:** `.worktrees/add-token-rotation`.
+- **Backup ref:** `refs/lanthorn/backup/add-token-rotation`, which holds the original 6 commits plus the docs commit.
+
+If you want something changed, such as the commit grouping, the messages, or recording the commit style in AGENTS.md, tell me and I'll redo it. Tell me when you want to land. To throw the work away, type `discard`.

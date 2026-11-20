@@ -1,0 +1,7 @@
+The four commits are on `origin/main`, pushed by fast-forward with no merge commit. Local `main` is at the same commit, `ace8757`.
+
+- **Cleanup:**
+  - I deleted the backup ref.
+  - I left this worktree and the `add-token-rotation` branch in place. The worktree is under `.claude/worktrees/`, which the harness owns.
+  - The branch was never pushed, so there is no remote copy of it.
+- **Verification:** `sh test.sh` printed "all tests passed" after the rebase, before the history rewrite. The rewrite changed no file, and `sh build.sh` passed on each rewritten commit. I did not run the full suite again after the rewrite.

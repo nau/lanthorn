@@ -1,0 +1,18 @@
+The history is clean, and the tree matches the pre-rewrite backup exactly. The fast check `sh build.sh` passed on each of the 4 commits.
+
+Ready to land on origin/main (base named in the session's git context):
+
+**Commits:**
+- `feat: rotate refresh tokens` (now includes "fix review: revoke before return")
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay` (now includes "fix test name")
+- `docs: describe token rotation`
+
+**Full suite:** `sh test.sh` printed "all tests passed" on the rebased tip. The rewrite changed no file.
+**Conflicts resolved:** None. A teammate landed `docs: add the opening hours` since this branch started. It only touches `README.md`, which this branch doesn't change.
+**Adjustments for base changes:** None
+**Proposals:**
+- Add a `## Commits` section to `AGENTS.md`: "Conventional Commits subjects, short why-focused bodies, no trailers." I matched the existing history, so the commits have no `Co-Authored-By` trailer.
+- `AGENTS.md` doesn't say how work lands. With no pull requests in the history, I'm using fast-forward, which is the default.
+
+**Land these 4 commits on origin/main by fast-forward?** If yes, I'll push to `origin/main` without force. Then I'll fast-forward your local `main` in the main checkout, remove the `.worktrees/add-token-rotation` worktree and delete its branch.

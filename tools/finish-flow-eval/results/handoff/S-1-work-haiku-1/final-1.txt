@@ -1,0 +1,21 @@
+Task 1 (`slugify`) is done and committed. I stopped there as you asked; Task 2 and the final review have not been started.
+
+**What changed** (commit `600dd94 feat: add slugify`, on `add-two-functions`):
+- `src/text.sh`: `slugify() { printf '%s\n' "$1" | tr 'A-Z' 'a-z' | tr ' ' '-'; }`
+- `tests/text.test.sh`: asserts `slugify "Hello World"` gives `hello-world`.
+
+**Verification:**
+- RED: `sh test.sh` failed with `slugify: wrong result`, the expected failure.
+- GREEN: `sh test.sh` printed `all tests passed`.
+- `sh build.sh` printed `build ok`.
+- The working tree is clean.
+
+**Ruling I made:** The first RED run failed with `./src/text.sh: No such file`, which is not a failure of `slugify` itself. I created an empty `src/text.sh` so the test fails for the right reason. This is recorded in the ledger. If you'd rather the plan create the file as part of the test step, the cost is one extra step in the plan.
+
+**Rulings to review:** none beyond the one above.
+
+**Deferred minors:** none.
+
+**Workspace:** the ledger is at `.superpowers/sdd/plan/progress.md` (git-ignored). It records Task 1 as complete. I left the workspace in place because Task 2 and the final review still need it.
+
+Say when to continue with Task 2.

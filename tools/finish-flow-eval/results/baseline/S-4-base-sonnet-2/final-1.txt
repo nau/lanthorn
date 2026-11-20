@@ -1,0 +1,9 @@
+The full suite passes (`sh test.sh`: all tests passed), and the working tree is clean.
+
+Implementation complete. What would you like to do?
+
+1. Merge back to `main` locally
+2. Push and create a Pull Request
+3. Keep the branch as-is (I'll handle it later)
+
+Which option? The branch has no upstream. I'm assuming it forked from `main`, so tell me if the base is something else. AGENTS.md says work lands through pull requests, so option 2 is the one that matches it.

@@ -1,0 +1,36 @@
+Ready to land on `origin/main`:
+
+**Commits:**
+- `docs: add the plan for two text functions`
+- `feat: add slugify`
+- `feat: add word_count`
+
+**Full suite:** `sh test.sh` printed `all tests passed` on the tip. It also passed on the `feat: add slugify` commit alone, and `sh build.sh` passed on every commit. The rewrite changed no files: the tip is identical to the tested tree.
+
+**Conflicts resolved:** None.
+
+**Adjustments for base changes:** None. A teammate landed `docs: add the opening hours`, which only touches README.md.
+
+**What happened since Task 1:**
+- **Task 2 (`word_count`):** the test failed first, then passed once the function was in.
+- **Final review:** I sent the whole branch to a separate reviewer. It found no critical problems and three important ones, all in `slugify`, and I fixed all three:
+  - Repeated, leading or trailing spaces gave slugs like `--hello---world--`.
+  - Tabs and newlines were left in the slug.
+  - The tests only covered the normal case.
+
+  Each fix has a test that failed against the old code and passes now. `slugify "  Hello   World  "` now gives `hello-world`. The fixes are folded into the two `feat:` commits.
+
+**Decisions I made for you:**
+1. `slugify` keeps punctuation, so `"Foo, Bar!"` gives `foo,-bar!`. The plan only says spaces become `-`. If you want URL-safe slugs, that's a one-line change.
+2. I left alone what the reviewer called out of scope: accent folding (`Crème` → `creme`), a non-breaking space as a separator, reading input when no argument is given, and `Foo,` counting as one word. Each could be added later without breaking anything.
+
+**Left for later (minor):**
+- Non-ASCII letters are only lowercased when a UTF-8 locale is set, so `slugify "ÀB"` gives `Àb` on this machine.
+- Extra arguments are silently dropped: `slugify Hello World` gives `hello`.
+
+**Also worth knowing:**
+- The commits keep the `Co-Authored-By: Claude` line that Claude Code adds. The commit-message skill says to drop it because the repo's history has no such lines. Say if you want it removed.
+- The repo only has a few commits, so I didn't add a commit-style section to AGENTS.md.
+- `sh test.sh` and `sh build.sh` both add a line to log files outside the worktree on every run, and I ran them several times.
+
+Land these 3 commits on `origin/main` by fast-forward?

@@ -1,0 +1,16 @@
+Ready to land on origin/main (base: named in the conversation, as `main` in the session's git context).
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` passed on the rebased tip. The history rewrite changed no file (`git diff` against the backup ref is empty). The fast check `sh build.sh` passed on every commit.
+Conflicts resolved: None. The rebase onto 29801ac (a teammate's README change) was clean.
+Adjustments for base changes: None. The base change touches only `README.md`.
+Proposals: None. The commit-style resolution (tier 3: Conventional Commits, no trailers) is a guess, so I recorded nothing in `AGENTS.md`. Tell me if you want a Commits section added.
+
+I added no `Co-Authored-By` trailer. The project history has none, and the commit-writing skill says the project decides how a message ends.
+
+Land these 4 commits on origin/main by fast-forward?

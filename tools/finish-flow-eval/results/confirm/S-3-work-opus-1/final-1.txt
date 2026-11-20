@@ -1,0 +1,21 @@
+I've rebased the branch onto the latest `origin/main`, cleaned up its history, and recorded the commit style in AGENTS.md. It's ready to land; nothing on main has changed yet.
+
+Ready to land on origin/main:
+
+Commits:
+- `refactor: extract the token store`
+- `feat: rotate refresh tokens` (the "revoke before return" review fix is folded in)
+- `feat: revoke the token family on replay` (the test-name typo fix is folded in)
+- `docs: describe token rotation`
+- `docs: record the commit message convention`
+
+Full suite: `sh test.sh` – all tests passed after the rebase, and again after the AGENTS.md commit. The fast check `sh build.sh` also passed on every commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The only new commit on main (`docs: add the opening hours`) changes just `README.md`, which this branch doesn't touch.
+
+Some details:
+- **Tree unchanged:** the rewritten branch has exactly the same files as before the rewrite. A backup ref, `refs/lanthorn/backup/add-token-rotation`, holds the old history.
+- **AGENTS.md:** I added a Commits section saying commits use Conventional Commits style (`feat:`, `docs:` and so on), with short bodies and no trailers, matching what's already on main.
+- **No Claude co-author line:** the history has no trailers, so the commits don't carry the `Co-Authored-By: Claude` line. Tell me if you want it added.
+
+Land these 5 commits on origin/main by fast-forward?

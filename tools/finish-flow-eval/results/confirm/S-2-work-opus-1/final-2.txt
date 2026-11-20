@@ -1,0 +1,14 @@
+Token rotation is now on `main`. The push to `origin/main` was a plain fast-forward from `bf16448` to `7abf0e5`, with no force and no merge commit.
+
+**Commits:**
+- `feat: rotate refresh tokens`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: describe token rotation`
+- `docs: record the commit convention`
+
+**Clean-up:**
+- The local `main` in the main checkout is fast-forwarded to `7abf0e5`.
+- The `.worktrees/add-token-rotation` worktree is removed.
+- The `add-token-rotation` branch is deleted. It is fully contained in `origin/main`, and no copy was ever pushed to the remote.
+- The backup ref I made before cleaning up the commits is deleted.

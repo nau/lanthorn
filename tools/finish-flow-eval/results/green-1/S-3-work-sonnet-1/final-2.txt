@@ -1,0 +1,10 @@
+The four token-rotation commits are now on `origin/main`, and local `main` has the same history at `56818d1`.
+
+- **Landing:** The first push was rejected because a teammate landed a README change first. I rebased with no conflicts and re-ran `sh test.sh` on the new tip. It passed, and the second push went through. I did not use a force push.
+- **Commits landed:**
+  - `feat: rotate refresh tokens`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+- **Commit message trailer:** I left the `Co-Authored-By` trailer off the commit messages. The commit-writing skill says a tool's attribution line is not a project convention, and this repo's history has no trailers.
+- **Cleanup:** I removed the backup ref, the `.worktrees/add-token-rotation` worktree and the `add-token-rotation` branch. I checked first that the branch was already in `origin/main`. There was no remote copy of the feature branch.

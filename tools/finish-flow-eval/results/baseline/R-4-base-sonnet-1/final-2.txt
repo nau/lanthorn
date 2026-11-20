@@ -1,0 +1,5 @@
+"Yes" doesn't tell me which option you want. Which one?
+
+1. Merge back to `main` locally
+2. Push and create a Pull Request
+3. Keep the branch as-is

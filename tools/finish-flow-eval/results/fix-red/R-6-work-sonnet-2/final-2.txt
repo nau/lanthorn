@@ -1,0 +1,22 @@
+The push was rejected because a teammate landed first. I fetched and rebased, and I haven't pushed anything yet. The new base commit needs an adjustment, so I'm asking again as the skill requires.
+
+```
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (on the new tip, after the rebase on 50b270a and the adjustment)
+Conflicts resolved: None
+Adjustments for base changes: The base commit "refactor: rename now_ts to clock_now" removed `now_ts`.
+  My `src/rotate.sh` and `src/family.sh` still called it, and `tests/family.test.sh` failed with
+  "now_ts: command not found". I changed both calls to `clock_now` and folded each fix into the
+  commit that introduced the call.
+
+Land these 4 commits on origin/main by fast-forward?
+```
+
+The only difference from the version you approved is those two one-line renames. `sh build.sh` passes on each commit.

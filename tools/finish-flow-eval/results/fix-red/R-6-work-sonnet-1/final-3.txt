@@ -1,0 +1,5 @@
+The four token-rotation commits are on origin/main, and the local `main` is fast-forwarded to match at `a7087e1`. The full suite (`sh test.sh`) passed on the final tree before the push. I didn't rerun it after landing.
+
+- **Push:** the first push was rejected because a teammate had landed `refactor: rename now_ts to clock_now`. After the rebase, `src/rotate.sh` and `src/family.sh` still called `now_ts`, and the family test failed. I switched both to `clock_now`, folded each fix into the commit that introduced the call, and you approved the new tip before the second push, which went through.
+- **Cleanup:** I deleted the backup ref, the `add-token-rotation` worktree and the local branch. I checked first that the branch was contained in origin/main. No remote copy of the feature branch existed.
+- **Not done:** I didn't record the Conventional Commits style in `AGENTS.md`, because the history is too thin to infer a convention from. Say so if you want it added.

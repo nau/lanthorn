@@ -1,0 +1,11 @@
+The four token rotation commits are on `origin/main` as a fast-forward, with no merge commit and no pull request.
+
+- **Rejected push:** the first push was rejected because a teammate had landed `docs: say the shop closes on Sundays`. I fetched and rebased with no conflicts. That commit only touches `README.md`, so the feature needed no adjustment. The full suite and the per-commit build check both passed on the new tip, and the second push went through.
+- **Landed commits:**
+  - `feat: rotate a refresh token on use`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+- **Local main:** it is fast-forwarded to match, at `e84d0c9`.
+- **Cleanup:** I removed the backup ref, the `add-token-rotation` worktree and the branch. The branch was never pushed, so no remote copy exists.
+- **Commit format:** `AGENTS.md` declares no commit format, so I followed the `type: subject` prefixes in the history. I didn't add a Co-Authored-By trailer, because the repo's commits carry none. I also didn't record the convention in `AGENTS.md`, since only two earlier commits exist to infer it from. I can add a Commits section if you want one.

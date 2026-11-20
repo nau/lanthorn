@@ -1,0 +1,19 @@
+The history is clean and the tree matches the backup. Landing needs your yes first.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run after the rebase; the history rewrite changed no file, and `git diff` against the backup is empty). The fast check `sh build.sh` also passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The only new commit on origin/main was a README.md change (opening hours).
+
+Two notes:
+- **Policy:** `AGENTS.md` doesn't declare a landing policy and the history shows no pull requests, so I'm using the default of fast-forward with no pull request.
+- **Commit style:** I wrote the messages as Conventional Commits with no trailer, because the project declares no format and the history carries no trailers. That means I left off the `Co-Authored-By` line the harness asks for. Say if you want it added.
+
+Land these 4 commits on origin/main by fast-forward?

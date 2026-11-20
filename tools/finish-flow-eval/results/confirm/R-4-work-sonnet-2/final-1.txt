@@ -1,0 +1,22 @@
+Everything up to here changed only the feature branch. Landing changes `main` on the remote, so I need your yes first.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+- docs: record the commit format
+
+Full suite: `sh test.sh` – all tests passed on the rebased tip, and again after adding the last commit. The fast check (`sh build.sh`) passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The only base change, `bf16448`, edits `README.md`.
+
+Notes:
+- I folded the "fix review" and "fix test name" commits into the commits they fix.
+- The history rewrite changed no file. A diff against the backup ref is empty.
+- I added the last commit, `AGENTS.md` with a Commits section, because the repo history showed the format but nothing declared it. Say so if you'd rather drop it.
+- The commits carry no attribution trailer, because the repo history has none.
+
+Land these 5 commits on origin/main by fast-forward?

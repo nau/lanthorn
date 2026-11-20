@@ -1,0 +1,16 @@
+The branch is rebased onto the newest `origin/main` and cleaned up. I haven't landed it yet, because that needs your yes.
+
+Ready to land on origin/main (base: named by the session's git context, `main`):
+
+Commits:
+- `feat: rotate refresh tokens`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: describe token rotation`
+
+Full suite: `sh test.sh` – all tests passed on the rebased tip. The history rewrite changed no file (`git diff` against the backup ref is empty), and `sh build.sh` passed on every commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The only new base commit, `docs: add the opening hours`, touches `README.md` only.
+Proposals: None
+
+Land these 4 commits on origin/main by fast-forward?

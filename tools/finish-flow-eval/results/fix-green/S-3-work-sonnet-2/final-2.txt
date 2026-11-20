@@ -1,0 +1,6 @@
+The four commits are on `origin/main` by fast-forward, and local `main` is at `c059f97`.
+
+- **First push rejected:** a teammate landed a README change in between. I fetched and rebased, with no conflict, and the README-only change needed no adjustment to the feature.
+- **Checks:** `sh test.sh` passed on the final tip, and `sh build.sh` passed on each commit.
+- **Cleanup:** I removed the backup ref, the `.worktrees/add-token-rotation` worktree and the local feature branch. The feature branch was never pushed, so there is no remote copy.
+- **Not done:** `AGENTS.md` has no commit-style section. The history uses `type:` prefixes and no trailers, and the skill says to propose recording that rather than commit it myself. Say if you want it added.

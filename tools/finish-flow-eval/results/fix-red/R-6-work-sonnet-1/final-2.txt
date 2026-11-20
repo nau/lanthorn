@@ -1,0 +1,15 @@
+I haven't landed anything yet. Origin/main moved while I was waiting, and the rebase needed an adjustment, so I'm asking again.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens on use
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed on the new tip. `sh build.sh` passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: origin/main gained `refactor: rename now_ts to clock_now`. The rename caused no conflict, but `src/rotate.sh` and `src/family.sh` still called `now_ts`, so `tests/family.test.sh` failed with "now_ts: command not found". I switched both calls to `clock_now` and folded each fix into the commit that introduced the call.
+
+Land these 4 commits on origin/main by fast-forward? (This would be push attempt 2 of 3.)

@@ -1,0 +1,17 @@
+The history is rewritten and the tree is identical to the backup (`git diff` prints nothing). `sh build.sh` passed on each commit. Nothing has been pushed yet.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed, run after the rebase onto `b45e668`. The history rewrite changed no file.
+Conflicts resolved: None
+Adjustments for base changes: None. The only base commit was a README docs change.
+
+The project declares no commit convention, so I used Conventional Commits prefixes, which match the two commits on main. I did not record that in `AGENTS.md`, and the commits carry no attribution trailer.
+
+Land these 4 commits on origin/main by fast-forward?

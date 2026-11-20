@@ -1,0 +1,12 @@
+Token rotation is now on `origin/main`. I pushed it without force, as 4 commits on top of your teammate's `docs: add the opening hours`:
+
+- `feat: rotate refresh tokens`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: describe token rotation`
+
+Before landing, the full suite (`sh test.sh`) passed on the final code, and the fast check (`sh build.sh`) passed on each commit.
+
+Your local `main` in the main checkout is fast-forwarded to the same commit (`ba9a41f`). I removed the `.worktrees/add-token-rotation` worktree and deleted the `add-token-rotation` branch. The branch had never been pushed, so there was no remote copy to deal with.
+
+Since the worktree is gone, you'll need to start new work from the main checkout. Two suggestions to add to `AGENTS.md` are still open, if you want them: a commit style section, and a line saying work lands on `main` by fast-forward.

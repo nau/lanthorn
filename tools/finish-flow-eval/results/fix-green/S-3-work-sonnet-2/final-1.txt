@@ -1,0 +1,16 @@
+Tree is identical to the backup, and the fast check passes on every commit. This is the step where I ask before changing `main`.
+
+Ready to land on origin/main (base guessed: `main` is the only candidate and the remote's default branch):
+
+Commits:
+- `feat: rotate refresh tokens`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: describe token rotation`
+
+Full suite: `sh test.sh` – all tests passed (on the rebased tip, before the history cleanup; the cleanup changed no file). Fast check `sh build.sh` passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. A teammate landed `docs: add the opening hours` (README only), which doesn't touch the feature.
+Proposals: `AGENTS.md` has no commit-style section. The history uses `type:` prefixes with no trailers. You may want to record that, which I haven't done.
+
+Land these 4 commits on origin/main by fast-forward?

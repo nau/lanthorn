@@ -1,0 +1,7 @@
+The four token-rotation commits are now on `origin/main`, and the work is finished.
+
+- **Push:** `origin/main` moved from `b45e668` to `70e8413` by fast-forward, with no force and no merge commit.
+- **Local main:** the local `main` branch is also at `70e8413`.
+- **Rebase:** a teammate had landed a README change on main, so I rebased onto it first. There were no conflicts, and the change didn't touch the token code.
+- **Tests:** `sh test.sh` passed on the rebased tip. I then folded the review fix and the test-name fix into the commits they belonged to. That rewrite changed no files, and `sh build.sh` passed on each commit.
+- **Cleanup:** I removed the backup ref, the `add-token-rotation` worktree and the local branch. The branch was already in `origin/main`, and I never pushed a remote copy of it.

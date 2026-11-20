@@ -1,0 +1,25 @@
+I'm using the finishing-a-development-branch skill to complete this work. The suite is green, and the branch is `add-two-functions`, forked from `main`.
+
+Implementation complete. What would you like to do?
+
+1. Merge back to `main` locally
+2. Push and create a Pull Request
+3. Keep the branch as-is (I'll handle it later)
+
+Which option?
+
+**Rulings I made**
+- Final: I made `slugify` do more than the plan says. It now lowercases, collapses each run of non-alphanumeric characters into one `-`, and trims `-` from both ends. The plan only said "lowercase, spaces become `-`". The final reviewer found that ordinary titles such as `"Hello, World!"` came out as non-slugs. The plan's own test still passes. If you wanted the literal behaviour, revert `b89546e`.
+- Final: I left non-ASCII handling in `slugify` and the definition of a word in `word_count` as they are. The plan is silent on both. `word_count` splits on whitespace. If non-ASCII letters matter for this shop, `slugify` may need changes.
+
+**Deferred minors**
+- `slugify` prints no trailing newline, while `word_count` does.
+
+**Self-review caveat:** the final review ran in a fresh subagent on Opus, not as a self-review.
+
+**Commits**
+- `c360dfb` feat: add slugify
+- `17c3144` feat: add word_count
+- `b89546e` fix: make slugify output a valid slug
+
+I deleted this plan's workspace directory.

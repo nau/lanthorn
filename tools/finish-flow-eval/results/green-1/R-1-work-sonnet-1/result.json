@@ -1,0 +1,28 @@
+{
+  "backup_ref_deleted": true,
+  "backup_ref_set": true,
+  "branch_deleted": true,
+  "compacted": false,
+  "fast_runs": 4,
+  "finish_skill": "lanthorn",
+  "finish_skills": [
+    "lanthorn:finishing-a-development-branch"
+  ],
+  "force_attempted": false,
+  "history_clean": true,
+  "landed": true,
+  "linear": true,
+  "local_base_forwarded": true,
+  "pr_hint": true,
+  "push_count": 1,
+  "rebased": true,
+  "remote_unchanged_before_yes": true,
+  "router_reinjected": false,
+  "scenario": "R-1",
+  "suite_runs": 3,
+  "teammate_kept": true,
+  "tree_identical": true,
+  "valid": true,
+  "variant": "rename",
+  "worktree_removed": true
+}

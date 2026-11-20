@@ -1,0 +1,10 @@
+Task 1 (slugify) is done and committed as `ec84cb7 feat: add slugify`. As you asked, I've stopped before Task 2.
+
+- **Test first:** `tests/text.test.sh` failed because `src/text.sh` didn't exist yet.
+- **Implementation:** `src/text.sh` defines `slugify`, which lower-cases its input and turns spaces into `-`.
+- **Result:** `sh test.sh` prints `all tests passed`, and the ledger records Task 1 as complete.
+- **Not run:** the plan's final whole-branch review, since Task 2 is still open.
+- **Rulings:** none.
+- **Side effect:** `test.sh` appends a line to a `suite.log` in the repo root, outside this worktree. That's the project's own script behaviour, not something I added.
+
+Tell me when to start Task 2 (word_count).

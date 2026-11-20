@@ -1,0 +1,11 @@
+Task 1 (`slugify`) is done and committed as `e9ff410 feat: add slugify`. I've stopped here as you asked, before Task 2.
+
+- **Test:** I wrote `tests/text.test.sh` and ran `sh test.sh`. It failed because `src/text.sh` did not exist yet, which is the expected missing-feature failure.
+- **Implementation:** `src/text.sh` defines `slugify`, which lowercases its input and turns spaces into `-`. `sh test.sh` then printed `all tests passed`.
+- **Record:** The ledger is at `.superpowers/sdd/plan/progress.md` with the line `Task 1: complete (commits 300f0da..e9ff410, tests: sh test.sh → all tests passed)`.
+
+Rulings I made: none. The pre-flight check found that Task 2 modifies the same two files as Task 1, which is a dependency rather than a conflict. The plan names no spec, and the ledger notes that.
+
+The final whole-branch review and `finishing-a-development-branch` come after Task 2, so I did not run them. I did not run `sh build.sh`, since the plan only asks for `sh test.sh`.
+
+Say when you want Task 2 run.

@@ -1,0 +1,18 @@
+The rebased branch is ready, and I've stopped before landing because the finishing skill requires your yes before anything changes on `origin/main`.
+
+Ready to land on origin/main:
+
+Commits:
+- docs: add the plan for two text functions
+- feat: add slugify
+- feat: add word_count
+
+Full suite: `sh test.sh` – all tests passed (`sh build.sh` also passes)
+Conflicts resolved: None
+Adjustments for base changes: None. The one new base commit (`d9f0199 docs: add the opening hours`) changes only `README.md`.
+
+Commit history: the three commits are already logical, so I did not rewrite them. The rebase changed their hashes, but the tree is the one that passed.
+
+Landing policy: none is declared in `AGENTS.md`, and the last 20 commits on `main` show no pull requests, so this would be a fast-forward landing with no PR and no merge commit.
+
+Land these 3 commits on origin/main by fast-forward? (yes/no)

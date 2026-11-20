@@ -1,0 +1,7 @@
+The four commits are on `origin/main` as a fast-forward (`29801ac..68bcdab`), with no merge commit. The local `main` is at the same commit.
+
+- **Commits landed:** `feat: rotate refresh tokens`, `refactor: extract the token store`, `feat: revoke the token family on replay` and `docs: describe token rotation`.
+- **Checks:** `sh test.sh` passed on the rebased tip. `sh build.sh` passed on each of the four commits. The rewrite changed no file.
+- **Cleanup:** I removed the backup ref, the `add-token-rotation` worktree and the local branch. No remote copy of the branch existed.
+
+I did not record the commit style (Conventional Commits prefixes) in `AGENTS.md`. Let me know if you want a `## Commits` section added as its own commit.

@@ -1,0 +1,10 @@
+The four commits are now on `origin/main` and on local `main`, as a linear history with no merge commit.
+
+- **Push retry:** the first push was rejected because a teammate had landed `docs: say the shop closes on Sundays`. I rebased onto it without conflicts. It only touches the README, so I made no adjustments.
+- **Checks:** `sh test.sh` passed on the rebased tip, and `sh build.sh` passed on each commit. I pushed in the same command that ran the build check, so the order was suite, build check, then push.
+- **Commits landed:**
+  - `feat: rotate refresh tokens`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+- **Cleanup:** I removed the backup ref, the `add-token-rotation` worktree and the local branch. The branch was never pushed, so no remote copy exists.

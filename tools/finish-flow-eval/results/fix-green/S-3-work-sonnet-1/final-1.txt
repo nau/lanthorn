@@ -1,0 +1,16 @@
+Every commit passes the fast check and the tree is unchanged. Step 6 needs your yes before I land anything.
+
+Ready to land on origin/main (base `main`, guessed: the git context names it and it is the only candidate):
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run on the tip after the rebase, before the rewrite). `sh build.sh` passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. A teammate landed `docs: add the opening hours`, which touches only `README.md`.
+Proposals: `AGENTS.md` has no Commits section. The history showed conventional prefixes, and recording that would take its own commit, so I added none. I also left the Co-Authored-By trailer off the commits, because `lanthorn:writing-commits` says a tool-attribution line is not a project trailer.
+
+Land these 4 commits on origin/main by fast-forward?

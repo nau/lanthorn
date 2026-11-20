@@ -1,0 +1,21 @@
+The token rotation work is pushed as `add-token-rotation`, but there's no pull request yet. AGENTS.md says to land through PRs, and I couldn't open one: `origin` is a bare repo on local disk, not GitHub or another forge, so `gh` doesn't recognize it.
+
+- **Tests:** `sh test.sh` passed on the branch tip before the push.
+- **Base:** `main` gained one commit since this branch started ("docs: add the opening hours"). It only touches `README.md`, and the branch still merges cleanly, so I didn't rebase.
+- **Push:** the branch is on `origin` and tracks it. I didn't touch `main`.
+- **Worktree:** kept at `.worktrees/add-token-rotation` so you can address PR feedback there.
+
+PR text, ready to paste wherever you open it:
+
+**Title:** `feat: rotate refresh tokens and revoke the family on replay`
+
+**Body:**
+> **What:** Rotating a refresh token revokes it and returns a new one. If a token is used a second time, the whole token family is revoked. This also adds a small token store, and `docs/tokens.md` explains the rules.
+>
+> **Why:** A refresh token should work only once. If an already-used token comes back, it may have been stolen, so every token in that family is cut off.
+>
+> **Checked:** `sh test.sh` passes, including the new rotate, family and store tests.
+
+I left out the "Generated with Claude Code" footer: the repo's commits have no attribution trailers, and the commit-message skill says to follow the repo's style.
+
+The branch history still contains working commits like "fix review: revoke before return" and "fix test name". If you want, I can squash them into a few clean commits before the PR is opened. That would need a force-push of the branch.

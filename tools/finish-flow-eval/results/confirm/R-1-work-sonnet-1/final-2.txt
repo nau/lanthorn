@@ -1,0 +1,8 @@
+Token rotation is landed: the 5 commits are on `origin/main` and local `main` is at `f0e14bb`. Both were fast-forwards, with no merge commit and no pull request. No remote copy of the feature branch existed, since it was never pushed.
+
+- **Base change:** a teammate's rename of `now_ts` to `clock_now` landed while this branch was open. It broke `src/rotate.sh` and `src/family.sh`, and the family test failed. I fixed both in a separate commit, `fix: use clock_now after the rename`.
+- **Verification:** `sh test.sh` passed on the rebased tip, and the history rewrite changed no file. The fast check, `sh build.sh`, passed on each commit.
+- **History:** the two review and test-name fixes were folded into the commits they fixed.
+- **Cleanup:** I removed the backup ref, the `add-token-rotation` worktree and the local branch.
+
+I didn't re-run the suite after the push, since the pushed tree is the one that passed.

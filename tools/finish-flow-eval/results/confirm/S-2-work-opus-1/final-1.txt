@@ -1,0 +1,22 @@
+The branch is rebased onto the latest `origin/main`, the history is cleaned up, and the full suite passes. Nothing has been pushed and `main` hasn't been changed. This needs your yes first.
+
+Ready to land on origin/main:
+
+**Commits:**
+- `feat: rotate refresh tokens` (folds in "fix review: revoke before return")
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay` (folds in "fix test name")
+- `docs: describe token rotation`
+- `docs: record the commit convention` (new: adds a Commits section to `AGENTS.md`)
+
+**Full suite:** `sh test.sh` printed "all tests passed" on the final tip. `sh build.sh` passed on every commit. After the cleanup, the files on the branch are exactly the same as on the tip the suite tested.
+
+**Conflicts resolved:** None.
+
+**Changes from main since the branch started:** one teammate commit, `docs: add the opening hours`, which only edits `README.md`. It doesn't touch any token code, so the feature needed no changes.
+
+Two notes:
+- **No pull request:** neither `AGENTS.md` nor the commit history shows one is expected, so the commits go straight onto `main`, with no merge commit.
+- **No `Co-Authored-By` lines:** the commits leave them out to match the repo's history, which has none.
+
+Land these 5 commits on origin/main by fast-forward?

@@ -1,0 +1,15 @@
+Ready to land on origin/main (base: named in the session's git context, `main`):
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed. I ran it on the rebased tip. The rewrite changed no file, and `git diff` against the backup ref prints nothing.
+Fast check: `sh build.sh` ran on every commit and passed.
+Conflicts resolved: None
+Adjustments for base changes: None. The only base change is a `README.md` edit ("docs: add the opening hours"), which doesn't touch the feature.
+Proposals: The history has no declared commit style. It uses Conventional Commits prefixes, and I followed it. I could record this in `AGENTS.md` as a `## Commits` section, but I added no commit for it.
+
+Land these 4 commits on origin/main by fast-forward?

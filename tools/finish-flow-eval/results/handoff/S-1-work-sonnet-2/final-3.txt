@@ -1,0 +1,20 @@
+This is the one question before landing. The suite passed on the rebased tree, and the history rewrite changed no file.
+
+Ready to land on origin/main:
+
+Commits:
+- docs: add the plan for two text functions
+- feat: add slugify
+- feat: add word_count
+
+Full suite: `sh test.sh` – all tests passed
+Conflicts resolved: None
+Adjustments for base changes: None. The only new base commit is `docs: add the opening hours` (README.md).
+
+The final review found one Important defect: `word_count` expanded globs. I fixed it test-first and folded the fix into the word_count commit. The review's minors are deferred:
+- `word_count` depends on the caller's `IFS`.
+- `word_count` fails under `set -u` when called with no argument.
+- `slugify` does not squeeze or trim spaces, or handle other whitespace, punctuation or non-ASCII capitals.
+- Each function has only a happy-path test.
+
+Land these 3 commits on origin/main by fast-forward?

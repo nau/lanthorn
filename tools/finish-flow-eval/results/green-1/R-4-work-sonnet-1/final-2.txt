@@ -1,0 +1,6 @@
+Token rotation is landed on `origin/main` as five commits. The push went through without force and local `main` fast-forwarded to `5f4877e`.
+
+- **Verification:** `sh test.sh` passed on the final tip, and `sh build.sh` passed on each commit.
+- **Backup refs:** I deleted both of them.
+- **Worktree and branch:** The worktree at `.claude/worktrees/add-token-rotation` and its branch are still there, because the harness owns that directory. No remote copy of the branch exists.
+- **Commit rewrite:** My first rewrite used a stale todo file, so the messages were wrong. I redid it with the intended messages, and the tree matched the backup both times.

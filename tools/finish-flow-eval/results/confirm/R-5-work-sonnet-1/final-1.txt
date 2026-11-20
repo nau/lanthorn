@@ -1,0 +1,12 @@
+I've stopped at step 2, the landing policy, because I need an answer from you.
+
+`AGENTS.md` doesn't say how work lands. It lists only the checks. The history on `origin/main` has subjects ending in pull request numbers: `docs: say how to run the tests (#13)` and `fix: reject an empty user (#12)`. That suggests the project may use pull requests.
+
+Which policy applies?
+
+1. **Fast-forward.** I rebase onto `origin/main`, run `sh test.sh`, clean the six working commits into a few logical ones, and push to `main` after your final yes. No pull request.
+2. **Pull requests.** I hand off to `superpowers:finishing-a-development-branch`.
+
+I'll record your answer in `AGENTS.md` in its own commit on the branch. I'll ask before I change that file.
+
+Nothing has changed so far. I only fetched. `origin/main` has one new commit, `docs: add the opening hours`. It touches only `README.md`.

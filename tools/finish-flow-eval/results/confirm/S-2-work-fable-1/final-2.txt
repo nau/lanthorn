@@ -1,0 +1,6 @@
+Token rotation has landed: the 5 commits are on `origin/main` by fast-forward, on top of the teammate's `docs: add the opening hours`, with no force push and no merge commit.
+
+- **Local `main`:** fast-forwarded to `2dee21c`, in sync with `origin/main`.
+- **Cleanup:** the worktree `.worktrees/add-token-rotation`, the `add-token-rotation` branch and the backup ref are removed. No copy of the feature branch exists on the remote.
+
+Your shell's working directory was this worktree, which no longer exists — the main checkout is at `/private/var/folders/jg/c_hztf4n40x22fxz0hhn_rpc0000gn/T/tmp.O9Tfxlcj4O/shop`.

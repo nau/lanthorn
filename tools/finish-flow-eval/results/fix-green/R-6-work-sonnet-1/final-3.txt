@@ -1,0 +1,7 @@
+The four commits are on `origin/main` (tip `457682d`), and the local `main` is fast-forwarded to match.
+
+- **Landed:** `feat: rotate refresh tokens`, `refactor: extract the token store`, `feat: revoke the token family on replay` and `docs: describe token rotation`. There are no merge commits and the feature branch was never pushed.
+- **Rejected push:** My first push was rejected because a teammate landed `1508952` (the `now_ts` to `clock_now` rename) first. I rebased and fixed the two stale calls in `src/rotate.sh` and `src/family.sh`. I then re-ran the full suite, which passed, and you approved again.
+- **Cleanup:** I deleted the backup ref, removed the `.worktrees/add-token-rotation` worktree and deleted the `add-token-rotation` branch. No remote copy of the branch existed.
+
+**Still open:** `AGENTS.md` records no commit format or landing policy. I used Conventional Commits and fast-forward landing by default, and I added the `Co-Authored-By` trailer from the session's attribution instruction. I didn't write any of this into `AGENTS.md`, so say if you want it recorded.

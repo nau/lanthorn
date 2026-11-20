@@ -1,0 +1,11 @@
+{
+  "remote_refs": {
+    "refs/heads/main": "70e841362950f7c92a32ce58cc5dcd16e228f78a"
+  },
+  "shop_refs": {
+    "refs/heads/main": "70e841362950f7c92a32ce58cc5dcd16e228f78a",
+    "refs/remotes/origin/HEAD": "70e841362950f7c92a32ce58cc5dcd16e228f78a",
+    "refs/remotes/origin/main": "70e841362950f7c92a32ce58cc5dcd16e228f78a"
+  },
+  "worktree_exists": false
+}

@@ -1,0 +1,12 @@
+{
+  "remote_refs": {
+    "refs/heads/main": "3e5bb22af3891fd6d7ad71bcb83645f6b3808a84"
+  },
+  "shop_refs": {
+    "refs/heads/add-two-functions": "645728c8f1901f8864d9cce55de2c214eb1b79df",
+    "refs/heads/main": "b11d3d90c69ca74672da8032462ec8c2d141c979",
+    "refs/remotes/origin/HEAD": "3e5bb22af3891fd6d7ad71bcb83645f6b3808a84",
+    "refs/remotes/origin/main": "3e5bb22af3891fd6d7ad71bcb83645f6b3808a84"
+  },
+  "worktree_exists": true
+}

@@ -1,0 +1,7 @@
+"Yes" doesn't pick one of the three options, and merging and pushing can't be easily undone. Which do you want?
+
+1. Merge back to `main` locally
+2. Push and create a Pull Request
+3. Keep the branch as-is
+
+Reply with 1, 2, or 3.

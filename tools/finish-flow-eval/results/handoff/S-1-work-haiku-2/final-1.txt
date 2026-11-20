@@ -1,0 +1,20 @@
+Task 1 (`slugify`) is done and committed, and I've stopped there as you asked. Tasks 2+ and the final review haven't run.
+
+**Result**
+- Commit `67348cc` (`feat: add slugify`) on `add-two-functions`, which adds `src/text.sh` and `tests/text.test.sh`.
+- RED: `sh test.sh` failed with `slugify: command not found`, which is the missing feature.
+- GREEN: `sh test.sh` printed `all tests passed`.
+- The ledger at `.superpowers/sdd/plan/progress.md` records `Task 1: complete (commits 3acc10a..67348cc, tests: sh test.sh → all tests passed)`.
+
+**Rulings I made**
+- **Empty `src/text.sh` before RED.** I created the empty file first so the test fails on the missing function, not a missing file. It costs nothing, since the implementation replaces it in the same task.
+
+**Other notes**
+- The plan names no spec, so the ledger marks my rulings as provisional.
+- Pre-flight found no shared interfaces between tasks.
+- The commit has the `Co-Authored-By: Claude Haiku 5.5` trailer from the attribution reminder.
+- The implementation is `printf | tr 'A-Z' 'a-z' | tr ' ' '-'`. It only converts spaces, so punctuation passes through unchanged; the plan asks for nothing more.
+
+**Deferred minors:** none.
+
+Say when to start Task 2 (`word_count`).

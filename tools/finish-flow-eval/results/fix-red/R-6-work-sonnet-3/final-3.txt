@@ -1,0 +1,10 @@
+Token rotation is landed on `origin/main` as four commits, and local `main` is fast-forwarded to the same tip (`bac201b`).
+
+- **Commits:**
+  - `feat: rotate refresh tokens`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+- **Rejected push:** my first push was rejected because a teammate had landed a commit in the meantime. I fetched and rebased with no conflicts. Their `now_ts` → `clock_now` rename had broken `src/rotate.sh` and `src/family.sh`, so I switched both to `clock_now`. I folded each fix into the commit that introduced the call, then asked you again before pushing.
+- **Checks:** `sh test.sh` passed on the final tip, and `sh build.sh` passed on every commit. The history rewrite changed no file.
+- **Cleanup:** I removed the backup ref, the `.worktrees/add-token-rotation` worktree and the local branch. No remote copy of the feature branch ever existed.

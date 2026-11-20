@@ -1,0 +1,10 @@
+Token rotation is now on `origin/main` as four commits, added on top of your teammate's README commit:
+
+- `feat: rotate refresh tokens`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: describe token rotation`
+
+Your local `main` is updated to match. The `add-token-rotation` branch and its worktree are deleted, and the branch was never pushed. Nothing was force-pushed and there's no merge commit.
+
+The earlier offer to add a "Commits" section to `AGENTS.md` still stands if you want it.

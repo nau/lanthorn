@@ -1,0 +1,11 @@
+The push was rejected by a protected-branch hook, not by a moved remote: `main accepts changes from the merge bot only`. The skill says to stop and report in this case. I won't force the push, open a pull request, or push a feature branch.
+
+**State now**
+- Nothing landed. `origin/main` and the local `main` are unchanged.
+- The branch `add-token-rotation` holds the 4 clean commits, rebased on `origin/main` (b45e668).
+- The backup ref `refs/lanthorn/backup/add-token-rotation` and the worktree are still in place, so I skipped cleanup.
+
+Only the merge bot can write to `main`, so the way in is probably a pull request or a merge-bot queue. The skill doesn't offer pull requests, and the project declares no landing policy. Which of these do you want?
+- You or someone with merge-bot access lands the branch. I can push the branch for that, but only if you ask me to.
+- You tell me the project does use pull requests. I'd record that in `AGENTS.md` and switch to `superpowers:finishing-a-development-branch`.
+- I stop here and you take it from there.

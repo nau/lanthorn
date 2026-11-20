@@ -1,0 +1,22 @@
+The branch is rebased and the history is cleaned up. I haven't pushed anything yet, so the base branch is unchanged.
+
+```
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens and revoke the old one
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run on the rebased tip)
+Conflicts resolved: None
+Adjustments for base changes: None (origin/main gained only a README.md change, "docs: add the opening hours")
+```
+
+- **Rewrite:** `git diff` between the backup ref and HEAD is empty, and `sh build.sh` passed on each commit.
+- **Backup ref:** `refs/lanthorn/backup/add-token-rotation`.
+- **Policy:** `AGENTS.md` declares no pull-request policy, and the last 20 commits on main show no pull requests. So I'm landing by fast-forward.
+- **Messages:** I wrote them without a tool attribution trailer, because this repo's history has none.
+
+Land these 4 commits on origin/main by fast-forward?

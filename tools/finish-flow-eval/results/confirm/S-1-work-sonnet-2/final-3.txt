@@ -1,0 +1,27 @@
+Both tasks are done and the branch is ready to land. It's rebased on a newer `origin/main`, and the commits are already one per logical change, so I skipped the history rewrite. I haven't changed `main` yet.
+
+Ready to land on origin/main:
+
+Commits:
+- docs: add the plan for two text functions
+- feat: add slugify
+- feat: add word_count
+
+Full suite: `sh test.sh` – all tests passed (run after the rebase; `sh build.sh` also printed `build ok` before it)
+Conflicts resolved: None
+Adjustments for base changes: None. The only new commit on `main` was `d9f0199`, a README edit.
+
+**Final review:** a fresh reviewer found nothing Critical. It reported that `slugify` is only correct for the one tested case.
+
+**Rulings I made**
+1. `slugify` does what the plan says: lowercase, and spaces become `-`. I did not make it URL-safe, because the plan doesn't say what slugs are for and nothing calls it yet. If wrong, a later caller gets slugs like `hello,-world!` until it's fixed.
+2. I left alone the fact that `sh test.sh` and `sh build.sh` write to logs outside the worktree. The repo's own scripts do that and it predates this branch. Nothing is lost if this is wrong.
+
+**Deferred minors** (all `slugify` unless noted)
+- It keeps punctuation, including `/`, `?` and `#`.
+- It doesn't collapse repeated spaces or trim leading, trailing or tab whitespace.
+- It doesn't lowercase non-ASCII letters.
+- The tests cover one happy path per function, with no empty or edge cases.
+- `slugify` prints no trailing newline but `word_count` does.
+
+Land these 3 commits on origin/main by fast-forward?

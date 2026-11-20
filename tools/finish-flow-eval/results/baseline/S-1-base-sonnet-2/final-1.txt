@@ -1,0 +1,11 @@
+Task 1 (slugify) is done and committed as `feat: add slugify` (61f2d9d).
+
+- **Test first:** I wrote the test and ran `sh test.sh` before any implementation. It failed because `src/text.sh` didn't exist.
+- **Implementation:** `slugify` in `src/text.sh` lowercases the input and turns spaces into `-`.
+- **Passing run:** `sh test.sh` now prints `all tests passed`. The ledger records Task 1 as complete.
+
+You asked me to stop after Task 1, so I haven't started Task 2 (`word_count`), the final review or the branch wrap-up. I made no rulings and have no deferred minors.
+
+`test.sh` appends to a `suite.log` in the main repo root, outside this worktree. That is the project's own behavior.
+
+Tell me when to continue with Task 2.

@@ -1,0 +1,14 @@
+The base change only touches `README.md`, and the feature files are untouched by it. The commits are already logical, so I'm skipping the history rewrite. Landing is outward-facing (it pushes to `origin/main`), so I'm stopping here for your yes or no.
+
+Ready to land on origin/main:
+
+Commits:
+- `caef49d` docs: add the plan for two text functions
+- `0f780ef` feat: add slugify
+- `ceaf411` feat: add word_count
+
+Full suite: `sh test.sh` – all tests passed (run after the rebase onto origin/main; `sh build.sh` – build ok)
+Conflicts resolved: None (rebase onto `6f2cf88` was clean)
+Adjustments for base changes: None (the base change only added two lines to README.md; no code the feature uses changed)
+
+Land these 3 commits on origin/main by fast-forward? (Landing policy: AGENTS.md declares none and the history shows no pull requests, so I'd push without force and fast-forward local main. The old tip `065f5bf` is kept at `refs/lanthorn/backup/add-two-functions`.)

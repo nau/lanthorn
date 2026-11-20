@@ -1,0 +1,9 @@
+The four commits are landed on `origin/main` by fast-forward, and the local `main` is now at `ed0b098`.
+
+- **Landed:**
+  - `feat: rotate refresh tokens`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+- **Cleanup:** I deleted the backup ref, removed the `.worktrees/add-token-rotation` worktree, and deleted the `add-token-rotation` branch. It was already contained in `origin/main`. The feature branch was never pushed, so there is no remote copy.
+- **Not done:** I didn't record a commit convention in `AGENTS.md`. Say if you want that.

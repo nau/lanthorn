@@ -1,0 +1,21 @@
+The branch is rebased on the latest `origin/main`, cleaned into four commits, and checked. I'm stopping here for your yes, because the base branch can't change before that.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed, run on the rebased tree with the fix. The history rewrite changed no file (`git diff` against the backup ref is empty), and `sh build.sh` passed on every commit.
+
+Conflicts resolved: None.
+
+Adjustments for base changes: A teammate's commit on `main` renamed `now_ts` to `clock_now`. `rotate_token` and `revoke_family` still called the old name, and `tests/family.test.sh` failed. I switched them to `clock_now` and folded the fix into the two feature commits that use it.
+
+Two notes on the commit messages:
+- **Format:** The project declares no commit format, so I followed the type-prefix style of the existing history.
+- **Trailer:** I left out the `Co-Authored-By` trailer, because the `lanthorn:writing-commits` skill says not to add a tool trailer.
+
+Land these 4 commits on origin/main by fast-forward?

@@ -1,0 +1,16 @@
+The rebase needed an adjustment, so I'm asking once more before landing.
+
+Ready to land on origin/main (base: named by the session's git context, `main`):
+
+Commits:
+- `feat: rotate refresh tokens`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: describe token rotation`
+
+Full suite: `sh test.sh` – all tests passed on the rebased tip. The history rewrite changed no file, and `sh build.sh` passed on every commit.
+Conflicts resolved: None
+Adjustments for base changes: The base commit `refactor: rename now_ts to clock_now` broke `src/rotate.sh` and `src/family.sh`, which still called `now_ts`. The family test failed with "command not found". I switched both to `clock_now` and folded each fix into its feature commit, so no commit uses the old name.
+Proposals: None
+
+Land these 4 commits on origin/main by fast-forward?

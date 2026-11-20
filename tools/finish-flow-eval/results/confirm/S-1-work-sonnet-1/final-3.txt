@@ -1,0 +1,26 @@
+The plan is done: both tasks are committed, the full suite passes, and the final review is finished. The work is not on `main` yet, because landing needs your yes.
+
+## Ready to land on origin/main
+
+Commits:
+- `docs: add the plan for two text functions`
+- `feat: add slugify`
+- `feat: add word_count`
+
+- **Full suite:** `sh test.sh` → all tests passed, run on the rebased tip.
+- **Conflicts resolved:** None.
+- **Adjustments for base changes:** None. A teammate landed `docs: add the opening hours` (README only) after I started, so I rebased onto it. It doesn't touch the feature.
+- **History rewrite:** skipped, since the commits are already logical.
+
+**Land these 3 commits on origin/main by fast-forward?**
+
+## Rulings I made
+- **`slugify` contract:** I kept `slugify` exactly as the plan defines it (lowercase, spaces become `-`) and did not fix the reviewer's Important findings. The reviewer found that it keeps punctuation and `/`, leaves repeated and edge dashes, and that the tests only cover the happy path. Widening the contract is your call, and nothing calls `slugify` yet. If this is wrong, a future caller that puts slugs in URLs or paths gets unsafe or ugly output. A fix would be `tr -cs '[:alnum:]' '-'` plus trimming the edge dashes, with new tests.
+
+## Deferred minors
+- `tr 'A-Z' 'a-z'` depends on the locale and leaves non-ASCII capitals. `[:upper:]` and `[:lower:]` would be portable.
+- `tests/text.test.sh` only works from the repo root. That matches the existing tests.
+
+## Other notes
+- The final review was by a fresh Opus subagent, not a self-review.
+- `test.sh` and `build.sh` write lines to `suite.log` and `fast.log` in the shop root, outside the worktree. That is how the repo's scripts are written, and the reviewer's runs added lines too.

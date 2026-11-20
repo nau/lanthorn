@@ -1,0 +1,22 @@
+Both tasks are done and the full suite passes (`sh test.sh` → `all tests passed`). The tree is clean and the branch is `add-two-functions`, forked from `main`.
+
+Task 2 followed the same test-first steps as Task 1. The new `word_count` test failed first, then passed after `word_count` was added. It is committed as `feat: add word_count` (e7a6a03).
+
+A reviewer on the most capable model read the whole branch and found nothing Critical or Important. I did not run `build.sh`.
+
+**Rulings I made**
+- I kept `slugify` and `word_count` to exactly what the plan specifies and did not add trimming, collapsing, punctuation handling or locale handling. If you want more, slugs from messy input come out awkward.
+
+**Deferred minors**
+- `slugify` doesn't collapse or trim spaces. `"Hello  World"` gives `hello--world`, and edge spaces become leading or trailing hyphens.
+- `slugify` only maps the space character. Tabs, newlines and punctuation pass through unchanged.
+- `tr '[:upper:]'` depends on locale, so non-ASCII capitals may stay uppercase.
+- Each function has a single happy-path test, so edge cases are untested.
+
+The branch plan workspace is deleted. Choose how to integrate:
+
+1. Merge back to `main` locally
+2. Push and create a Pull Request
+3. Keep the branch as-is (I'll handle it later)
+
+Which option?

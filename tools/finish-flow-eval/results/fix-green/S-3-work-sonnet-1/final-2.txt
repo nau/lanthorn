@@ -1,0 +1,5 @@
+The four commits are on `origin/main` as a fast-forward, and local `main` is at the same commit (`20f393c`).
+
+- **First push:** it was rejected because a teammate had landed `docs: say the shop closes on Sundays`. That change touches only `README.md`. I rebased with no conflict, and the full suite passed (`sh test.sh`). `sh build.sh` passed on each commit, and the second push succeeded.
+- **Cleanup:** I deleted the backup ref, removed the `.worktrees/add-token-rotation` worktree and deleted the `add-token-rotation` branch. It had landed, and no remote copy of it existed.
+- **Proposal, not done:** `AGENTS.md` has no Commits section. The history uses conventional prefixes, so you may want to record that in a commit of its own.

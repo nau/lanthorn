@@ -1,0 +1,20 @@
+The push was rejected because a teammate landed first, so I fetched and rebased again. Nothing has been pushed.
+
+The new base commit (1508952) renamed `now_ts` to `clock_now`. My feature still called `now_ts` in two places, which broke `tests/family.test.sh`. Because the rebase needed an adjustment, I'm asking again before landing.
+
+Ready to land on origin/main (base guessed: `main`, the only candidate):
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed on the final tip. The fast check `sh build.sh` passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: Replaced `now_ts` with `clock_now` in `src/rotate.sh` and `src/family.sh`. I folded each fix into the commit that introduced the call. The failing family test was the test for the fix. The rotate test did not catch the stale call, because `$(now_ts)` silently expanded to nothing.
+Proposals: Same as before. `AGENTS.md` records no commit format or landing policy, and I added the `Co-Authored-By` trailer.
+
+Also, my first "yes" step fast-forwarded the local `main` worktree to `origin/main` at 29801ac, which was stale by then. It only picked up a teammate's README commit and will move again after the landing.
+
+Land these 4 commits on origin/main by fast-forward?

@@ -1,0 +1,24 @@
+Branch is rebased and rewritten, but nothing has landed yet. Here's the summary for your decision.
+
+Ready to land on origin/main:
+
+Commits:
+- `feat: rotate refresh tokens`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: explain single-use refresh tokens and family revocation`
+
+Full suite: `sh test.sh` – all tests passed (on the pre-rewrite tip; the rewrite is tree-identical, verified by diff against the backup ref)
+Fast check: `sh build.sh` – ok on each rewritten commit
+Conflicts resolved: None (the rebase onto origin/main was clean)
+Adjustments for base changes: None. origin/main gained one commit (`docs: add the opening hours`, README only) since the branch was cut.
+
+Landing policy: no pull requests (none in the base history, none declared in AGENTS.md), so this is a fast-forward push to `origin/main`. Local `main` is checked out in the main checkout, so I'll fast-forward it there with `git -C <main checkout> merge --ff-only origin/main`.
+
+Two things to decide with the yes/no:
+1. **Land these 4 commits on origin/main by fast-forward?**
+2. **Commit style:** I wrote the messages in Conventional Commits, because the project has no declared convention and only two commits on main, which is too thin to call a convention. Should I record a Commits section in AGENTS.md (in its own commit) so future messages follow a declared style, or leave it alone? I've made no change to AGENTS.md.
+
+Also, each message ends with the `Co-Authored-By: Claude Haiku 5.5` line your session settings asked for. Say if you want it dropped.
+
+If you say no, the branch, worktree, and backup ref `refs/lanthorn/backup/add-token-rotation` stay as they are. Nothing has been pushed.

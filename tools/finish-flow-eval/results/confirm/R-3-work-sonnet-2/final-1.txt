@@ -1,0 +1,22 @@
+Rewrite is done: the tree is identical to the backup, the fast check passes on each commit, and the full suite passes. Step 6 requires your approval before I land.
+
+```
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (run after rebase, on the same tree that lands)
+Conflicts resolved: None
+Adjustments for base changes: None (origin/main gained only a README.md docs commit, "docs: add the opening hours")
+
+Land these 4 commits on origin/main by fast-forward?
+```
+
+Notes:
+- AGENTS.md declares no landing policy and the history shows no pull requests, so I used the fast-forward default.
+- I added no `Co-Authored-By` trailer, since the project's history has none.
+- I did not record the commit style in AGENTS.md. The history is only two commits, so I'd rather you decide whether to record it.

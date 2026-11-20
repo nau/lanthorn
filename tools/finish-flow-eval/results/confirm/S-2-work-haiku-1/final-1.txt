@@ -1,0 +1,21 @@
+The branch is rebased onto the new `origin/main`, rewritten into four logical commits, and tested. I have not landed it, because landing moves `origin/main` and needs your yes.
+
+Ready to land on origin/main:
+
+Commits (oldest first):
+- `feat: rotate refresh tokens`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: describe token rotation`
+
+Full suite: `sh test.sh` – all tests passed on the rebased tip, before the history rewrite. The rewrite left the tree identical (checked against the backup ref), and `sh build.sh` passed on each rewritten commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The new base commit `bf16448` only adds opening hours to `README.md`, which the feature doesn't use.
+
+Land these 4 commits on origin/main by fast-forward?
+
+Two things to decide with that answer:
+- **Commit style:** no commit convention is declared, and the history mixes styles, so I used Conventional Commits. Do you want that recorded in a Commits section of `AGENTS.md`? I haven't written it.
+- **Attribution:** I added the `Co-Authored-By: Claude Haiku 5.5` trailer because the session instructions ask for it. The lanthorn commit guidance would drop it, since the repo's history has no trailers. Say if you want it removed before landing.
+
+The backup ref `refs/lanthorn/backup/add-token-rotation` still points at the pre-rewrite tip. If you say yes, I'll push, fast-forward local `main` in the main checkout, then delete the backup ref and the feature branch. I'll leave the `.worktrees/add-token-rotation` worktree in place unless you want it removed too.

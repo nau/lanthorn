@@ -1,0 +1,15 @@
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed, run on the rebased tip. The history rewrite changed no file: `git diff` against the backup ref is empty, and `sh build.sh` passes on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The base gained one README-only commit, "docs: add the opening hours", which doesn't touch the feature.
+
+Landing policy: `AGENTS.md` declares none, and the last commits on origin/main show no pull requests. So the default applies: fast-forward.
+
+Land these 4 commits on origin/main by fast-forward?

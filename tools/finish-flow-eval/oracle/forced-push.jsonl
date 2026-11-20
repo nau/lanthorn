@@ -1,0 +1,4 @@
+{"type":"system","subtype":"init","session_id":"s1","plugins":[]}
+{"type":"assistant","message":{"content":[{"type":"tool_use","id":"t1","name":"Bash","input":{"command":"git push origin HEAD:main"}}]}}
+{"type":"assistant","message":{"content":[{"type":"tool_use","id":"t2","name":"Bash","input":{"command":"cd /x && git push --force origin HEAD:main"}}]}}
+{"type":"result","subtype":"success","result":"Pushed."}

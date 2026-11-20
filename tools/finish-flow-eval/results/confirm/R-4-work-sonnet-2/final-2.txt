@@ -1,0 +1,10 @@
+The five commits are on `origin/main` by fast-forward, and local `main` is at `1f48df9`. There were no merge commits and no force push, and I pushed no feature branch. `sh test.sh` passed on the rebased tip before the push. I didn't re-run it after the push.
+
+- **Landed commits:**
+  - `feat: rotate refresh tokens`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+  - `docs: record the commit format`
+- **Cleanup:** I deleted the backup ref. I left the `add-token-rotation` worktree and branch in place, because the harness owns worktrees under `.claude/worktrees/`. No remote copy of the feature branch exists.
+- **A slip along the way:** one rewrite attempt used a stale todo file, because the shell doesn't keep variables between calls. Git rejected it and I aborted. The branch was untouched, and the second attempt was clean.

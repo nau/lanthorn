@@ -1,0 +1,19 @@
+Everything up to the landing is done. The rebase and history cleanup changed only the feature branch, and `refs/lanthorn/backup/add-token-rotation` can undo them.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens on use
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed, on the rebased tip. The history rewrite left the tree identical to the backup ref, and `sh build.sh` passed on each commit.
+Conflicts resolved: None
+Adjustments for base changes: None. The only new commit on origin/main was `docs: add the opening hours`, which touches only `README.md`.
+
+Notes:
+- `AGENTS.md` doesn't declare a landing policy or a commit style. I found no pull request history, so I'm using the fast-forward default. I didn't record anything in `AGENTS.md`, because the history is too thin to infer a commit style.
+- The commits use Conventional Commits prefixes, with no trailers.
+
+Land these 4 commits on origin/main by fast-forward?

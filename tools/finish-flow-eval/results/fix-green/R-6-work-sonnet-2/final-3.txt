@@ -1,0 +1,9 @@
+The four token-rotation commits are now on `origin/main`, and the local `main` is fast-forwarded to match. The first push was rejected because a teammate had landed a `now_ts` → `clock_now` rename. I rebased, fixed the two files that still used `now_ts`, re-ran `sh test.sh` (all tests passed) and landed the second try.
+
+The branch landed as:
+- `feat: rotate refresh tokens`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: describe token rotation`
+
+I also deleted the backup ref, removed the `.worktrees/add-token-rotation` worktree and deleted the `add-token-rotation` branch. No copy of the branch was ever pushed to the remote.

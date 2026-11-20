@@ -1,0 +1,3 @@
+The four commits are on `origin/main` (now at `8e06f41`), pushed without force. Local `main` is fast-forwarded to match.
+
+I deleted the backup ref. I left the worktree and the `add-token-rotation` branch in place, because the worktree is under `.claude/worktrees/` and the harness owns it. No remote copy of the feature branch exists.

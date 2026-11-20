@@ -1,0 +1,9 @@
+Task 1 (slugify) is done and committed as `8a27817`. Stopping here as you asked, so Task 2 (`word_count`) hasn't been started.
+
+- **Red:** with only `tests/text.test.sh` written, `sh test.sh` failed because `src/text.sh` didn't exist.
+- **Green:** after adding `src/text.sh` (`slugify` lowercases and turns spaces into `-`), `sh test.sh` printed `all tests passed`.
+- **Ledger:** the task is recorded as complete in `.superpowers/sdd/plan/progress.md`.
+
+`sh test.sh` and `sh build.sh` each append a line to a log file (`suite.log` / `fast.log`) at the main repo root, outside this worktree. That's how the repo's own scripts work, and I left it alone.
+
+I made no rulings and have no deferred minors. Say the word when you want Task 2.

@@ -1,0 +1,8 @@
+Landing is blocked on one question. `AGENTS.md` gives the checks but says nothing about how to land. The recent history on `origin/main` has subjects ending in PR numbers (`docs: say how to run the tests (#13)`, `fix: reject an empty user (#12)`), which suggests this project uses pull requests.
+
+Which policy applies?
+
+1. **Pull requests.** I'd use the upstream `superpowers:finishing-a-development-branch` skill.
+2. **Land by rebase and fast-forward.** This means a linear history pushed straight to `origin/main`, with no pull request.
+
+I'll record your answer in `AGENTS.md` in its own commit on the feature branch. I haven't changed anything yet. The branch has 6 commits and is clean. `origin/main` has one new commit, a docs change to `README.md`, which I'll rebase onto.

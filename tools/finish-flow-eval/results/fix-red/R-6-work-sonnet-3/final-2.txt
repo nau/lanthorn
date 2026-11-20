@@ -1,0 +1,15 @@
+The push was rejected because a teammate landed first. I fetched, rebased, and the rebase had no conflict. The base's `now_ts` → `clock_now` rename did break the feature, so I made an adjustment. Because of that, I'm asking again before pushing.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+Full suite: `sh test.sh` – all tests passed (on the new tip). `sh build.sh` passes on every commit, and the rewrite changed no file.
+Conflicts resolved: None
+Adjustments for base changes: The base commit 6cf130f renamed `now_ts` to `clock_now`. `src/rotate.sh` and `src/family.sh` still called `now_ts`, and the family test failed. I switched both to `clock_now`, and each fix is folded into the commit that introduced the call.
+
+Land these 4 commits on origin/main by fast-forward?

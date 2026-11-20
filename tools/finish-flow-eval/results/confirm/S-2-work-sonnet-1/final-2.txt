@@ -1,0 +1,9 @@
+The four commits are on `origin/main` as a fast-forward (`d9f0199..f997369`), with no merge commit. The full suite passed on the rebased tip before the push. I didn't re-run it after the push.
+
+- **Landed:** `feat: rotate refresh tokens`, `refactor: extract the token store`, `feat: revoke the token family on replay`, and `docs: describe token rotation`.
+- **Local main:** it now matches `origin/main` at `f997369`.
+- **Cleanup:**
+  - I deleted the backup ref.
+  - I removed the `.worktrees/add-token-rotation` worktree.
+  - I deleted the `add-token-rotation` branch after confirming it was contained in `origin/main`.
+  - The branch was never pushed, so no remote copy exists.

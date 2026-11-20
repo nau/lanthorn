@@ -1,0 +1,51 @@
+{
+  "backup_ref_deleted": true,
+  "backup_ref_set": true,
+  "branch_deleted": true,
+  "compacted": false,
+  "fast_runs": 8,
+  "fast_runs_by_turn": [
+    4,
+    4,
+    0
+  ],
+  "finish_skill": "lanthorn",
+  "finish_skills": [
+    "lanthorn:finishing-a-development-branch"
+  ],
+  "force_attempted": false,
+  "history_clean": true,
+  "landed": true,
+  "landed_suite_passes": true,
+  "linear": true,
+  "local_base_forwarded": true,
+  "local_base_unchanged_before_yes": true,
+  "pr_hint": false,
+  "push_count": 2,
+  "rebased": true,
+  "remote_main_by_turn": [
+    "29801aca",
+    "bd2ea2b3",
+    "57017035"
+  ],
+  "remote_unchanged_before_yes": true,
+  "router_reinjected": false,
+  "scenario": "R-6",
+  "suite_runs": 4,
+  "suite_runs_by_turn": [
+    1,
+    3,
+    0
+  ],
+  "teammate_kept": true,
+  "tree_identical": true,
+  "turn_exits": [
+    0,
+    0,
+    0
+  ],
+  "turn_exits_ok": true,
+  "valid": true,
+  "variant": "default",
+  "worktree_removed": true
+}

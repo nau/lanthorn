@@ -1,0 +1,12 @@
+Token rotation is landed on `origin/main` as four commits, by fast-forward with no force push and no merge commit.
+
+- `0f81c02` feat: rotate refresh tokens
+- `de4a54d` refactor: extract the token store
+- `65d5585` feat: revoke the token family on replay
+- `601d492` docs: explain single-use refresh tokens and family revocation
+
+Before the push, the rebased branch passed `sh test.sh`, and `sh build.sh` passed on each commit. The rewrite left the tree identical to the one that passed. Origin's new README commit (`bf16448`) rebased cleanly. The local `main` in the main checkout is fast-forwarded to `601d492`.
+
+Cleanup is done. I deleted the backup ref, the `.worktrees/add-token-rotation` worktree, and the local `add-token-rotation` branch. Nothing was pushed for the feature branch itself, so there was no remote copy to remove.
+
+Still open: commit messages are in Conventional Commits, and I haven't recorded that style in `AGENTS.md`. Two commits on `main` are too thin to count as the project's convention. Tell me if you want a Commits section added in its own commit. Each message also ends with the `Co-Authored-By: Claude Haiku 5.5` line your settings asked for. I can remove it from the landed commits if you want.

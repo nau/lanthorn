@@ -1,0 +1,13 @@
+Token rotation is now on `origin/main`, and the local `main` is fast-forwarded to match, at `9a15edd`.
+
+The first push was rejected because a teammate had landed a README commit in the meantime. I fetched and rebased again. There were no conflicts, and the new commit only touched the README. I re-ran `sh test.sh` on the new tip, which printed "all tests passed", and the second push went through.
+
+The four commits that landed:
+- `feat: rotate refresh tokens and revoke the old one`
+- `refactor: extract the token store`
+- `feat: revoke the token family on replay`
+- `docs: describe token rotation`
+
+I removed the backup ref, the `.worktrees/add-token-rotation` worktree and the local feature branch. The feature branch was never pushed, so there is no remote copy to clean up.
+
+`AGENTS.md` has no commits section. I followed the prefix style seen in the history (e.g. `chore: start the shop`) without recording it, because the history is only a few commits. Say so if you want me to add a "Commits" section.

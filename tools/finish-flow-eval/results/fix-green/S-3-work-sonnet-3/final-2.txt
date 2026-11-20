@@ -1,0 +1,9 @@
+The four commits are on `origin/main` and in the local `main`, which now sits at `fae85a5`.
+
+- **Push retry:** the first push was rejected because someone had landed "docs: say the shop closes on Sundays" in the meantime. I fetched and rebased with no conflicts. That commit only touches `README.md`, so no adjustment was needed. After the rebase `sh test.sh` passed, `sh build.sh` passed on every commit, and the second push went through without force.
+- **Landed commits:**
+  - `feat: rotate refresh tokens`
+  - `refactor: extract the token store`
+  - `feat: revoke the token family on replay`
+  - `docs: describe token rotation`
+- **Cleanup:** I deleted the backup ref, removed the `.worktrees/add-token-rotation` worktree and deleted the `add-token-rotation` branch. No remote copy of the branch existed.

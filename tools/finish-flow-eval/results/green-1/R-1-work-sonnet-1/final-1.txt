@@ -1,0 +1,17 @@
+The history is rewritten and the tree is identical to the one that passed the full suite. I haven't touched `main` yet, and I need your yes before I do.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate a refresh token on use
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+
+- **Full suite:** `sh test.sh` printed "all tests passed" on the rebased tip. The history rewrite changed no file (`git diff` against the backup ref is empty). `sh build.sh` passed on each of the four commits.
+- **Conflicts resolved:** None.
+- **Adjustments for base changes:** `origin/main` renamed `now_ts` to `clock_now`. The rebase was clean, but `rotate_token` and `revoke_family` still called `now_ts`, and the suite failed. I fixed both and folded each fix into the commit that introduced the call, so every commit passes on its own.
+- **Landing policy:** `AGENTS.md` doesn't declare one and the history shows no pull requests, so the default is fast-forward.
+- **Commit style:** I used type prefixes (`feat:`, `refactor:`, `docs:`) with no trailers, following the two commits on main. `AGENTS.md` has no commit section. Two commits is thin evidence, so I haven't recorded the style there.
+
+Land these 4 commits on origin/main by fast-forward?

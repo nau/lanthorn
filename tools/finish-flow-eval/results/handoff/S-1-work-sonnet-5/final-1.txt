@@ -1,0 +1,9 @@
+Task 1 (slugify) is done and committed as `c37f160`. I stopped there as you asked and am waiting for your go-ahead on Task 2.
+
+- **Red step:** `sh test.sh` failed because `src/text.sh` didn't exist yet.
+- **Green step:** after adding `slugify`, `sh test.sh` printed `all tests passed`.
+- **Skipped the ledger:** I didn't set up the skill's workspace and ledger. The `sdd-workspace` and `task-start` scripts it refers to aren't in this repo.
+- **Skipped the final review:** it only applies once all tasks are done.
+- **Run log:** `sh test.sh` appends a line to a `suite.log` above the worktree (the repo root). That's how the script is written, not something I changed.
+
+`slugify` lower-cases the text and turns spaces into `-`, as the plan specifies. Other punctuation is left as it is.

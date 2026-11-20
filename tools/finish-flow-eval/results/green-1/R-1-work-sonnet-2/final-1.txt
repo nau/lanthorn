@@ -1,0 +1,16 @@
+Tree is identical to the backup, and the fast check passes on every commit. I'm stopping here to ask before I change `main`.
+
+Ready to land on origin/main:
+
+Commits:
+- feat: rotate refresh tokens
+- refactor: extract the token store
+- feat: revoke the token family on replay
+- docs: describe token rotation
+- fix: call clock_now after the rename
+
+Full suite: `sh test.sh` – all tests passed, run on the rebased tip. The history rewrite changed no file.
+Conflicts resolved: None
+Adjustments for base changes: A teammate's commit renamed `now_ts` to `clock_now`. `src/rotate.sh` and `src/family.sh` still called the old name, and the family test failed. I fixed both in the last commit.
+
+Land these 5 commits on origin/main by fast-forward?

@@ -1,0 +1,11 @@
+Task 1 (`slugify`) is done and committed as `89048b6 feat: add slugify`. I've stopped there; Task 2 (`word_count`) hasn't been started.
+
+- **Test first:** I added `tests/text.test.sh` with the plan's test. `sh test.sh` failed because `src/text.sh` didn't exist yet.
+- **Code:** `src/text.sh` defines `slugify`, which lowercases the text and turns each space into `-`. With it in place, `sh test.sh` prints `all tests passed` and `sh build.sh` prints `build ok`.
+- **Progress record:** written to `.superpowers/sdd/plan/progress.md`, so Task 2 can pick up from there.
+
+**Rulings I made:** none.
+
+`sh test.sh` adds a line to the team's `suite.log`, which sits outside this worktree. I ran it four times, so it has four new lines.
+
+Say when you want Task 2.

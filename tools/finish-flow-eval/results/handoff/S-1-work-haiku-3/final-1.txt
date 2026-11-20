@@ -1,0 +1,21 @@
+Task 1 (`slugify`) is done and committed. I've stopped here as you asked; Task 2 and the final review are not started.
+
+**What changed**
+- `src/text.sh`: `slugify` lowercases its input and turns spaces into `-`.
+- `tests/text.test.sh`: asserts `slugify "Hello World"` gives `hello-world`.
+- Commit `5ea3720`, `feat: add slugify`, with the Co-Authored-By line. It includes only these two files.
+
+**TDD evidence**
+- **RED:** `sh test.sh` exited 1 with `./src/text.sh: No such file or directory`. The test failed because the feature was missing, not because of a typo in the test.
+- **GREEN:** `sh test.sh` printed `all tests passed` (exit 0). `sh build.sh` printed `build ok`.
+- **Completion:** `task-done` ran `sh test.sh` again, which passed, and wrote `Task 1: complete (commits 3acc10a..5ea3720, tests: sh test.sh → all tests passed)` to the ledger.
+
+**Rulings I made**
+- **Pre-flight:** Task 2 modifies the files Task 1 creates, so I kept the plan's order. Cost if wrong: none expected.
+- **No spec:** the plan names no spec, so the ledger notes that any rulings are provisional.
+
+**Deferred minors:** none so far.
+
+**Workspace:** the ledger, brief, and run logs are in `.superpowers/sdd/plan/`. The ledger's first line names `docs/superpowers/plans/plan.md`. The directory is not in the working tree status, so it does not show up as untracked.
+
+When you're ready, I'll start Task 2 (`word_count`).

@@ -1,0 +1,12 @@
+Token rotation is landed on `origin/main` as four commits by fast-forward, with no merge commit and no pull request. The full suite passed on the final tip, and `sh build.sh` passed on each commit.
+
+- **`feat: rotate refresh tokens`**
+- **`refactor: extract the token store`**
+- **`feat: revoke the token family on replay`**
+- **`docs: describe token rotation`**
+
+The first push was rejected because a teammate had landed `refactor: rename now_ts to clock_now`. After the rebase, `src/rotate.sh` and `src/family.sh` still called `now_ts`, and `tests/family.test.sh` failed. I switched both to `clock_now` and folded each fix into the commit that introduced it. You approved the landing again with that change included, and the second push succeeded.
+
+Local `main` is at c32a46b, matching `origin/main`. I removed the `.worktrees/add-token-rotation` worktree, the local branch and the backup ref. The branch was never pushed, so no remote copy exists.
+
+I recorded no commit convention in `AGENTS.md`. I used Conventional Commit prefixes to match `main` and added no attribution trailer.

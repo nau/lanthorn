@@ -1,0 +1,10 @@
+Token rotation is landed on `origin/main` as four commits, and the local `main` is fast-forwarded to match at `fdd7dac`.
+
+- `a30c0b2` feat: rotate a refresh token and revoke the old one
+- `00b95ad` refactor: extract the token store
+- `416f9c9` feat: revoke the token family on replay
+- `fdd7dac` docs: describe token rotation
+
+The full suite (`sh test.sh`) passed after the rebase, and `sh build.sh` passed on each commit. The push was a plain fast-forward with no force. No remote copy of the feature branch was ever pushed.
+
+I removed the backup ref, the `.worktrees/add-token-rotation` worktree and the local `add-token-rotation` branch.
