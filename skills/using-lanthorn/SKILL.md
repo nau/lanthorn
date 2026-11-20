@@ -24,6 +24,7 @@ cover. Everything not listed below still comes from superpowers.
 | Write, change, or review Scala code, pick a Scala library, or find usages of a Scala symbol | `lanthorn:writing-scala` |
 | Debug a failure | `superpowers:systematic-debugging` |
 | Claim a task is done | `superpowers:verification-before-completion` |
+| Finish a development branch, or land completed work | `lanthorn:finishing-a-development-branch` |
 | Write a commit message or a PR description | `lanthorn:writing-commits` |
 | Author a new skill | `superpowers:writing-skills` |
 
