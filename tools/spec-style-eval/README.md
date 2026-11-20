@@ -178,8 +178,10 @@ tables. Transcripts stay on disk and out of git.
   account stay out. This matters: an installed `lanthorn` plugin would hand its own
   `spec-writing` version to the writer of both arms. The implementer still gets the
   template's `AGENTS.md` and the `scalus` plugin, because the project enables it.
-- The writer gets the skill text as `STYLE.md`, the same file name in both arms. It runs
-  with the `Skill` tool disabled. The harness rejects a writer run that loaded a skill.
+- The writer gets the skill text as `STYLE.md`, the same file name in both arms. If the
+  pinned commit has a `references/` directory in the skill, the writer gets it next to
+  `STYLE.md`. It runs with the `Skill` tool disabled. The harness rejects a writer run that
+  loaded a skill.
 - The implementer's directory holds the scaffold and `SPEC.md` only. The writer's directory,
   with its copy of the notes, is deleted before the first implementer starts.
 - The hidden tests run in a clean project: the template's build file, the implementer's main

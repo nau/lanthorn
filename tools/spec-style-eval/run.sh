@@ -105,8 +105,7 @@ if [[ -z "$SPEC_DIR" ]]; then
     SPEC_DIR="$BATCH_DIR/$ARM-s$n"
     mkdir -p "$SPEC_DIR"
     WRITER_DIR=$(new_tmp)
-    git -C "$HARNESS_DIR" show "$COMMIT:skills/spec-writing/SKILL.md" >"$WRITER_DIR/STYLE.md" ||
-        die "cannot read the skill at commit $COMMIT"
+    export_skill "$COMMIT" "$WRITER_DIR" || die "cannot read the skill at commit $COMMIT"
     cp "$ORACLE_DIR/notes.md" "$ORACLE_DIR/Deposit.scala" "$WRITER_DIR/"
     echo "spec-style-eval: writing spec $(basename "$SPEC_DIR") ($ARM skill, $WRITER_MODEL)"
     agent "$WRITER_DIR" "$WRITER_MODEL" "$WRITER_TIMEOUT" "$HARNESS_DIR/prompts/writer.md" \

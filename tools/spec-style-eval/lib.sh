@@ -70,6 +70,22 @@ score_hidden() {
     echo "exit=$?" >>"$score/hidden-test.log"
 }
 
+# export_skill <commit> <dir>
+# Writes the spec-writing skill of <commit> to <dir>: the skill text as STYLE.md, and the
+# references/ directory of the skill next to it when that commit has one. STYLE.md names
+# those files by a relative path, so the writer finds them from there.
+export_skill() {
+    local commit="$1" dir="$2" skill="skills/spec-writing"
+    git -C "$HARNESS_DIR" show "$commit:$skill/SKILL.md" >"$dir/STYLE.md" || return 1
+    git -C "$HARNESS_DIR" cat-file -e "$commit:$skill/references" 2>/dev/null || return 0
+    mkdir -p "$dir/references" || return 1
+    # Run `git archive` from the repository root. From a subdirectory it writes an empty
+    # archive for a `commit:path` tree, and reports no error.
+    local root
+    root=$(git -C "$HARNESS_DIR" rev-parse --show-toplevel) || return 1
+    git -C "$root" archive "$commit:$skill/references" | tar -x -f - -C "$dir/references"
+}
+
 # run_with_timeout <seconds> <command...>
 # Exit status 124 means the command ran out of time.
 run_with_timeout() {
