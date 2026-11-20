@@ -1,0 +1,19 @@
+{
+  "arm": "new",
+  "skill_commit": "79acec3",
+  "writer_model": "haiku",
+  "spec_id": "new-s1",
+  "agent_exit": "0",
+  "spec_words": 2981,
+  "spec_rules": 27,
+  "spec_assumptions": 4,
+  "agent": {
+    "cost_usd": 0.03900377,
+    "duration_s": 183,
+    "turns": 7,
+    "is_error": false,
+    "skills_loaded": [],
+    "leaks": []
+  },
+  "valid": true
+}

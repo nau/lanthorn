@@ -1,0 +1,8 @@
+- GAP: Datum present but not decodable as Booking (spec Open questions leaves open whether Cancel must still work) | CHOSE: reject every action, including Cancel, per [GEN-1]
+- GAP: Redeemer that does not decode as Action is not mentioned | CHOSE: reject
+- GAP: Whether the open/closed flag of a validity-range bound matters (A-1 says L inclusive, U exclusive) | CHOSE: use the finite bound value as L or U and ignore the closure flag
+- GAP: Spend of an input that ownRef does not name in the transaction is not mentioned | CHOSE: reject
+- GAP: How "deposit input" is identified (script credential of the validator) | CHOSE: inputs whose payment credential equals the credential of the ownRef input; exactly one must exist
+- GAP: Negative feeBps is unconfirmed (Open questions) | CHOSE: follow [CAN-6]..[CAN-9] literally, giving fee 2_000_000 capped at the deposit
+- GAP: Order of the signature check versus the time/fee checks is not specified (matters only for which error is raised) | CHOSE: signature check first, then bounds, then fee
+- GAP: Release with other-script or non-pubkey outputs, and outputs paid to a script address with the guest's key, are not mentioned | CHOSE: only outputs with a PubKeyCredential equal to guest/host count in the sums

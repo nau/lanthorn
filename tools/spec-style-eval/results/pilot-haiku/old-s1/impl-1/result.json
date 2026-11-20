@@ -1,0 +1,67 @@
+{
+  "arm": "old",
+  "spec_id": "old-s1",
+  "impl_id": "impl-1",
+  "writer_model": "sonnet",
+  "impl_model": "haiku",
+  "agent_exit": "0",
+  "batch": "pilot-haiku",
+  "compiles": true,
+  "own_tests": {
+    "pass": true,
+    "succeeded": 54,
+    "failed": 0
+  },
+  "hidden": {
+    "ran": true,
+    "passed": 22,
+    "total": 22,
+    "groups": {
+      "stated": {
+        "passed": 8,
+        "total": 8
+      },
+      "boundary": {
+        "passed": 5,
+        "total": 5
+      },
+      "intent": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "failed": []
+  },
+  "interface_changed": false,
+  "citations": {
+    "spec_rules": 35,
+    "spec_assumptions": 0,
+    "cited_rules": 35,
+    "coverage": 1.0,
+    "uncited": [],
+    "unknown": []
+  },
+  "gaps": {
+    "present": true,
+    "count": 4,
+    "items": [
+      "The spec does not say whether non-lovelace assets in the deposit must go back to the guest. GEN-8 says to ignore them, so a host can Release or Claim the deposit and keep the tokens. | CHOSE: No token check on any action, as GEN-8 requires. Reported in the security review as a spec-level finding, left open.",
+      "The spec does not say whether the staking part of the address of the guest or host output must match the booking. \"Paid to X\" ignores it, so the host can pay the guest's payment key under a different stake credential. | CHOSE: Ignore the staking part, as section 2 requires.",
+      "The spec does not say whether outputs to the guest or host that carry a datum or a reference script count as paid. | CHOSE: They count, by payment credential alone, like any other output.",
+      "The spec does not say how to round a negative product in the fee formula, where feeBps is negative. | CHOSE: divCeil on the signed product. The result is always raised to MIN_FEE, so the rounding direction has no effect."
+    ]
+  },
+  "agent": {
+    "cost_usd": 0.20619551,
+    "duration_s": 297,
+    "turns": 45,
+    "is_error": false,
+    "skills_loaded": [
+      "scalus:contract",
+      "scalus:contract-test",
+      "scalus:smart-contract-security-review"
+    ],
+    "leaks": []
+  },
+  "status": "ok"
+}

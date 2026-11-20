@@ -1,0 +1,5 @@
+- GAP: A finite-looking bound that is PosInf as lower bound or NegInf as upper bound is not covered by 2.1 | CHOSE: treat any non-Finite bound type as absent (L or U absent)
+- GAP: The spec does not say which failure takes precedence when several checks fail, nor the order of datum versus redeemer decoding | CHOSE: GEN-1, GEN-2, GEN-3, GEN-4, GEN-5, GEN-6 in that order, then the action checks; all failures are plain failures so only the pass/fail outcome matters
+- GAP: Rounding of the fee for a negative bps (FEE-2 "rounded up") is not defined for negative products | CHOSE: divCeil on the signed product; the result is below MIN_FEE either way, so FEE-3 gives MIN_FEE
+- GAP: Whether the guest signature (CAN-1) is checked before the free-cancel decision (CAN-3) | CHOSE: CAN-1 and CAN-2 are checked first, then CAN-3/CAN-4/CAN-5
+- GAP: GEN-6 counts inputs by script hash only, and does not say whether inputs with the same script hash but a different staking part count | CHOSE: compare the payment script credential only, so they count

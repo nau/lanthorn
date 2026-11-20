@@ -1,0 +1,8 @@
+- GAP: Datum present but not decodable as a Booking (Section 9 leaves open whether Cancel must still work) | CHOSE: reject every action, including a free Cancel, per [GEN-1]
+- GAP: Redeemer that does not decode as an Action is not mentioned | CHOSE: reject
+- GAP: Negative feeBps (Section 9 asks the team to confirm) | CHOSE: no special case; [CAN-6] to [CAN-9] apply as written, so the fee is 2_000_000 capped at the deposit (only late cancellations reach this; a free Cancel ignores it)
+- GAP: Whether the validity-range bounds are read as the raw bound value when the ledger marks a bound as exclusive/inclusive differently from [A-1] | CHOSE: use the bound value as given (validFromOrFail / validToOrFail) and compare it directly with cancelBy, cancel cutoff and checkIn + 21_600_000
+- GAP: An unbounded-but-infinite or otherwise non-finite bound is not defined beyond "absent" | CHOSE: treat any non-finite bound as absent and reject
+- GAP: Behaviour when the input that ownRef names cannot be found in the inputs | CHOSE: reject
+- GAP: Whether [GEN-3] counts deposit inputs by script credential only or by full address | CHOSE: count by script payment credential, as the definition of "deposit input" says
+- GAP: Cancel with guest equal to host ([GEN-8]) and host sum counting | CHOSE: host sum counts all outputs to that key hash, with no special case

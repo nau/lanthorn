@@ -1,0 +1,66 @@
+{
+  "arm": "old",
+  "spec_id": "old-s1",
+  "impl_id": "impl-1",
+  "writer_model": "sonnet",
+  "impl_model": "sonnet",
+  "agent_exit": "0",
+  "batch": "pilot",
+  "compiles": true,
+  "own_tests": {
+    "pass": true,
+    "succeeded": 33,
+    "failed": 0
+  },
+  "hidden": {
+    "ran": true,
+    "passed": 22,
+    "total": 22,
+    "groups": {
+      "stated": {
+        "passed": 8,
+        "total": 8
+      },
+      "boundary": {
+        "passed": 5,
+        "total": 5
+      },
+      "intent": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "failed": []
+  },
+  "interface_changed": false,
+  "citations": {
+    "spec_rules": 35,
+    "spec_assumptions": 0,
+    "cited_rules": 35,
+    "coverage": 1.0,
+    "uncited": [],
+    "unknown": []
+  },
+  "gaps": {
+    "present": true,
+    "count": 5,
+    "items": [
+      "A finite-looking bound that is PosInf as lower bound or NegInf as upper bound is not covered by 2.1 | CHOSE: treat any non-Finite bound type as absent (L or U absent)",
+      "The spec does not say which failure takes precedence when several checks fail, nor the order of datum versus redeemer decoding | CHOSE: GEN-1, GEN-2, GEN-3, GEN-4, GEN-5, GEN-6 in that order, then the action checks; all failures are plain failures so only the pass/fail outcome matters",
+      "Rounding of the fee for a negative bps (FEE-2 \"rounded up\") is not defined for negative products | CHOSE: divCeil on the signed product; the result is below MIN_FEE either way, so FEE-3 gives MIN_FEE",
+      "Whether the guest signature (CAN-1) is checked before the free-cancel decision (CAN-3) | CHOSE: CAN-1 and CAN-2 are checked first, then CAN-3/CAN-4/CAN-5",
+      "GEN-6 counts inputs by script hash only, and does not say whether inputs with the same script hash but a different staking part count | CHOSE: compare the payment script credential only, so they count"
+    ]
+  },
+  "agent": {
+    "cost_usd": 0.4004643,
+    "duration_s": 88,
+    "turns": 17,
+    "is_error": false,
+    "skills_loaded": [
+      "scalus:contract"
+    ],
+    "leaks": []
+  },
+  "status": "ok"
+}

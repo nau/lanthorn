@@ -1,0 +1,71 @@
+{
+  "arm": "new",
+  "spec_id": "new-s1",
+  "impl_id": "impl-2",
+  "writer_model": "haiku",
+  "impl_model": "sonnet",
+  "agent_exit": "0",
+  "batch": "pilot-haiku-writer",
+  "compiles": true,
+  "own_tests": {
+    "pass": true,
+    "succeeded": 27,
+    "failed": 0
+  },
+  "hidden": {
+    "ran": true,
+    "passed": 22,
+    "total": 22,
+    "groups": {
+      "stated": {
+        "passed": 8,
+        "total": 8
+      },
+      "boundary": {
+        "passed": 5,
+        "total": 5
+      },
+      "intent": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "failed": []
+  },
+  "interface_changed": false,
+  "citations": {
+    "spec_rules": 27,
+    "spec_assumptions": 4,
+    "cited_rules": 26,
+    "coverage": 0.963,
+    "uncited": [
+      "GEN-6"
+    ],
+    "unknown": []
+  },
+  "gaps": {
+    "present": true,
+    "count": 8,
+    "items": [
+      "Datum present but not decodable as Booking (spec Open questions leaves open whether Cancel must still work) | CHOSE: reject every action, including Cancel, per [GEN-1]",
+      "Redeemer that does not decode as Action is not mentioned | CHOSE: reject",
+      "Whether the open/closed flag of a validity-range bound matters (A-1 says L inclusive, U exclusive) | CHOSE: use the finite bound value as L or U and ignore the closure flag",
+      "Spend of an input that ownRef does not name in the transaction is not mentioned | CHOSE: reject",
+      "How \"deposit input\" is identified (script credential of the validator) | CHOSE: inputs whose payment credential equals the credential of the ownRef input; exactly one must exist",
+      "Negative feeBps is unconfirmed (Open questions) | CHOSE: follow [CAN-6]..[CAN-9] literally, giving fee 2_000_000 capped at the deposit",
+      "Order of the signature check versus the time/fee checks is not specified (matters only for which error is raised) | CHOSE: signature check first, then bounds, then fee",
+      "Release with other-script or non-pubkey outputs, and outputs paid to a script address with the guest's key, are not mentioned | CHOSE: only outputs with a PubKeyCredential equal to guest/host count in the sums"
+    ]
+  },
+  "agent": {
+    "cost_usd": 0.3985333,
+    "duration_s": 94,
+    "turns": 17,
+    "is_error": false,
+    "skills_loaded": [
+      "scalus:contract"
+    ],
+    "leaks": []
+  },
+  "status": "ok"
+}

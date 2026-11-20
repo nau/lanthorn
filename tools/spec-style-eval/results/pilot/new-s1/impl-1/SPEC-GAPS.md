@@ -1,0 +1,5 @@
+- GAP: Order of the SP-1..SP-4 failures and the Cancel/Claim/Release checks is not fixed; all failures are indistinguishable (script fails) | CHOSE: decode datum, redeemer, find own input, check single deposit input, then run the action's checks; any failure aborts
+- GAP: "deposit input" is defined by payment credential of the deposit script, but the script's own hash is not given to the validator | CHOSE: used the payment credential of the own input's resolved address as the deposit script credential
+- GAP: Whether a finite bound with a non-inclusive/exclusive flag changes the time value used | CHOSE: used only the time value of the bound and ignored the closure flag, as the Open questions say
+- GAP: Whether outputs with a PubKey payment credential but any staking part, datum or reference script count toward the host/guest sums | CHOSE: every output whose payment credential is the key hash counts, regardless of staking part, datum or script reference
+- GAP: Release/Cancel when host == guest, or when the booking datum has extra trailing data/malformed fields | CHOSE: no special case; the datum must decode as Booking, otherwise fail

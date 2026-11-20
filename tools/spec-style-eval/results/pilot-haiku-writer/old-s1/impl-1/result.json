@@ -1,0 +1,76 @@
+{
+  "arm": "old",
+  "spec_id": "old-s1",
+  "impl_id": "impl-1",
+  "writer_model": "haiku",
+  "impl_model": "sonnet",
+  "agent_exit": "0",
+  "batch": "pilot-haiku-writer",
+  "compiles": true,
+  "own_tests": {
+    "pass": true,
+    "succeeded": 16,
+    "failed": 0
+  },
+  "hidden": {
+    "ran": true,
+    "passed": 22,
+    "total": 22,
+    "groups": {
+      "stated": {
+        "passed": 8,
+        "total": 8
+      },
+      "boundary": {
+        "passed": 5,
+        "total": 5
+      },
+      "intent": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "failed": []
+  },
+  "interface_changed": false,
+  "citations": {
+    "spec_rules": 41,
+    "spec_assumptions": 0,
+    "cited_rules": 33,
+    "coverage": 0.805,
+    "uncited": [
+      "DL-1",
+      "DL-2",
+      "DL-3",
+      "DL-4",
+      "DL-5",
+      "EX-1",
+      "IF-1",
+      "IF-2"
+    ],
+    "unknown": []
+  },
+  "gaps": {
+    "present": true,
+    "count": 6,
+    "items": [
+      "SP-4 does not say what happens when no input matches `ownRef` | CHOSE: fail (own input must be found and be the only input at its address)",
+      "SP-4 \"address\" could mean payment credential only or the full address incl. staking part | CHOSE: compare the full address",
+      "\"Payment key hash of an output\" ignores the staking part, but the spec does not say whether outputs with a staking credential count | CHOSE: count them by payment key hash only; script-credential outputs never count",
+      "SP-1 to SP-4 do not fix the order of checks relative to the Action checks | CHOSE: decode datum and redeemer, check SP-4/SP-5, then run the Action checks; any failure rejects",
+      "CN-5 \"equals the fee\" when the host output sum covers lovelace only and outputs may carry other assets | CHOSE: sum lovelace only (SP-9), ignore other assets",
+      "spec does not say whether the guest or host signature must be unique or the only one | CHOSE: signatories need only contain the key"
+    ]
+  },
+  "agent": {
+    "cost_usd": 0.386769,
+    "duration_s": 86,
+    "turns": 17,
+    "is_error": false,
+    "skills_loaded": [
+      "scalus:contract"
+    ],
+    "leaks": []
+  },
+  "status": "ok"
+}

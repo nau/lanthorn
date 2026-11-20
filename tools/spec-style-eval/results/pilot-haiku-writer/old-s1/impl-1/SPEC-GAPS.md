@@ -1,0 +1,6 @@
+- GAP: SP-4 does not say what happens when no input matches `ownRef` | CHOSE: fail (own input must be found and be the only input at its address)
+- GAP: SP-4 "address" could mean payment credential only or the full address incl. staking part | CHOSE: compare the full address
+- GAP: "Payment key hash of an output" ignores the staking part, but the spec does not say whether outputs with a staking credential count | CHOSE: count them by payment key hash only; script-credential outputs never count
+- GAP: SP-1 to SP-4 do not fix the order of checks relative to the Action checks | CHOSE: decode datum and redeemer, check SP-4/SP-5, then run the Action checks; any failure rejects
+- GAP: CN-5 "equals the fee" when the host output sum covers lovelace only and outputs may carry other assets | CHOSE: sum lovelace only (SP-9), ignore other assets
+- GAP: spec does not say whether the guest or host signature must be unique or the only one | CHOSE: signatories need only contain the key

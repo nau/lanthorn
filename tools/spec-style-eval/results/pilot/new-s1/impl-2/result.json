@@ -1,0 +1,71 @@
+{
+  "arm": "new",
+  "spec_id": "new-s1",
+  "impl_id": "impl-2",
+  "writer_model": "sonnet",
+  "impl_model": "sonnet",
+  "agent_exit": "0",
+  "batch": "pilot",
+  "compiles": true,
+  "own_tests": {
+    "pass": true,
+    "succeeded": 31,
+    "failed": 0
+  },
+  "hidden": {
+    "ran": true,
+    "passed": 22,
+    "total": 22,
+    "groups": {
+      "stated": {
+        "passed": 8,
+        "total": 8
+      },
+      "boundary": {
+        "passed": 5,
+        "total": 5
+      },
+      "intent": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "failed": []
+  },
+  "interface_changed": false,
+  "citations": {
+    "spec_rules": 33,
+    "spec_assumptions": 5,
+    "cited_rules": 31,
+    "coverage": 0.939,
+    "uncited": [
+      "SP-8",
+      "SP-9"
+    ],
+    "unknown": []
+  },
+  "gaps": {
+    "present": true,
+    "count": 7,
+    "items": [
+      "\"payment credential of the deposit script\" is not available to the validator except via the spent input | CHOSE: a deposit input is any input whose payment credential equals that of the own input; staking part ignored",
+      "the spec does not say which datum source is used | CHOSE: the datum passed to `spend` (ScriptInfo datum); a datum that is not `Option.Some` fails [SP-1]",
+      "the order of the common checks versus action checks is unspecified | CHOSE: all common checks [SP-1]..[SP-5] run first, then the action checks; every failure is a plain failure so the order does not change the result",
+      "the interval bound closure flag (inclusive/exclusive) is not tested | CHOSE: only the time value of a bound is used, as the open questions say",
+      "a negative or zero deposit is not described beyond the zero case | CHOSE: the formula in [CA-7]..[CA-11] is applied as written, with no special case",
+      "outputs with a script credential equal to the host or guest key hash bytes | CHOSE: only PubKeyCredential outputs count toward the output sums",
+      "whether the datum and redeemer must have no extra fields or trailing data | CHOSE: the standard FromData decoding of `Booking` and `Action` decides"
+    ]
+  },
+  "agent": {
+    "cost_usd": 0.3801473,
+    "duration_s": 85,
+    "turns": 20,
+    "is_error": false,
+    "skills_loaded": [
+      "scalus:contract"
+    ],
+    "leaks": []
+  },
+  "status": "ok"
+}

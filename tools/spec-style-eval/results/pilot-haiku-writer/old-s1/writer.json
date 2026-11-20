@@ -1,0 +1,19 @@
+{
+  "arm": "old",
+  "skill_commit": "9330de6",
+  "writer_model": "haiku",
+  "spec_id": "old-s1",
+  "agent_exit": "0",
+  "spec_words": 2987,
+  "spec_rules": 41,
+  "spec_assumptions": 0,
+  "agent": {
+    "cost_usd": 0.037770700000000004,
+    "duration_s": 183,
+    "turns": 10,
+    "is_error": false,
+    "skills_loaded": [],
+    "leaks": []
+  },
+  "valid": true
+}

@@ -1,0 +1,66 @@
+{
+  "arm": "new",
+  "spec_id": "new-s1",
+  "impl_id": "impl-1",
+  "writer_model": "sonnet",
+  "impl_model": "sonnet",
+  "agent_exit": "0",
+  "batch": "pilot",
+  "compiles": true,
+  "own_tests": {
+    "pass": true,
+    "succeeded": 23,
+    "failed": 0
+  },
+  "hidden": {
+    "ran": true,
+    "passed": 22,
+    "total": 22,
+    "groups": {
+      "stated": {
+        "passed": 8,
+        "total": 8
+      },
+      "boundary": {
+        "passed": 5,
+        "total": 5
+      },
+      "intent": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "failed": []
+  },
+  "interface_changed": false,
+  "citations": {
+    "spec_rules": 33,
+    "spec_assumptions": 5,
+    "cited_rules": 33,
+    "coverage": 1.0,
+    "uncited": [],
+    "unknown": []
+  },
+  "gaps": {
+    "present": true,
+    "count": 5,
+    "items": [
+      "Order of the SP-1..SP-4 failures and the Cancel/Claim/Release checks is not fixed; all failures are indistinguishable (script fails) | CHOSE: decode datum, redeemer, find own input, check single deposit input, then run the action's checks; any failure aborts",
+      "\"deposit input\" is defined by payment credential of the deposit script, but the script's own hash is not given to the validator | CHOSE: used the payment credential of the own input's resolved address as the deposit script credential",
+      "Whether a finite bound with a non-inclusive/exclusive flag changes the time value used | CHOSE: used only the time value of the bound and ignored the closure flag, as the Open questions say",
+      "Whether outputs with a PubKey payment credential but any staking part, datum or reference script count toward the host/guest sums | CHOSE: every output whose payment credential is the key hash counts, regardless of staking part, datum or script reference",
+      "Release/Cancel when host == guest, or when the booking datum has extra trailing data/malformed fields | CHOSE: no special case; the datum must decode as Booking, otherwise fail"
+    ]
+  },
+  "agent": {
+    "cost_usd": 0.3231047,
+    "duration_s": 73,
+    "turns": 13,
+    "is_error": false,
+    "skills_loaded": [
+      "scalus:contract"
+    ],
+    "leaks": []
+  },
+  "status": "ok"
+}

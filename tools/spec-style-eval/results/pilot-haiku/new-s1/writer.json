@@ -1,0 +1,19 @@
+{
+  "arm": "new",
+  "skill_commit": "79acec3",
+  "writer_model": "sonnet",
+  "spec_id": "new-s1",
+  "agent_exit": "0",
+  "spec_words": 2320,
+  "spec_rules": 33,
+  "spec_assumptions": 5,
+  "agent": {
+    "cost_usd": 0.2016154,
+    "duration_s": 61,
+    "turns": 7,
+    "is_error": false,
+    "skills_loaded": [],
+    "leaks": []
+  },
+  "valid": true
+}

@@ -1,0 +1,7 @@
+- GAP: "payment credential of the deposit script" is not available to the validator except via the spent input | CHOSE: a deposit input is any input whose payment credential equals that of the own input; staking part ignored
+- GAP: the spec does not say which datum source is used | CHOSE: the datum passed to `spend` (ScriptInfo datum); a datum that is not `Option.Some` fails [SP-1]
+- GAP: the order of the common checks versus action checks is unspecified | CHOSE: all common checks [SP-1]..[SP-5] run first, then the action checks; every failure is a plain failure so the order does not change the result
+- GAP: the interval bound closure flag (inclusive/exclusive) is not tested | CHOSE: only the time value of a bound is used, as the open questions say
+- GAP: a negative or zero deposit is not described beyond the zero case | CHOSE: the formula in [CA-7]..[CA-11] is applied as written, with no special case
+- GAP: outputs with a script credential equal to the host or guest key hash bytes | CHOSE: only PubKeyCredential outputs count toward the output sums
+- GAP: whether the datum and redeemer must have no extra fields or trailing data | CHOSE: the standard FromData decoding of `Booking` and `Action` decides

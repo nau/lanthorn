@@ -1,0 +1,65 @@
+{
+  "arm": "new",
+  "spec_id": "new-s1",
+  "impl_id": "impl-1",
+  "writer_model": "sonnet",
+  "impl_model": "haiku",
+  "agent_exit": "0",
+  "batch": "pilot-haiku",
+  "compiles": true,
+  "own_tests": {
+    "pass": true,
+    "succeeded": 38,
+    "failed": 0
+  },
+  "hidden": {
+    "ran": true,
+    "passed": 22,
+    "total": 22,
+    "groups": {
+      "stated": {
+        "passed": 8,
+        "total": 8
+      },
+      "boundary": {
+        "passed": 5,
+        "total": 5
+      },
+      "intent": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "failed": []
+  },
+  "interface_changed": false,
+  "citations": {
+    "spec_rules": 33,
+    "spec_assumptions": 5,
+    "cited_rules": 33,
+    "coverage": 1.0,
+    "uncited": [],
+    "unknown": []
+  },
+  "gaps": {
+    "present": true,
+    "count": 3,
+    "items": [
+      "The deposit script's own payment credential is not passed to `spend`, but SPEC.md's \"deposit input\" is defined by it. | CHOSE: The credential of the own input (`ownRef`). The ledger runs the validator only for inputs at this script, so it is the script credential. The count of deposit inputs uses that credential.",
+      "The spec does not say what happens to non-lovelace assets in the deposit UTxO on Cancel, Release, or Claim. | CHOSE: No check on them. Whatever the transaction sends them to is accepted, as the spec's \"other assets are ignored\" implies.",
+      "The spec defines \"deposit input\" as an input of the transaction, but does not say whether reference inputs at the deposit script count. | CHOSE: Only spent inputs count. Reference inputs are ignored by `[SP-5]`."
+    ]
+  },
+  "agent": {
+    "cost_usd": 0.15715774000000002,
+    "duration_s": 242,
+    "turns": 32,
+    "is_error": false,
+    "skills_loaded": [
+      "scalus:contract",
+      "scalus:smart-contract-security-review"
+    ],
+    "leaks": []
+  },
+  "status": "ok"
+}

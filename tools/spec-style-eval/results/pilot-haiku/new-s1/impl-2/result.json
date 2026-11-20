@@ -1,0 +1,71 @@
+{
+  "arm": "new",
+  "spec_id": "new-s1",
+  "impl_id": "impl-2",
+  "writer_model": "sonnet",
+  "impl_model": "haiku",
+  "agent_exit": "0",
+  "batch": "pilot-haiku",
+  "compiles": true,
+  "own_tests": {
+    "pass": true,
+    "succeeded": 39,
+    "failed": 0
+  },
+  "hidden": {
+    "ran": true,
+    "passed": 22,
+    "total": 22,
+    "groups": {
+      "stated": {
+        "passed": 8,
+        "total": 8
+      },
+      "boundary": {
+        "passed": 5,
+        "total": 5
+      },
+      "intent": {
+        "passed": 9,
+        "total": 9
+      }
+    },
+    "failed": []
+  },
+  "interface_changed": false,
+  "citations": {
+    "spec_rules": 33,
+    "spec_assumptions": 5,
+    "cited_rules": 33,
+    "coverage": 1.0,
+    "uncited": [],
+    "unknown": []
+  },
+  "gaps": {
+    "present": true,
+    "count": 8,
+    "items": [
+      "Whether a deposit holding native tokens or other assets may leave with the host, since the validator reads only lovelace of the own input and the spec does not say what happens to other assets in the deposit | CHOSE: Release, Cancel and Claim ignore other assets entirely; the spec's assumption [A-5] (app locks ADA only) is taken as the boundary, and no token check was added.",
+      "Which inputs count as deposit inputs when two inputs share the script credential but have different datums or references | CHOSE: any input whose address credential equals the own input's credential counts as a deposit input, regardless of datum.",
+      "How the own input's credential is matched to \"the payment credential of the deposit script\" | CHOSE: the own input's full payment credential (its script hash, taken from the input being spent) is used as the deposit script credential; no separate script hash is hard-coded.",
+      "Whether the redeemer and datum decode failures are distinct from a check failure (for example, an unknown redeemer constructor) | CHOSE: a failed decode of the datum or the redeemer fails the script, as [SP-2] and [SP-3] require; no other handling.",
+      "The validity range may be empty or inverted (L greater than U), and the spec does not say whether that is an error | CHOSE: the validator applies only the time rules of each action, so an inverted range is accepted when the time rules hold; the ledger's own range handling is trusted, as in [A-2].",
+      "Whether a host output with a staking part counts toward the host output sum, and whether the guest output sum must match the guest's full address | CHOSE: the definitions in the spec are followed exactly: only the payment key hash is compared and the staking part is ignored, so a payout to the guest's key with any staking part counts.",
+      "Whether the deposit lovelace can be zero or negative, and what the fee is then | CHOSE: the fee is clamped to the deposit as [CA-11] requires, so a zero deposit gives a zero fee and [CA-13] then requires a zero host sum; a negative deposit is not reachable on the ledger and is not checked.",
+      "Whether the rate in the fee formula is clamped to the range 0 to 5000 before or after the minimum fee is applied, when feeBps is negative | CHOSE: the order of [CA-7] to [CA-11] is applied literally: cap at 5000, then clamp negatives to 0, then the rounding, the minimum, and the deposit cap."
+    ]
+  },
+  "agent": {
+    "cost_usd": 0.3781519400000001,
+    "duration_s": 353,
+    "turns": 53,
+    "is_error": false,
+    "skills_loaded": [
+      "scalus:contract",
+      "scalus:contract-test",
+      "scalus:smart-contract-security-review"
+    ],
+    "leaks": []
+  },
+  "status": "ok"
+}
