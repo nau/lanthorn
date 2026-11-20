@@ -19,8 +19,9 @@ single plugin. `.claude-plugin/marketplace.json` points at `"./"`.
 .codex-plugin/
   plugin.json         # Codex manifest
 hooks/
-  hooks.json          # Claude Code SessionStart wiring
+  hooks.json          # Claude Code SessionStart, Stop and SubagentStop wiring
   session-start       # emits the router as additionalContext
+  stop                # reminds the agent once to apply capturing-learnings
 scripts/
   sync-version.sh     # keeps every host manifest on one version
 skills/
@@ -37,10 +38,10 @@ tag` checks that.
 `skills/` is the universal part. Every host reads `SKILL.md`. Only three things
 differ per host, and only those belong in a host-specific file:
 
-| Host | Manifest | Router injected at session start |
-|------|----------|----------------------------------|
-| Claude Code | `.claude-plugin/plugin.json` | Yes, via `hooks/hooks.json` |
-| Codex | `.codex-plugin/plugin.json` | No. See `references/codex-tools.md` |
+| Host | Manifest | Router injected at session start | Learnings reminder at stop |
+|------|----------|----------------------------------|----------------------------|
+| Claude Code | `.claude-plugin/plugin.json` | Yes, via `hooks/hooks.json` | Yes, via `hooks/stop` |
+| Codex | `.codex-plugin/plugin.json` | No. See `references/codex-tools.md` | No |
 
 Adding a host means a manifest, a row in that table, a `FOLLOWERS` entry in
 `scripts/sync-version.sh`, and a reference file only if its tool names or its

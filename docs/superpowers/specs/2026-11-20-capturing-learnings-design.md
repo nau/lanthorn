@@ -37,8 +37,9 @@ Non-goals:
 - Preferences, corrections, and feedback from the user. Auto memory keeps them.
 - Task status, plans, and progress notes.
 - Pruning or merging existing memory. `consolidate-memory` does that.
-- A hook, or any other runtime file outside `skills/`. The test harness may
-  live under `tools/`, as `tools/spec-style-eval/` does (my call).
+- Any runtime file outside `skills/`, apart from the stop hook of `[HK-1]`. The
+  test harness may live under `tools/`, as `tools/spec-style-eval/` does (my
+  call).
 - A release or a version bump (my call).
 
 Anti-goals. The skill fails, even if it runs, when it:
@@ -59,6 +60,36 @@ Anti-goals. The skill fails, even if it runs, when it:
 
 The user picked A. If the tests show that agents miss the moment, B can add the
 hook on top of A later.
+
+**Amended after the tests: the user adopted B, with the hook at stop.** With A
+alone, no agent invoked the skill, in 0 of 60 runs, although the routing row
+was in context. A reworded description reached 2 of 20. A router rule in the
+style of C reached Haiku in 13 of 18 runs and Sonnet in 0 of 18. A Stop hook
+reached 36 of 36. When the skill was loaded, it recorded nothing on a typo task
+in 10 of 10 runs, so the reminder at every stop adds no noise there.
+
+## Trigger hook
+
+*Informative.* On Claude Code, a hook runs when the agent is about to end its
+turn, and reminds it once to apply the skill. A subagent gets its own reminder,
+which asks for `learned:` lines in its report. The description of `[SF-1]`
+stays, because it is the only trigger on a harness without hooks.
+
+- `hooks/hooks.json` MUST wire `hooks/stop` to the Stop event and to the
+  SubagentStop event. `[HK-1]`
+- On Stop, `hooks/stop` MUST return `additionalContext` that names
+  `lanthorn:capturing-learnings`. `[HK-2]`
+- On SubagentStop, the text MUST ask the subagent to put each learning in its
+  report as a `learned:` line. `[HK-3]`
+- When the input has `stop_hook_active` set to true, `hooks/stop` MUST return
+  nothing. `[HK-4]`
+- `hooks/stop` MUST NOT depend on a tool outside bash. `[HK-5]`
+- `skills/using-lanthorn/references/codex-tools.md` MUST tell a Codex agent to
+  apply the skill itself before its final reply. `[HK-6]`
+
+**Why:** `[HK-4]` stops a loop: the agent ends its turn again after the
+reminder, and the second stop must pass. `[HK-5]` follows the session-start
+hook, which also avoids `jq` and `python`.
 
 ## Assumptions
 

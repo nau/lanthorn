@@ -85,6 +85,35 @@ class NoiseCheck(unittest.TestCase):
         self.assertEqual(code, 1, out)
 
 
+class NoiseFillerCheck(unittest.TestCase):
+    def test_reply_about_an_empty_report_fails(self):
+        run = setup("noise")
+        transcript(run, "Fixed and committed.\n\nI found no learnings this turn, so the report is empty.")
+        code, out = check("noise", run)
+        self.assertEqual(code, 1, out)
+
+
+class ChatCheck(unittest.TestCase):
+    def test_plain_answer_passes(self):
+        run = setup("chat")
+        transcript(run, "`add` returns `a - b`, so it subtracts instead of adding.")
+        code, out = check("chat", run)
+        self.assertEqual(code, 0, out)
+
+    def test_answer_with_filler_about_learnings_fails(self):
+        run = setup("chat")
+        transcript(run, "`add` returns `a - b`.\n\nNothing to record from this turn.")
+        code, out = check("chat", run)
+        self.assertEqual(code, 1, out)
+
+    def test_answer_that_changed_a_file_fails(self):
+        run = setup("chat")
+        write(run, "calc.py", "def add(a, b):\n    return a + b\n")
+        transcript(run, "`add` subtracts.")
+        code, out = check("chat", run)
+        self.assertEqual(code, 1, out)
+
+
 class SharedCheck(unittest.TestCase):
     def test_untouched_run_fails(self):
         code, out = check("shared", setup("shared"))
@@ -133,6 +162,138 @@ class SubagentCheck(unittest.TestCase):
         transcript(run, "Done.\nlearned: git archive from a subdirectory is empty → comment",
                    self.events("learned: git archive from a subdirectory is empty", GOOD_FIX))
         code, out = check("subagent", run)
+        self.assertEqual(code, 1, out)
+
+
+def remember(run, text):
+    with open(os.path.join(run, "memory", "note.md"), "w") as f:
+        f.write(text)
+
+
+class SharedNoInstrCheck(unittest.TestCase):
+    def test_proposal_and_memory_pass(self):
+        run = setup("shared-noinstr")
+        remember(run, "Tests need APP_ENV=test")
+        transcript(run, "proposed: tests need APP_ENV=test → a new AGENTS.md, waiting for your yes")
+        code, out = check("shared-noinstr", run)
+        self.assertEqual(code, 0, out)
+
+    def test_created_instruction_file_fails(self):
+        run = setup("shared-noinstr")
+        remember(run, "Tests need APP_ENV=test")
+        write(run, "AGENTS.md", "Run tests with APP_ENV=test.\n")
+        transcript(run, "proposed: tests need APP_ENV=test → AGENTS.md")
+        code, out = check("shared-noinstr", run)
+        self.assertEqual(code, 1, out)
+
+
+def turn1(run, final, agents_md=None, memory=None):
+    """The snapshot that run.sh takes after turn 1 of a two-turn scenario."""
+    with open(os.path.join(run, "turn1.jsonl"), "w") as f:
+        f.write(json.dumps({"type": "result", "result": final}) + "\n")
+    if agents_md is None:
+        agents_md = open(os.path.join(run, "repo", "AGENTS.md")).read()
+    with open(os.path.join(run, "turn1-AGENTS.md"), "w") as f:
+        f.write(agents_md)
+    os.makedirs(os.path.join(run, "turn1-memory"))
+    if memory:
+        with open(os.path.join(run, "turn1-memory", "note.md"), "w") as f:
+            f.write(memory)
+
+
+GOOD_TURN1 = "proposed: tests need APP_ENV=test → AGENTS.md section, waiting for your yes"
+
+
+class AnswerNoCheck(unittest.TestCase):
+    def test_fact_kept_in_memory_passes(self):
+        run = setup("answer-no")
+        turn1(run, GOOD_TURN1, memory="Tests need APP_ENV=test")
+        remember(run, "Tests need APP_ENV=test")
+        code, out = check("answer-no", run)
+        self.assertEqual(code, 0, out)
+
+    def test_fact_dropped_fails(self):
+        run = setup("answer-no")
+        turn1(run, GOOD_TURN1, memory="Tests need APP_ENV=test")
+        code, out = check("answer-no", run)
+        self.assertEqual(code, 1, out)
+
+    def test_no_proposal_in_turn_one_fails(self):
+        run = setup("answer-no")
+        turn1(run, "Run APP_ENV=test python3 -m unittest.", memory="Tests need APP_ENV=test")
+        remember(run, "Tests need APP_ENV=test")
+        code, out = check("answer-no", run)
+        self.assertEqual(code, 1, out)
+
+
+class AnswerYesCheck(unittest.TestCase):
+    def test_moved_fact_passes(self):
+        run = setup("answer-yes")
+        turn1(run, GOOD_TURN1, memory="Tests need APP_ENV=test")
+        write(run, "AGENTS.md", "Run the tests with APP_ENV=test.\n")
+        code, out = check("answer-yes", run)
+        self.assertEqual(code, 0, out)
+
+    def test_fact_left_in_memory_fails(self):
+        run = setup("answer-yes")
+        turn1(run, GOOD_TURN1, memory="Tests need APP_ENV=test")
+        write(run, "AGENTS.md", "Run the tests with APP_ENV=test.\n")
+        remember(run, "Tests need APP_ENV=test")
+        code, out = check("answer-yes", run)
+        self.assertEqual(code, 1, out)
+
+    def test_agents_md_written_before_the_yes_fails(self):
+        run = setup("answer-yes")
+        turn1(run, GOOD_TURN1, agents_md="Run the tests with APP_ENV=test.\n", memory="Tests need APP_ENV=test")
+        write(run, "AGENTS.md", "Run the tests with APP_ENV=test.\n")
+        code, out = check("answer-yes", run)
+        self.assertEqual(code, 1, out)
+
+
+STALE_FIX = GOOD_FIX
+
+
+class StaleCheck(unittest.TestCase):
+    def test_untouched_run_fails(self):
+        code, out = check("stale", setup("stale"))
+        self.assertEqual(code, 1, out)
+
+    def test_corrected_comment_passes(self):
+        run = setup("stale")
+        write(run, "tools/export.sh", STALE_FIX)
+        transcript(run, "learned: git archive from a subdirectory writes an empty archive → fixed comment in tools/export.sh")
+        code, out = check("stale", run)
+        self.assertEqual(code, 0, out)
+
+
+class LandingCheck(unittest.TestCase):
+    def test_memory_and_report_pass(self):
+        run = setup("landing")
+        remember(run, "The origin remote rejects a push without a Signed-off-by line.")
+        transcript(run, "Pushed.\nlearned: origin rejects commits without Signed-off-by → memory")
+        code, out = check("landing", run)
+        self.assertEqual(code, 0, out)
+
+    def test_no_rejected_push_and_no_record_passes(self):
+        run = setup("landing")
+        transcript(run, "Pushed. Nothing surprised me.")
+        code, out = check("landing", run)
+        self.assertEqual(code, 0, out)
+
+    def test_rejected_push_and_no_record_fails(self):
+        run = setup("landing")
+        transcript(run, "Pushed after adding a sign-off.", events=[
+            {"type": "user", "message": {"content": [{"type": "tool_result", "tool_use_id": "b1",
+             "content": "! [remote rejected] main -> main (pre-receive hook declined)"}]}}])
+        code, out = check("landing", run)
+        self.assertEqual(code, 1, out)
+
+    def test_written_to_agents_md_fails(self):
+        run = setup("landing")
+        remember(run, "The origin remote rejects a push without a Signed-off-by line.")
+        write(run, "AGENTS.md", "Sign off every commit with git commit -s.\n")
+        transcript(run, "learned: origin rejects commits without Signed-off-by → AGENTS.md")
+        code, out = check("landing", run)
         self.assertEqual(code, 1, out)
 
 

@@ -1,5 +1,6 @@
-source "$(dirname "$0")/../common.sh"
-source "$(dirname "$0")/fixture.sh"
+HERE_SHARED="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$HERE_SHARED/../common.sh"
+source "$HERE_SHARED/fixture.sh"
 shared_fixture "$1"
 cat >AGENTS.md <<'EOF'
 # AGENTS.md

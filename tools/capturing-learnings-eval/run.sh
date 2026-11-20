@@ -59,6 +59,9 @@ agent() {
 if [[ -f "$SCN/answer.md" ]]; then
     # Two turns: the session must persist, so that the second turn can resume it.
     agent "$SCN/prompt.md" "$RUN/turn1.jsonl"
+    # The state before the answer, so that a check can see what turn 1 did on its own.
+    cp "$RUN/repo/AGENTS.md" "$RUN/turn1-AGENTS.md" 2>/dev/null || true
+    cp -R "$RUN/memory" "$RUN/turn1-memory"
     SESSION=$(python3 -c 'import json,sys
 for l in open(sys.argv[1]):
     try: e=json.loads(l)

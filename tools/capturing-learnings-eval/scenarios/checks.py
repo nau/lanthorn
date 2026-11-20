@@ -14,6 +14,19 @@ ARCHIVE_FACT = re.compile(
 )
 
 
+# Filler that the stop reminder can cause on a turn with no learning.
+FILLER = re.compile(
+    r"\blearn(ing|ings|ed)?\b|report is empty|empty report|nothing (new )?to record|nothing recorded|reminder",
+    re.IGNORECASE,
+)
+
+
+def filler(text):
+    """The first sentence about learnings or the reminder in a reply, or None."""
+    m = FILLER.search(text)
+    return text[max(0, m.start() - 40):m.end() + 40].replace("\n", " ") if m else None
+
+
 def comment_blocks(text):
     """Each run of consecutive comment lines (# or //), joined into one string."""
     blocks, cur = [], []

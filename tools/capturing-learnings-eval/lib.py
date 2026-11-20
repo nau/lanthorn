@@ -10,8 +10,8 @@ import re
 import subprocess
 
 
-def _events(run_dir):
-    path = os.path.join(run_dir, "transcript.jsonl")
+def _events(run_dir, transcript="transcript.jsonl"):
+    path = os.path.join(run_dir, transcript)
     if not os.path.exists(path):
         return
     with open(path) as f:
@@ -26,25 +26,26 @@ def _content(event):
     return (event.get("message") or {}).get("content") or []
 
 
-def final_text(run_dir):
-    """The text of the last result event: the agent's final reply."""
+def final_text(run_dir, transcript="transcript.jsonl"):
+    """The text of the last result event: the agent's final reply. Pass turn1.jsonl for the
+    first turn of a two-turn scenario."""
     text = ""
-    for e in _events(run_dir):
+    for e in _events(run_dir, transcript):
         if e.get("type") == "result":
             text = e.get("result") or ""
     return text
 
 
-def report_lines(run_dir, kind):
+def report_lines(run_dir, kind, transcript="transcript.jsonl"):
     """Lines of the final reply that start with `kind:`, after an optional bullet or backtick."""
     pattern = re.compile(r"^\s*(?:[-*]\s+)?`?" + re.escape(kind) + r":", re.IGNORECASE)
-    return [line.strip() for line in final_text(run_dir).splitlines() if pattern.match(line)]
+    return [line.strip() for line in final_text(run_dir, transcript).splitlines() if pattern.match(line)]
 
 
-def memory_text(run_dir):
-    """Every file under memory/, joined."""
+def memory_text(run_dir, folder="memory"):
+    """Every file under memory/, joined. Pass turn1-memory for the snapshot after turn 1."""
     parts = []
-    for root, _, files in os.walk(os.path.join(run_dir, "memory")):
+    for root, _, files in os.walk(os.path.join(run_dir, folder)):
         for name in sorted(files):
             with open(os.path.join(root, name), errors="replace") as f:
                 parts.append(f.read())
@@ -105,6 +106,20 @@ def tool_results(run_dir, tool_name):
                     body = "\n".join(b.get("text", "") for b in body if isinstance(b, dict))
                 out.append(body or "")
     return out
+
+
+def subagent_reports(run_dir):
+    """The last text message of each subagent. A background subagent's report reaches the
+    controller as a notification, not as the Agent tool result, so read it here."""
+    last = {}
+    for e in _events(run_dir):
+        parent = e.get("parent_tool_use_id")
+        if e.get("type") != "assistant" or not parent:
+            continue
+        text = "\n".join(c.get("text", "") for c in _content(e) if c.get("type") == "text").strip()
+        if text:
+            last[parent] = text
+    return list(last.values())
 
 
 def verdict(failures):

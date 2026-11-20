@@ -17,6 +17,7 @@ to superpowers. `skills/using-lanthorn` holds the routing table.
 | `writing-commits` | Writing a commit message or a pull request description. |
 | `writing-tests` | Writing or changing a test, or testing code that is private or internal. |
 | `finishing-a-development-branch` | Implementation is complete and the work must reach the base branch. |
+| `capturing-learnings` | A tool behaved against expectation, or a task ends. It records what you learned where the next agent meets it. |
 
 ## The name
 
@@ -48,10 +49,14 @@ installs it for you. On other hosts, install superpowers yourself.
 
 ### Host differences
 
-| Host | Router loaded automatically |
-|------|-----------------------------|
-| Claude Code | Yes. A SessionStart hook injects it. |
-| Codex | No. Read `skills/using-lanthorn/SKILL.md` at the start of a task. |
+| Host | Router loaded automatically | Learnings reminder at the end of a turn |
+|------|-----------------------------|------------------------------------------|
+| Claude Code | Yes. A SessionStart hook injects it. | Yes. A Stop hook reminds the agent once to apply `capturing-learnings`. |
+| Codex | No. Read `skills/using-lanthorn/SKILL.md` at the start of a task. | No. Apply it yourself before the final reply. |
+
+On Claude Code, the reminder continues each turn once. That costs one more model
+step per turn, and it makes your own Stop hooks, if you have any, run twice per
+turn.
 
 ## Develop
 

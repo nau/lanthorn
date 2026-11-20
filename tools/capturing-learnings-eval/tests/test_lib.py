@@ -103,5 +103,21 @@ class LibTest(unittest.TestCase):
         self.assertEqual(lib.tool_results(run, "Agent"), ["learned: q → r"])
 
 
+class SubagentReportTest(unittest.TestCase):
+    def test_background_report_is_the_subagents_last_message(self):
+        events = [
+            tool_use("Agent", {"prompt": "do it", "run_in_background": True}, tid="a1"),
+            {"type": "user", "parent_tool_use_id": None,
+             "message": {"content": [{"type": "tool_result", "tool_use_id": "a1",
+                                      "content": [{"type": "text", "text": "Async agent launched"}]}]}},
+            {"type": "assistant", "parent_tool_use_id": "a1",
+             "message": {"content": [{"type": "text", "text": "working"}]}},
+            {"type": "assistant", "parent_tool_use_id": "a1",
+             "message": {"content": [{"type": "text", "text": "Done.\nlearned: q → r"}]}},
+        ]
+        run = make_run(events=events)
+        self.assertEqual(lib.subagent_reports(run), ["Done.\nlearned: q → r"])
+
+
 if __name__ == "__main__":
     unittest.main()

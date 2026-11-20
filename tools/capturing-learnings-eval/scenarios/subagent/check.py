@@ -9,7 +9,7 @@ from checks import lib  # noqa: E402
 
 run = sys.argv[1]
 fail = []
-reports = lib.tool_results(run, "Agent") + lib.tool_results(run, "Task")
+reports = lib.tool_results(run, "Agent") + lib.tool_results(run, "Task") + lib.subagent_reports(run)
 if not reports:
     fail.append("no subagent was dispatched")
 elif not any("learned:" in r.lower() and "archive" in r.lower() for r in reports):

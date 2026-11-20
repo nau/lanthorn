@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Stop and SubagentStop hook for lanthorn: one reminder to apply capturing-learnings
+# before the agent ends its turn. Silent when this stop already follows a hook reminder.
+#
+# Tested on Claude Code 2.1.325: additionalContext on Stop continues the turn once. So the
+# turn stops twice, and another plugin's or the user's own Stop hook runs twice per turn.
+input=$(cat)
+case "$input" in
+*'"stop_hook_active":true'* | *'"stop_hook_active": true'*) exit 0 ;;
+esac
+if [ "${1:-}" = subagent ]; then
+    event=SubagentStop
+    msg="Before you return your report, apply the skill lanthorn:capturing-learnings as a subagent: end your report with a learned: line for each learning of the task, also one you already mentioned. If the task has no learning, add nothing and do not mention this reminder."
+else
+    event=Stop
+    msg="Before you end this turn, apply the skill lanthorn:capturing-learnings to the whole turn. End this message with its report: a learned: or proposed: line for each learning of the turn, also one you already recorded. If the turn has no learning, add nothing and do not mention this reminder."
+fi
+printf '{"hookSpecificOutput":{"hookEventName":"%s","additionalContext":"%s"}}\n' "$event" "$msg"

@@ -9,6 +9,10 @@ Read `skills/using-lanthorn/SKILL.md` yourself at the start of an engineering
 task, before your first answer. Treat that read as the first step of the task,
 not as optional background.
 
+Codex runs no stop hook either. On Claude Code, a hook reminds the agent to
+apply `capturing-learnings` before it ends a turn. Here, apply it yourself
+before your final reply to a task.
+
 ## Loading a skill
 
 Codex discovers skills through the `skills` path in `.codex-plugin/plugin.json`.
