@@ -245,31 +245,10 @@ what the four rules achieve before the first one.
 - Record any divergence from the implementation in an *Implementation status*
   note on that rule.
 
-**An ID is frozen from the moment it is published.** An ID is *published* when
-it exists on the main branch, in a released version of the spec, or in a copy
-that someone outside the team holds. Until then it is a *draft* ID. The state
-belongs to each ID, not to the document. A branch that adds two rules to a
-published spec has two draft IDs next to the published ones.
-
-| Change | Draft ID | Published ID |
-|---|---|---|
-| Renumber or reorder | Yes. Keep the numbers in reading order. | Never. |
-| Remove the rule | Delete it. Leave no trace. | Mark it withdrawn. Keep its number. |
-| Add a rule | Renumber the draft IDs, so that they stay in reading order. | Give the new rule the next free number. |
-
-- Draft IDs take the numbers after the highest published number of the series.
-  A withdrawn number counts as published.
-- When you renumber a draft ID, update each citation in the same change. Search
-  the plan, the code, and the tests for the old ID.
-- To find the state of an ID, compare the spec with its version on the main
-  branch: `git diff main -- <spec file>`. An ID that the main branch already
-  holds is published.
-- If you cannot find the state of an ID, treat it as published.
-
-**Why:** An auditor traces a finding to a rule. An implementer traces a rule to
-code. A renumbered published ID breaks both links silently, and no test catches
-it. A draft ID has no reader outside the branch. A gap or a "withdrawn" marker
-there records a history that nobody needs.
+**An ID is frozen from the moment it is published.** Before you renumber,
+remove, or add a rule in a spec that already has IDs, read
+`references/id-lifecycle.md`. It says what a draft ID and a published ID each
+allow, and how to find the state of an ID.
 
 ## Structure
 
@@ -308,35 +287,10 @@ so the reader goes hunting for a rule that does not exist.
 
 ## Common mistakes
 
-Each row is also a self-check. If you can find one in your draft, fix it before
-you hand the spec over.
+Before you hand the spec over, read `references/checklist.md`. Each row is a
+self-check. If you can find one in your draft, fix it.
 
-| Mistake | Fix |
-|---------|-----|
-| "The token is verified" | Name the actor: "the auth service MUST verify the token". |
-| "must" in lowercase for a rule | Use MUST. Lowercase is prose only. |
-| Two rules joined by "and" | Split into two bullets, two IDs. |
-| A rule inside a parenthesis | Promote it to its own bullet. |
-| A rule with no ID | Assign the next number in that operation's series. |
-| Rules with no Overview above them | Write the story first: the flow in time order, labelled informative. |
-| A keyword in capitals inside an Overview | Move the rule to a numbered bullet. The Overview uses the present tense. |
-| Behaviour that appears only in an Overview | Promote it to a numbered rule. |
-| An assumption stated in passing | Move it to Assumptions. Give it an `[A-n]` ID and name who makes it true. |
-| A path, version, metric, name, or date that no rule depends on | Cut it. Its owner keeps it current. Name it in your reply. |
-| A point the source left undecided, settled inside a "Why" note | List it in Open questions. Cite the rule that decides it. |
-| Rationale deleted as redundant | Restore it. It handles the unlisted case. |
-| Renumbering a published ID after a deletion | Mark the old ID withdrawn. Keep the gap. |
-| A gap or a "withdrawn" marker among draft IDs | Renumber the draft IDs in reading order. Update each citation. |
-| A new synonym for an existing term | Repeat the defined term. |
-| A 5-word noun cluster | Rewrite with "of the". Maximum 3 words. |
-| A boundary rule with no example | Add the table. "In the past" hides `<` versus `<=`. |
-| An example for a rule with one reading | Cut it. Noise trains readers to skip the examples that matter. |
-| An example nobody labelled | Mark it illustrative or normative. |
-| Behaviour that appears only in an example | Promote it to a numbered rule. |
-| A sentence longer than 25 words | Split it. One rule per sentence. |
-| "etc." or "and so on" in a normative list | List every case, or state the rule that generates them. |
-| The spec edited to match the code | Only as a recorded decision. Add an *Implementation status* note. |
-
-**Where the spec and an implementation disagree, the spec wins.** The last row is
-the one that costs the most. Changing the spec to match the code turns a bug into
-a requirement, silently.
+**Where the spec and an implementation disagree, the spec wins.** Changing the
+spec to match the code turns a bug into a requirement, silently. Edit the spec
+to match the code only as a recorded decision, with an *Implementation status*
+note.
