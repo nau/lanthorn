@@ -97,6 +97,38 @@ spec promises.
 come from its environment. An assumption stated in passing gets no owner, and
 nobody checks it.
 
+## Load-bearing detail only
+
+A spec states what must stay true. A detail earns its place only if it is
+load-bearing: change the detail, and an implementer builds something different
+or a rule gives a different result.
+
+A detail that is not load-bearing goes stale, because its owner changes it and
+nobody edits the spec. Leave it with its owner. Write what the rules need
+instead:
+
+| Detail in the source | Its owner | Write in the spec |
+|---|---|---|
+| File, line, or function of the current code | The code | Nothing. The code cites the rule ID. |
+| Version of a library, a database, or a service | The build files | The product without its version, if the source fixes the product: "Postgres" |
+| A measurement of today: row count, request rate, latency | The dashboard | A limit, only if a rule enforces one |
+| A value that a config or another document defines | That config or document | Its name: "the lifetime of the access token" |
+| A count that is true today: "three instances" | The deployment | The property: "more than one instance" |
+| Person, team, ticket, meeting, date | The tracker and the git history | Nothing |
+| How the team got here | The commit message | The constraint that resulted, not the story: "Postgres is the only store" |
+
+A value that a rule enforces is load-bearing. Keep it, with its unit.
+
+Name what you left out in your reply, in one line, so that the author can put
+a detail back:
+
+```
+left out: code location, library versions, traffic figures, owner and ticket.
+```
+
+**Why:** One stale line tells the reader that the spec is out of date. A reader
+who doubts one line then doubts the rules next to it.
+
 ## Examples
 
 A rule states the law. An example proves you and the reader read it the same way.
@@ -290,6 +322,7 @@ you hand the spec over.
 | A keyword in capitals inside an Overview | Move the rule to a numbered bullet. The Overview uses the present tense. |
 | Behaviour that appears only in an Overview | Promote it to a numbered rule. |
 | An assumption stated in passing | Move it to Assumptions. Give it an `[A-n]` ID and name who makes it true. |
+| A path, version, metric, name, or date that no rule depends on | Cut it. Its owner keeps it current. Name it in your reply. |
 | A point the source left undecided, settled inside a "Why" note | List it in Open questions. Cite the rule that decides it. |
 | Rationale deleted as redundant | Restore it. It handles the unlisted case. |
 | Renumbering a published ID after a deletion | Mark the old ID withdrawn. Keep the gap. |
