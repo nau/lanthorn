@@ -64,7 +64,7 @@ claude plugin validate . --strict
 `vendor/superpowers` is a submodule holding the upstream text to diff a fork
 against. Ordinary installs never fetch it.
 
-`CLAUDE.md` holds the rules for changing this plugin.
+`AGENTS.md` holds the rules for changing this plugin.
 
 ## License
 
