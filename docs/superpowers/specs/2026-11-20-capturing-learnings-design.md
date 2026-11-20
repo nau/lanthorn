@@ -102,10 +102,12 @@ name moments that the agent can observe.
   `[SF-4]`
 - `skills/using-lanthorn/SKILL.md` MUST stay under 500 words. `[SF-5]`
 - The skill text MUST work for any project and any language. `[SF-6]`
+- The routing row MUST have 12 words or fewer, as `wc -w` counts them. `[SF-7]`
 
 **Why:** `[SF-1]`: an agent that reads a workflow in the description follows the
 description and skips the body. `[SF-2]` keeps the whole skill after a
-compaction `[A-2]`. `[SF-5]`: the router loads in every session.
+compaction `[A-2]`. `[SF-5]`: the router loads in every session. `[SF-7]`: the
+finish-flow work adds a row of 12 words too, and both must fit under 500.
 
 *Example, illustrative.* A description that meets `[SF-1]`:
 
@@ -135,8 +137,9 @@ text for a shared one. Then it reports the result.
   fits. `[RL-4]`
   1. A test, an assertion, or a check that fails when the fact is forgotten.
   2. A comment at the place where the fact matters.
-  3. A section of the project's `AGENTS.md` or `CLAUDE.md`, or a file of a
-     skill, new or existing, in the current repository (my call).
+  3. The file that the project's instruction file names for such facts.
+     Else a section of the project's `AGENTS.md` or `CLAUDE.md`, or a file of
+     a skill, new or existing, in the current repository.
   4. The harness's own memory, in the format that the harness's memory rules
      set.
 - The agent MUST write a learning at destination 1, 2, or 4 without asking.
@@ -155,6 +158,13 @@ text for a shared one. Then it reports the result.
 - The agent MUST end its reply with one line per learning that it recorded,
   proposed, fixed, or deleted. `[RL-11]`
 - With no such learning, the reply MUST have no such line. `[RL-12]`
+- The agent MUST record a learning before it hands the work to a landing or
+  finish step. `[RL-13]`
+- When the agent finds a learning during a landing or finish step, it MUST NOT
+  write it to destination 1, 2, or 3. It MUST write it to destination 4, and
+  report it. `[RL-14]`
+- The agent MUST write each learning to one destination only. `[RL-7]` is the
+  one exception. `[RL-15]`
 
 **Checks delegated elsewhere:** None.
 
@@ -164,6 +174,11 @@ fact matters, while memory loads in every session. `[RL-5]` and `[RL-6]` are
 the user's mixed rule: near destinations change without a question, and a
 shared file changes only with a yes. `[RL-7]` and `[RL-8]` are the user's
 choice: a proposal that gets no answer, or a no, does not lose the learning.
+`[RL-13]` and `[RL-14]`: a landing step tests one tree and lands that tree. A
+file change after the final test run forces a new run, so a learning found
+during landing waits in memory until the next task moves it. `[RL-15]` keeps
+shared files short: long context files raise cost and do not raise task
+success, except for practices that are not standard.
 `[RL-9]`: here the version is load-bearing,
 because the next agent needs it to judge whether the fact still holds. This
 differs on purpose from `writing-commits`, which adds a section to `AGENTS.md`
@@ -195,7 +210,7 @@ It reports the learning, and its controller applies this skill to it.
 - A subagent MUST put each learning in its final report, as a `learned:` line.
   `[SL-2]`
 - A subagent MUST NOT write a learning to any destination. `[SL-3]`
-- The controller MUST apply `[RL-1]` to `[RL-12]` to each `learned:` line in a
+- The controller MUST apply `[RL-1]` to `[RL-15]` to each `learned:` line in a
   subagent's report. `[SL-4]`
 
 **Checks delegated elsewhere:** None.
@@ -205,11 +220,26 @@ fourth trigger in `[SF-1]`. `[SL-3]` keeps one agent in charge of the files, so
 two subagents do not write the same comment or memory note. A fork sees the
 controller's conversation, so the definition of a subagent names it.
 
+## Coordination with the finish flow
+
+*Informative.* The finish-flow skill is built in a separate branch. Both
+changes add a row to `skills/using-lanthorn/SKILL.md` and to `README.md`.
+
+- The routing row of this skill goes after the row "Debug a failure". The
+  finish-flow row goes after "Claim a task is done", so the two edits do not
+  touch the same lines.
+- The two branches land one after the other. The second one rebases on the
+  base branch and checks `[SF-5]` again.
+- The docs system, a later project, owns the map of shared destinations. The
+  wording of destination 3 lets it take over by one line in the instruction
+  file.
+
 ## Testing
 
 *Informative.* The builder tests the trigger as it fires in real use. Headless
-`claude -p` runs load the plugin from the repository folder with
-`--plugin-dir`. The skill is not pasted into the prompt.
+`claude -p` runs load superpowers and lanthorn from their folders with
+`--plugin-dir`, and `--setting-sources project` keeps the user's own plugins
+and hooks out. The skill is not pasted into the prompt.
 
 - The builder MUST run each scenario below without the skill first, as
   `superpowers:writing-skills` requires. `[TS-1]`
