@@ -1,0 +1,3 @@
+The branch is rebased and cleaned up, but nothing has landed yet. It stops here until you answer the question above: land the 4 commits on origin/main by fast-forward?
+
+learned: the Bash tool's shell is zsh, so arrays start at index 1 and `${H[0]}` is empty (my first rebase todo list failed on this) → harness memory

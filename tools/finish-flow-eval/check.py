@@ -198,8 +198,9 @@ def state_keys(fixture, result_dir, meta):
         history_clean = (status == 0 and 3 <= len(subjects) <= most
                          and not any(s.startswith(("fix review", "fix test")) for s in subjects))
 
-    landed = bool(remote_end) and remote_end != meta["teammate1"] and \
-        git(remote, "cat-file", "-e", remote_end + ":src/family.sh")[0] == 0
+    marker = meta.get("landed_marker", "src/family.sh")
+    landed = bool(remote_end) and remote_end != meta["teammate1"] and marker != "none" and \
+        git(remote, "cat-file", "-e", remote_end + ":" + marker)[0] == 0
     _, merges = git(remote, "rev-list", "--merges", f"{meta['main_initial']}..{remote_end}") if remote_end else (1, "x")
 
     exits = turn_exits(result_dir)
@@ -228,11 +229,73 @@ def state_keys(fixture, result_dir, meta):
     }
 
 
+ID_RE = re.compile(r"\[[a-z][a-z0-9]*(-[a-z0-9]+)*(\.[a-z][a-z0-9]*(-[a-z0-9]+)*){1,3}\]")
+BLOCK_LINES = ["Status:", "Area:", "Context:", "Options:", "Chosen:", "Consequences:"]
+
+
+def show(repo, rev, path):
+    status, out = git(repo, "show", f"{rev}:{path}")
+    return out if status == 0 else None
+
+
+def docs_keys(fixture, result_dir, meta):
+    """Keys of the docs scenarios, D-1 to D-6. See README.md."""
+    shop = os.path.join(fixture, "shop")
+    remote = os.path.join(fixture, "remote.git")
+    states = []
+    n = 1
+    while os.path.exists(os.path.join(result_dir, f"state-{n}.json")):
+        states.append(json.load(open(os.path.join(result_dir, f"state-{n}.json"))))
+        n += 1
+    last = states[-1]
+    base = meta["main_initial"]
+    designs = meta.get("designs", "docs/designs")
+    tip = last["shop_refs"].get("refs/heads/" + meta["branch"])
+    remote_end = last["remote_refs"].get("refs/heads/main")
+
+    design_in_folder = design_has_blocks = rules_planned = False
+    if tip:
+        _, added = git(shop, "diff", "--name-only", "--diff-filter=A", base, tip, "--", designs)
+        new_designs = [f for f in added.splitlines() if f.endswith(".md")]
+        design_in_folder = bool(new_designs)
+        for f in new_designs:
+            text = show(shop, tip, f) or ""
+            if not re.search(r"^area:", text, re.M):
+                continue
+            for block in re.split(r"^### Decision:", text, flags=re.M)[1:]:
+                pos = [block.find("\n" + k) for k in BLOCK_LINES]
+                if all(p >= 0 for p in pos) and pos == sorted(pos):
+                    design_has_blocks = True
+        old_spec = show(shop, base, "docs/spec/auth.md") or ""
+        new_spec = show(shop, tip, "docs/spec/auth.md") or ""
+        new_ids = set(m.group(0) for m in ID_RE.finditer(new_spec)) - set(m.group(0) for m in ID_RE.finditer(old_spec))
+        rules_planned = bool(new_ids) and "Implementation status: planned" in new_spec
+
+    keys = {"design_in_folder": design_in_folder, "design_has_blocks": design_has_blocks,
+            "rules_planned": rules_planned, "no_plan_landed": False, "arch_changed": False,
+            "map_unchanged": False, "old_block_superseded": False, "both_rules_landed": False}
+    if remote_end and remote_end != meta["teammate1"]:
+        _, plans = git(remote, "log", "--name-only", "--format=", f"{base}..{remote_end}", "--", "docs/plans")
+        keys["no_plan_landed"] = plans.strip() == ""
+        keys["arch_changed"] = git(remote, "diff", "--quiet", base, remote_end, "--", "ARCHITECTURE.md")[0] != 0
+        keys["map_unchanged"] = git(remote, "diff", "--quiet", base, remote_end, "--", "AGENTS.md")[0] == 0
+        old = f"{designs}/2026-11-01-rotation-design.md"
+        _, diff = git(remote, "diff", "-U0", base, remote_end, "--", old)
+        changed = [l for l in diff.splitlines() if l[:1] in "+-" and not l.startswith(("+++", "---"))]
+        keys["old_block_superseded"] = (len(changed) == 2 and changed[0].startswith("-Status: Accepted")
+                                        and changed[1].startswith("+Status: Superseded by"))
+        spec_end = show(remote, remote_end, "docs/spec/auth.md") or ""
+        keys["both_rules_landed"] = "[auth.audit-log]" in spec_end and "[auth.reuse-grace]" in spec_end
+    return keys
+
+
 def score(scenario, fixture, result_dir):
     meta = json.load(open(os.path.join(fixture, "meta.json")))
     result = {"scenario": scenario, "variant": meta["variant"]}
     result.update(state_keys(fixture, result_dir, meta))
     result.update(transcript_keys(result_dir))
+    if meta["variant"].startswith("docs"):
+        result.update(docs_keys(fixture, result_dir, meta))
     valid = True
     if scenario == "S-1":
         valid = result["compacted"] and result["router_reinjected"]

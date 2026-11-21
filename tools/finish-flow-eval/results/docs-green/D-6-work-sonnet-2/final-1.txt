@@ -1,0 +1,5 @@
+The branch is rebased and cleaned, and nothing has landed yet. Landing waits on your yes.
+
+Once you say yes, I'll push `HEAD:main` to origin without force and fast-forward the local `main`. Then I'll remove the backup ref and this worktree, and delete the `add-reuse-grace` branch after confirming `origin/main` holds it.
+
+Land the 2 commits on origin/main by fast-forward?

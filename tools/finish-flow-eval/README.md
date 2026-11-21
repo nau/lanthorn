@@ -73,6 +73,27 @@ loads only superpowers and lanthorn: `--setting-sources project` plus two `--plu
 An S-1 run with `compacted` or `router_reinjected` false is invalid, not failed. Run it
 again.
 
+## Docs scenarios
+
+`docs-fixture.sh` builds the fixtures of the docs system
+(`docs/superpowers/specs/2026-11-21-docs-system-design.md`). The `main` of each holds a map in
+`AGENTS.md`, `ARCHITECTURE.md`, `docs/spec/auth.md` with four rules, and one older design doc.
+The feature branch adds a design doc, a plan that a later commit edits, a planned rule, and the
+code that builds it.
+
+| ID | Variant | Turns | Pass condition |
+|---|---|---|---|
+| D-1 | `docs-design` | "This design is approved. Write the design doc and the rules." | `design_in_folder`, `design_has_blocks`, `rules_planned` |
+| D-2 | `docs` | finish, yes | `landed`, `no_plan_landed`, the summary lists the changed rule IDs |
+| D-3 | `docs-conflict` | finish | `remote_unchanged_before_yes`, the question names `[auth.family-revoke]` |
+| D-4 | `docs-refactor` | finish, yes | `landed`, `arch_changed` |
+| D-5 | `docs-nomap` | finish, yes | `landed`, `map_unchanged`, the summary proposes a map that keeps `docs/adr/` |
+| D-6 | `docs-supersede` | finish, yes | `landed`, `old_block_superseded` |
+| D-2 with `VARIANT_OVERRIDE=docs-append` | `docs-append` | finish, yes | `landed`, `both_rules_landed`, no question about the append conflict |
+
+Run the base arm of these against lanthorn before the docs system:
+`BASE_COMMIT=$(git merge-base HEAD main) bash tools/finish-flow-eval/run.sh D-2 base sonnet 1`.
+
 ## Keys of result.json
 
 "After turn 1" reads `state-1.json`. "At the end" reads the last state.
@@ -104,6 +125,14 @@ again.
 | `suite_runs_by_turn`, `fast_runs_by_turn` | Lists. Runs in each turn | `[VF-4]`, `[CH-14]` |
 | `remote_main_by_turn` | List. The remote base after each turn | `[LD-17]` |
 | `turn_exits_ok` | Every `claude -p` turn exited 0 | – |
+| `design_in_folder` | Docs only. A new design doc in the mapped folder, on the branch | `[docs.design.folder]` |
+| `design_has_blocks` | Docs only. It has `area:` and a decision block with its six lines in order | `[docs.design.block-lines]` |
+| `rules_planned` | Docs only. The branch adds a rule ID to `auth.md`, with a planned note | `[docs.spec.planned]` |
+| `no_plan_landed` | Docs only. No commit of the landed range touches `docs/plans/` | `[docs.landing.plan]` |
+| `arch_changed` | Docs only. `ARCHITECTURE.md` changed in the landed range | `[docs.landing.arch]` |
+| `map_unchanged` | Docs only. `AGENTS.md` did not change in the landed range | `[docs.map.ask]` |
+| `old_block_superseded` | Docs only. The older design doc changed in its status line only, to `Superseded by` | `[docs.landing.supersede]` |
+| `both_rules_landed` | Docs only. The landed `auth.md` holds `[auth.audit-log]` and `[auth.reuse-grace]` | `[docs.landing.append]` |
 
 Three judgments need a reader, so each `summary.md` records them by hand:
 `asked_before_push`, `offered_pr`, and `summary_names_target` (`[LD-3]`). Score by reading

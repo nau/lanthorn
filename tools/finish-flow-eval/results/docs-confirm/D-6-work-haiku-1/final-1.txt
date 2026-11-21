@@ -1,0 +1,20 @@
+The branch is rewritten and verified, but nothing is pushed yet. I'm waiting for your yes or no on landing.
+
+**Landing summary**
+
+- **Base:** `main`, tracking `origin/main`. The base had moved to `69c87ff` (a README-only change), so I rebased with no conflicts and no adjustments.
+- **Docs step:** the grace decision now marks the rotation decision superseded, and `docs/plans/grace.md` is deleted. The architecture document needed no change.
+- **Full suite:** `sh test.sh` passed on the tip before the rewrite. The rewrite left the tree identical to the backup ref.
+- **Fast check:** `sh build.sh` passed on each rewritten commit. Each run appends a line to the team's `fast.log`.
+- **History:** three logical commits:
+  - `docs: design the reuse grace period`
+  - `docs: add the reuse grace rule`
+  - `feat: accept a reuse within 10 seconds`
+
+  The plan's add, tick, and delete are folded into the design commit, so the plan never reaches the landed history.
+
+**Open question:** `auth.family-revoke` still says "MUST revoke the token family on reuse of a revoked token". The grace rule accepts such a reuse within 10 seconds, so the two overlap. I left the rule unchanged because rewording it is your call. Tell me if you want it reworded before landing.
+
+**To land:** reply yes and I'll push with `git push origin HEAD:main` (no force), fast-forward the local `main`, and delete the backup ref. The worktree stays, since it lives under `.worktrees/`.
+
+learned: a plan file added and deleted on a feature branch folds into an adjacent commit that has other changes, with no "No changes" error → memory `rebase-fold-plan-add-delete`

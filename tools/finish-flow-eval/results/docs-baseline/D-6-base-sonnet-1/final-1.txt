@@ -1,0 +1,9 @@
+The branch is rebased and cleaned up, but I haven't landed it. Nothing has been pushed, and `main` and `origin/main` are unchanged.
+
+I need your yes or no on landing these 2 commits on `origin/main` by fast-forward:
+- `docs: design the reuse grace period`
+- `feat: accept a reuse of a revoked token within 10 seconds`
+
+`sh test.sh` passed on the rebased tip, and `sh build.sh` passed on each commit. The history rewrite changed no file. I deleted `docs/plans/grace.md` first, because AGENTS.md says plans go when the feature lands, and I folded that deletion into the feature commit.
+
+On yes, I'll push with `git push origin HEAD:main` and fast-forward the local `main` in the main checkout. After that I'll remove the backup ref, this worktree and the `add-reuse-grace` branch. On no, I keep the branch, the worktree and the backup ref.

@@ -1,0 +1,14 @@
+{
+  "fast_lines": 3,
+  "remote_refs": {
+    "refs/heads/main": "5626086a9c221a119d0c1f1354ef5f23517b0d4c"
+  },
+  "shop_refs": {
+    "refs/heads/add-reuse-grace": "5626086a9c221a119d0c1f1354ef5f23517b0d4c",
+    "refs/heads/main": "5626086a9c221a119d0c1f1354ef5f23517b0d4c",
+    "refs/remotes/origin/HEAD": "5626086a9c221a119d0c1f1354ef5f23517b0d4c",
+    "refs/remotes/origin/main": "5626086a9c221a119d0c1f1354ef5f23517b0d4c"
+  },
+  "suite_lines": 1,
+  "worktree_exists": true
+}

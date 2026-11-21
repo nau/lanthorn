@@ -1,0 +1,3 @@
+One correction to my earlier narration. I said `sed` failed because of the `|` delimiter in the path. That was wrong. BSD `sed -i` takes the next argument as a backup suffix, so my script was read as the suffix and the file path was read as the script. The Edit tool made the change instead, and the file content is right.
+
+The question from before still stands: land the 1 commit on origin/main by fast-forward?

@@ -1,0 +1,3 @@
+Work is landed and cleaned up, as described above. The one learning this turn was already recorded.
+
+learned: bash-style 0-indexed arrays fail in this zsh shell, and the history-rewrite snippet broke on one → memory (`zsh-arrays-one-indexed.md`)

@@ -1,0 +1,3 @@
+Nothing has landed yet. The branch, the worktree and the backup ref `refs/lanthorn/backup/move-store` are all intact. The step 6 question is still open: land the 1 commit on origin/main by fast-forward?
+
+Please also confirm the branch is the right one. You described it as token rotation, but it only moves the store under `src/persistence`.

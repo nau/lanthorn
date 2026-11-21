@@ -1,0 +1,15 @@
+{
+  "fast_lines": 0,
+  "remote_refs": {
+    "refs/heads/main": "1017bfca56d643dcb2b8a154e549656d918336f3"
+  },
+  "shop_refs": {
+    "refs/heads/add-reuse-grace": "58a49eba78411050032e98343d9ce7ec1e37b48a",
+    "refs/heads/main": "fe6d5cabf768b64ad7ad54779b838df7486f1acf",
+    "refs/lanthorn/backup/add-reuse-grace": "58a49eba78411050032e98343d9ce7ec1e37b48a",
+    "refs/remotes/origin/HEAD": "1017bfca56d643dcb2b8a154e549656d918336f3",
+    "refs/remotes/origin/main": "1017bfca56d643dcb2b8a154e549656d918336f3"
+  },
+  "suite_lines": 0,
+  "worktree_exists": true
+}

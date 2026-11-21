@@ -1,0 +1,27 @@
+I haven't landed anything yet. One problem needs your decision first: the spec now contradicts itself.
+
+`docs/spec/auth.md` has both of these rules:
+- `[auth.family-revoke]`: "MUST revoke the token family on reuse of a revoked token." The branch didn't change this one.
+- `[auth.reuse-grace]`: "MUST accept a reuse of a revoked token within 10 seconds of its revocation."
+
+The code in `src/rotate.sh` treats the new rule as an exception to the old one, but the spec text doesn't say that. The final review missed it. I suggest rewording `[auth.family-revoke]` to "…on reuse of a revoked token more than 10 seconds after its revocation." Changing a rule's wording is your call, so I've left it as is.
+
+**Done so far**
+- **Rebase:** a teammate pushed `docs: add the opening hours` to origin/main, which only touches `README.md`. I rebased onto it with no conflicts and no changes to the feature.
+- **Docs:**
+  - The decision "Revoke the family on any reuse" in `docs/designs/2026-11-01-rotation-design.md` is now marked as superseded by the grace design.
+  - I deleted `docs/plans/grace.md`, and it doesn't appear anywhere in the history that would land.
+  - `ARCHITECTURE.md` needs no change.
+- **Checks:** `sh test.sh` passed after the rebase and the docs changes. `sh build.sh` passed on each commit.
+- **History:** I squashed the six working commits into two. The file contents are unchanged:
+  - `docs: design a 10-second grace period for refresh token reuse`
+  - `feat: accept a reused refresh token within 10 seconds of its revocation`
+
+**Two small notes**
+- The repo's history has no trailers, but I added a `Co-Authored-By: Claude` line to both commits because this session's attribution setting asks for it. I can take it out.
+- `AGENTS.md` doesn't say how commits should be written. I could add one line: Conventional Commits with short bodies.
+
+**Your choice**
+1. Reword `[auth.family-revoke]` as suggested, fold it into the feat commit, rerun the tests, then push both commits to origin/main as a fast-forward.
+2. Push the two commits as they are.
+3. Don't land.

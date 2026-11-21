@@ -1,0 +1,15 @@
+{
+  "fast_lines": 1,
+  "remote_refs": {
+    "refs/heads/main": "fc7d274b66570a9f62d192c46ffcbca85bf5837c"
+  },
+  "shop_refs": {
+    "refs/heads/main": "fe6d5cabf768b64ad7ad54779b838df7486f1acf",
+    "refs/heads/move-store": "dddf9b8dffbfce491d62739498631872be7c6e3b",
+    "refs/lanthorn/backup/move-store": "fa1941ff8e323ada0d1ae296ba4cdcd352ef28d3",
+    "refs/remotes/origin/HEAD": "fc7d274b66570a9f62d192c46ffcbca85bf5837c",
+    "refs/remotes/origin/main": "fc7d274b66570a9f62d192c46ffcbca85bf5837c"
+  },
+  "suite_lines": 2,
+  "worktree_exists": true
+}

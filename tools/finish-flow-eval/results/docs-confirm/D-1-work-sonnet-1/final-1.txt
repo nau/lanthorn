@@ -1,0 +1,1 @@
+The design doc and the rules are committed on `add-reuse-grace` as `ac078fd`, as described in my last message. I have nothing further to add.

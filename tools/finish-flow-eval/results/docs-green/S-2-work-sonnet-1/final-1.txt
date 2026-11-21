@@ -1,0 +1,3 @@
+The branch is rebased, cleaned up and ready, but nothing has been pushed yet. Reply yes to land the 4 commits on `origin/main` by fast-forward. I'll then fast-forward the local `main` and remove the worktree and backup ref.
+
+If you say no, I keep the branch, the worktree and the backup ref as they are.

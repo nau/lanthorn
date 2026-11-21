@@ -1,0 +1,1 @@
+This is waiting on your answer: should I land the 2 commits on origin/main by fast-forward? The summary above has the details. Until you say yes, the branch, the worktree and the backup ref stay as they are.

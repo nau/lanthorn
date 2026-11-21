@@ -1,0 +1,3 @@
+Nothing further to land; the work is finished.
+
+learned: the Bash tool's shell is zsh, so arrays start at index 1 and `${H[0]}` is empty (my first rebase todo list failed on this) → harness memory

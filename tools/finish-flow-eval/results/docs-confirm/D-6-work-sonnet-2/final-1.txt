@@ -1,0 +1,3 @@
+The branch is rebased and cleaned up, but nothing has landed yet. The landing summary above ends with a question: do you want these 2 commits fast-forwarded onto `origin/main`? Nothing is pushed until you say yes.
+
+learned: in this zsh shell an unquoted `$VAR` is not word-split, so `set -- $H` over a list of hashes gave one argument and a broken rebase todo list → memory note (kept in memory, since it concerns the shell and not this repo)

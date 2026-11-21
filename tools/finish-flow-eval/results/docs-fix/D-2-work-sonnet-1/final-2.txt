@@ -1,0 +1,3 @@
+The landing is complete. `main` and `origin/main` are both at `94401c8`, and the feature branch and its worktree are gone.
+
+learned: BSD `sed -i` on macOS needs an empty suffix (`sed -i ''`), and without it the command fails and stops a `&&` chain → harness memory (`macos-sed-inplace.md`)

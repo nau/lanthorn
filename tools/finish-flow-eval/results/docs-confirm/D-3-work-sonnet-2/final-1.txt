@@ -1,0 +1,1 @@
+I'm waiting on your answer about `[auth.family-revoke]`. The text I proposed keeps the teammate's logging requirement and adds the 10-second carve-out. Should reuses inside the grace window also be logged? Once you answer, I'll resolve the conflict and carry on with the landing.

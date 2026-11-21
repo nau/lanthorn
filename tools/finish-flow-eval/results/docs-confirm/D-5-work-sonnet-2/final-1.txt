@@ -1,0 +1,3 @@
+Nothing has landed yet. The two commits are ready on `add-reuse-grace`, and I'm waiting for your yes to push them to `origin/main` by fast-forward.
+
+learned: the Bash tool runs zsh, whose arrays start at 1, so a rebase todo built from `${H[0]}` has an empty hash and stops the rewrite → memory, because the project has no place for it

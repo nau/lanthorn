@@ -1,0 +1,9 @@
+{
+  "variant": "docs-nomap",
+  "branch": "add-reuse-grace",
+  "worktree": "/private/var/folders/jg/c_hztf4n40x22fxz0hhn_rpc0000gn/T/tmp.7CHGGjLDw4/shop/.worktrees/add-reuse-grace",
+  "main_initial": "6b5ddb1c75bfdaa731081c1e0428bcafd31742bb",
+  "teammate1": "bcce89d4d45f0ed2d09f6d2a70ecd8bfa92385f6",
+  "landed_marker": "docs/adr/2026-11-21-grace-design.md",
+  "designs": "docs/adr"
+}

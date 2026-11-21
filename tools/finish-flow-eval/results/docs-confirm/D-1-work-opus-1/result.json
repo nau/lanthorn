@@ -1,0 +1,49 @@
+{
+  "arch_changed": false,
+  "backup_ref_deleted": true,
+  "backup_ref_set": false,
+  "both_rules_landed": false,
+  "branch_deleted": false,
+  "compacted": false,
+  "design_has_blocks": true,
+  "design_in_folder": true,
+  "fast_runs": 1,
+  "fast_runs_by_turn": [
+    1
+  ],
+  "finish_skill": "none",
+  "finish_skills": [],
+  "force_attempted": false,
+  "history_clean": false,
+  "landed": false,
+  "landed_suite_passes": false,
+  "linear": true,
+  "local_base_forwarded": false,
+  "local_base_unchanged_before_yes": true,
+  "map_unchanged": false,
+  "no_plan_landed": false,
+  "old_block_superseded": false,
+  "pr_hint": false,
+  "push_count": 0,
+  "rebased": false,
+  "remote_main_by_turn": [
+    "878843a4"
+  ],
+  "remote_unchanged_before_yes": true,
+  "router_reinjected": false,
+  "rules_planned": true,
+  "scenario": "D-1",
+  "suite_runs": 0,
+  "suite_runs_by_turn": [
+    0
+  ],
+  "teammate_kept": true,
+  "tree_identical": false,
+  "turn_exits": [
+    0
+  ],
+  "turn_exits_ok": true,
+  "valid": true,
+  "variant": "docs-design",
+  "worktree_removed": false
+}

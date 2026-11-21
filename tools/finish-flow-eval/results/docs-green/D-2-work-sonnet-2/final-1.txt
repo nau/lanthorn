@@ -1,0 +1,9 @@
+I need to correct the summary I gave you. I removed the "planned" status from `[auth.reuse-grace]` because the branch adds code for it. But `within_grace` in `src/rotate.sh` is only a helper, and nothing calls it. `rotate_token` and `revoke_family` don't use it, so a reuse within 10 seconds still revokes the family. The tests only check `within_grace` on its own, at 5 and 11 seconds. The rule isn't implemented end to end.
+
+So the spec now overstates what the code does. You can pick one of these before I land:
+
+1. **Restore the planned status** (my recommendation). I put `*Implementation status: planned.*` back on `[auth.reuse-grace]` and land the commits as they are. The rule then matches the code, and the wiring is a follow-up. That needs a re-run of the suite and a rewrite of the `feat` commit.
+2. **Wire it in first.** I call `within_grace` where a reused token is detected, test that first, and then land with the rule marked implemented. This is more work and changes behaviour, so I'd want your go-ahead.
+3. **Land as is.** The spec would then claim something the code doesn't do.
+
+Nothing has been pushed yet. Which option do you want?

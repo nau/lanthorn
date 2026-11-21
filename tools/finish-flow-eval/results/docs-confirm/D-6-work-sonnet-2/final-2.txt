@@ -1,0 +1,1 @@
+learned: in this zsh shell an unquoted `$VAR` is not word-split, so `set -- $H` over a list of hashes gave one argument and a broken rebase todo list → memory note `zsh-no-word-split.md`

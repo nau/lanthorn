@@ -1,0 +1,1 @@
+I have no new findings this turn. The landing is still paused on the `[auth.family-revoke]` conflict: tell me which wording to use (my proposed one is in my earlier message) and whether the grace path should log the reuse.

@@ -1,0 +1,13 @@
+{
+  "fast_lines": 1,
+  "remote_refs": {
+    "refs/heads/main": "c7d943ffb20bb1612c89fb5990ba00c7ddded622"
+  },
+  "shop_refs": {
+    "refs/heads/add-reuse-grace": "2ac368aa98feddd1ca629b75816738e778ccfe9e",
+    "refs/heads/main": "b21487ecc1052a64f4e81046b3d0e66f33e14a03",
+    "refs/remotes/origin/main": "b21487ecc1052a64f4e81046b3d0e66f33e14a03"
+  },
+  "suite_lines": 0,
+  "worktree_exists": true
+}

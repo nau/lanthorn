@@ -1,0 +1,9 @@
+{
+  "variant": "docs-refactor",
+  "branch": "move-store",
+  "worktree": "/private/var/folders/jg/c_hztf4n40x22fxz0hhn_rpc0000gn/T/tmp.KMF5g7CXP1/shop/.worktrees/move-store",
+  "main_initial": "fe6d5cabf768b64ad7ad54779b838df7486f1acf",
+  "teammate1": "fc7d274b66570a9f62d192c46ffcbca85bf5837c",
+  "landed_marker": "src/persistence/store.sh",
+  "designs": "docs/designs"
+}

@@ -1,0 +1,1 @@
+Still waiting on your decision about `[auth.family-revoke]`. Should I use the merged wording I proposed, and does a grace-window reuse also need to be logged?

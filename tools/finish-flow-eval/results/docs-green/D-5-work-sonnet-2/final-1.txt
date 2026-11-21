@@ -1,0 +1,7 @@
+The branch is rebased and cleaned into two commits, but nothing has landed yet. Nothing on `origin/main` has changed.
+
+**Land these 2 commits on origin/main by fast-forward? (yes/no)**
+
+The two commits are `docs: design the reuse grace period` and `feat: accept a reuse within 10 seconds`. The full suite passes, and `build.sh` passes on each commit. The rewrite changed no file. The summary above has the full detail, including the proposals for `AGENTS.md`: a docs map and a commit-style section. I made no `AGENTS.md` changes.
+
+learned: bash-style 0-indexed arrays fail in this zsh shell, and the history-rewrite snippet broke on one → memory (`zsh-arrays-one-indexed.md`). It was found during a landing step, so no tested file changed.

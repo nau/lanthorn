@@ -1,0 +1,9 @@
+{
+  "variant": "docs-supersede",
+  "branch": "add-reuse-grace",
+  "worktree": "/private/var/folders/jg/c_hztf4n40x22fxz0hhn_rpc0000gn/T/tmp.w4aPH1IM5p/shop/.worktrees/add-reuse-grace",
+  "main_initial": "b7896b4f311cf2c6ea0af26a6932a37deaf0b0be",
+  "teammate1": "69c87ff01093933e85feb0294b610c9453059120",
+  "landed_marker": "docs/designs/2026-11-21-grace-design.md",
+  "designs": "docs/designs"
+}

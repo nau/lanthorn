@@ -1,0 +1,5 @@
+Nothing has landed yet. The branch is rebased onto `origin/main` and cleaned into two commits. Say yes and I'll push it to `origin/main` by fast-forward.
+
+Before the rewrite, `sh test.sh` printed "all tests passed" on the rebased tip. After it, `git diff` against the backup ref prints nothing, and `sh build.sh` passes on each commit.
+
+If you say no, I keep the branch, the worktree and the backup ref as they are.

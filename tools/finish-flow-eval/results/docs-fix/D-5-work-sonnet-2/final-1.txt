@@ -1,0 +1,3 @@
+The branch is rebased and checked, but nothing has landed yet. It needs your yes. Origin/main and local `main` are unchanged.
+
+Do you want me to land the 4 commits listed above on origin/main by fast-forward? On a yes I push without force, fast-forward the local `main`, and remove the worktree. On a no, I keep the branch, the worktree and the backup ref.

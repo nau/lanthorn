@@ -1,0 +1,1 @@
+The branch is rebased and cleaned to three commits, but nothing has landed yet. I'm waiting on your yes to push 375e7d6, 11c64bd and 1288457 to origin/main by fast-forward. After a yes I'll push, fast-forward the local `main` in the main checkout, and remove this worktree and the backup ref. On a no, I keep the branch, the worktree and the backup ref as they are.

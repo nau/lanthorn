@@ -1,0 +1,1 @@
+This living spec file of the area 'auth' has the 320 lines below. Add one rule: the auth service MUST reject a refresh token older than 30 days. Say what you do with the file, and show the result in outline.

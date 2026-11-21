@@ -7,6 +7,9 @@ REPO_ROOT="$(cd "$HARNESS_DIR/../.." && pwd)"
 FEATURE_BRANCH="add-token-rotation"
 PLAN_BRANCH="add-two-functions"
 VARIANTS="default pr-policy rename protected harness-worktree pr-trace plan"
+# shellcheck source=docs-fixture.sh
+source "$HARNESS_DIR/docs-fixture.sh"
+VARIANTS="$VARIANTS $DOCS_VARIANTS"
 
 die() {
     echo "finish-flow-eval: $*" >&2
@@ -48,6 +51,7 @@ identity() {
 make_fixture() {
     local dir="$1" variant="$2"
     [[ " $VARIANTS " == *" $variant "* ]] || die "unknown variant: $variant"
+    if [[ "$variant" == docs* ]]; then make_docs_fixture "$dir" "$variant"; return; fi
     mkdir -p "$dir"
     dir="$(cd "$dir" && pwd -P)"
     local remote="$dir/remote.git" shop="$dir/shop" mate="$dir/teammate"
@@ -259,6 +263,7 @@ EOF
 # selftest_fixture <dir> <variant>
 # Asserts each fact of the fixture. Dies on the first false one.
 selftest_fixture() {
+    if [[ "$2" == docs* ]]; then selftest_docs_fixture "$1" "$2"; return; fi
     local dir variant="$2"
     dir="$(cd "$1" && pwd -P)"
     local remote="$dir/remote.git" shop="$dir/shop"

@@ -1,0 +1,1 @@
+Still waiting on your answer: land the 2 commits (`docs: design the reuse grace period` and `feat: accept a reuse within 10 seconds`) on `origin/main` by fast-forward? Until you say yes, `origin/main` and the local `main` stay as they are. The backup ref `refs/lanthorn/backup/add-reuse-grace` is also still in place.

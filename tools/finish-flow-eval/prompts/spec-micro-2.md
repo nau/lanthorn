@@ -1,0 +1,1 @@
+Write the record of this decision for a design doc, in the form the skill sets: we chose a 10-second grace period for a reused refresh token, over a per-client retry token. The grace period needs no client change; the retry token is exact but every client must change. Output only the Markdown.

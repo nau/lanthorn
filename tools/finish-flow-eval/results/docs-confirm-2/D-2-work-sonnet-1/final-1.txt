@@ -1,0 +1,9 @@
+Everything is ready except the landing. It's waiting on your answer to the question above.
+
+**Land these 2 commits on origin/main by fast-forward?** Answer yes or no. On a yes I will:
+- push without force, with `git push origin HEAD:main`;
+- fast-forward the local `main` in the main checkout;
+- delete the backup ref;
+- remove the worktree `.worktrees/add-reuse-grace`, and then the branch.
+
+On a no, I keep the branch, the worktree, and the backup ref.

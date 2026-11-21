@@ -1,0 +1,55 @@
+{
+  "arch_changed": false,
+  "backup_ref_deleted": false,
+  "backup_ref_set": true,
+  "both_rules_landed": false,
+  "branch_deleted": false,
+  "compacted": false,
+  "design_has_blocks": true,
+  "design_in_folder": true,
+  "fast_runs": 5,
+  "fast_runs_by_turn": [
+    3,
+    2
+  ],
+  "finish_skill": "lanthorn",
+  "finish_skills": [
+    "lanthorn:finishing-a-development-branch"
+  ],
+  "force_attempted": false,
+  "history_clean": false,
+  "landed": false,
+  "landed_suite_passes": false,
+  "linear": true,
+  "local_base_forwarded": false,
+  "local_base_unchanged_before_yes": true,
+  "map_unchanged": false,
+  "no_plan_landed": false,
+  "old_block_superseded": false,
+  "pr_hint": false,
+  "push_count": 0,
+  "rebased": true,
+  "remote_main_by_turn": [
+    "5cd53318",
+    "5cd53318"
+  ],
+  "remote_unchanged_before_yes": true,
+  "router_reinjected": false,
+  "rules_planned": true,
+  "scenario": "D-2",
+  "suite_runs": 3,
+  "suite_runs_by_turn": [
+    2,
+    1
+  ],
+  "teammate_kept": true,
+  "tree_identical": true,
+  "turn_exits": [
+    0,
+    0
+  ],
+  "turn_exits_ok": true,
+  "valid": true,
+  "variant": "docs-append",
+  "worktree_removed": false
+}

@@ -1,0 +1,1 @@
+The landing is complete and nothing else is pending. The commits are on `origin/main`, the local `main` matches, and the worktree is clean. The `auth.family-revoke` overlap is still open, and it is your call whether to reword that rule.

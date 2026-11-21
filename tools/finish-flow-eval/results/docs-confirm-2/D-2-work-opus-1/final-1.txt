@@ -1,0 +1,1 @@
+I've stopped before step 6 and nothing has been pushed. Answer yes and I'll fast-forward origin/main to these 2 commits, then remove the worktree and branch. Answer no and the branch, worktree and backup ref stay as they are.

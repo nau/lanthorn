@@ -1,0 +1,1 @@
+The design doc and the rules are committed on `add-reuse-grace` as 2ac368a. See my previous message for the details and the two open questions.

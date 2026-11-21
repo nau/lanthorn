@@ -1,0 +1,10 @@
+I haven't pushed anything. Both commits are ready on the feature branch, and `origin/main` and your local `main` are unchanged:
+
+- `docs: design the reuse grace period`
+- `feat: accept a reused refresh token for 10 seconds`
+
+The spec contradiction is fixed. `[auth.family-revoke]` now applies only to a reuse more than 10 seconds after revocation. The old decision is marked superseded, and the grace plan is deleted. `sh test.sh` passes on the final tree, and `sh build.sh` passes on each commit.
+
+Land these 2 commits on origin/main by fast-forward?
+
+learned: the Bash tool runs zsh here, so an unquoted `$VAR` does not split into words (it broke my first rebase todo list) → memory `bash-tool-is-zsh-no-word-split.md`

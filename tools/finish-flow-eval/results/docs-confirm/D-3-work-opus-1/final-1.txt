@@ -1,0 +1,21 @@
+I've stopped before rebasing. Nothing on the branch or on `main` has changed.
+
+**Why I stopped:** after this branch split off, a teammate pushed `7c57d22 docs: log each family revocation` to `origin/main`. That commit and this branch both rewrite the same rule, `[auth.family-revoke]` in `docs/spec/auth.md`, and the two versions contradict each other:
+
+- **On `main` now:** "The auth service MUST revoke the token family on **any** reuse of a revoked token, and MUST log the reuse."
+- **On this branch:** "The auth service MUST revoke the token family on reuse of a revoked token more than 10 seconds after its revocation." The branch also adds `[auth.reuse-grace]`, which accepts a reuse within 10 seconds.
+
+"Any reuse" leaves no room for the grace window. The new logging requirement also isn't met: neither `on_reuse` nor `revoke_family` in `src/rotate.sh` logs anything.
+
+**Decision needed:** how should `[auth.family-revoke]` read after the merge? My suggestion:
+
+> The auth service MUST revoke the token family on reuse of a revoked token more than 10 seconds after its revocation, and MUST log the reuse. `[auth.family-revoke]`
+
+You also need to decide whether a reuse inside the 10-second window gets logged too. The teammate's "any reuse" suggests yes, and the grace rule doesn't say. This probably needs your teammate's agreement.
+
+Once you give me the wording, I'll:
+1. Rebase onto `origin/main` and use your text for the rule.
+2. Add the logging, writing the test first.
+3. Update the docs and run `sh test.sh`.
+4. Fold the commits into a short, clean history.
+5. Show you a summary and ask once before landing on `main` by fast-forward (the repo uses no pull requests).

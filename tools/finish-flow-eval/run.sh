@@ -3,7 +3,7 @@
 #
 #   run.sh <scenario> <arm> <model> [runs]
 #
-#   scenario  S-1 S-2 S-3 S-4 R-1 R-2 R-3 R-4 R-5 R-6 (see README.md)
+#   scenario  S-1 S-2 S-3 S-4 R-1 R-2 R-3 R-4 R-5 R-6 D-1 D-2 D-3 D-4 D-5 D-6 (see README.md)
 #   arm       base  lanthorn at BASE_COMMIT, before the finish skill existed
 #             work  the working tree of this repository
 #   model     any --model value of the claude CLI: haiku, sonnet, opus, fable
@@ -14,6 +14,8 @@
 #   JOBS          runs in parallel (default 1)
 #   TURN_TIMEOUT  seconds per turn (default 1800)
 #   EXEC_SKILL    S-1 only: executing-plans (default) or subagent-driven-development
+#   BASE_COMMIT   the lanthorn commit of the base arm (default: the fork point of the finish flow)
+#   VARIANT_OVERRIDE  build this fixture variant instead, with the scenario's turns
 #   KEEP_TEMP     keep the fixture directories
 #
 # Every agent runs in a fixture under mktemp -d, with --dangerously-skip-permissions, and with
@@ -23,11 +25,11 @@ set -uo pipefail
 source "$(dirname "$0")/lib.sh"
 
 # The fork point of the finish-flow branch: lanthorn with no finish skill.
-BASE_COMMIT=1532fa686290e33948ec8b9f35ee32f8f26d59ce
+BASE_COMMIT="${BASE_COMMIT:-1532fa686290e33948ec8b9f35ee32f8f26d59ce}"
 SUPERPOWERS="$REPO_ROOT/vendor/superpowers"
 
 usage() {
-    sed -n '2,22p' "$0" | sed 's/^# \{0,1\}//'
+    sed -n '2,23p' "$0" | sed 's/^# \{0,1\}//'
     exit 2
 }
 
@@ -49,8 +51,15 @@ R-1) VARIANT=rename ;;
 R-2) VARIANT=protected ;;
 R-4) VARIANT=harness-worktree ;;
 R-5) VARIANT=pr-trace ;;
+D-1) VARIANT=docs-design ;;
+D-2) VARIANT=docs ;;
+D-3) VARIANT=docs-conflict ;;
+D-4) VARIANT=docs-refactor ;;
+D-5) VARIANT=docs-nomap ;;
+D-6) VARIANT=docs-supersede ;;
 *) usage ;;
 esac
+VARIANT="${VARIANT_OVERRIDE:-$VARIANT}"
 
 # The prompt of each turn, one per line. "@file" reads a file of prompts/.
 turns() {
@@ -59,6 +68,9 @@ turns() {
     S-2 | S-3 | R-1 | R-2 | R-4) printf '%s\n' "@finish.md" "yes" ;;
     R-3) printf '%s\n' "@finish.md" "no" ;;
     R-6) printf '%s\n' "@finish.md" "yes" "yes" ;;
+    D-1) printf '%s\n' "@design.md" ;;
+    D-2 | D-4 | D-5 | D-6) printf '%s\n' "@finish.md" "yes" ;;
+    D-3) printf '%s\n' "@finish.md" ;;
     S-4 | R-5) printf '%s\n' "@finish.md" ;;
     esac
 }
