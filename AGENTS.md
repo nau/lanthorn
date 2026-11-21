@@ -28,10 +28,27 @@ skills/
   <skill-name>/
     SKILL.md
     references/       # per-host adaptation, only where hosts differ
+docs/
+  spec/<area>.md      # living spec, one file per area
+  superpowers/specs/  # dated design docs, with their decision blocks
+  superpowers/plans/  # plans, deleted when their feature lands
+tools/
+  <eval-name>/        # scenario harnesses that test the skills
 ```
 
 `plugin.json` and the marketplace entry must agree on the name. `claude plugin
 tag` checks that.
+
+## Docs
+
+Architecture: the "What this repo is" section of this file
+Living spec: `docs/spec/<area>.md`
+Design docs: `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
+Plans: `docs/superpowers/plans/`, deleted when the feature lands
+Find a decision: `rg -n -A2 '^### Decision:' docs/superpowers/specs/`
+Find a rule and its citations: `rg -nF '[docs.id.frozen]' .`
+Before you change `keeping-project-docs`, `spec-writing`, or the finish skill,
+read `docs/spec/docs.md`.
 
 ## Hosts
 
