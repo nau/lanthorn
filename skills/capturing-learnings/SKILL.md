@@ -45,7 +45,7 @@ only.
 |---|---|---|
 | 1 | A test, an assertion, or a check that fails when the fact is forgotten | Write it |
 | 2 | A comment at the place where the fact matters | Write it |
-| 3 | The file that the project's instruction file names for such facts. Else a section of `AGENTS.md` or `CLAUDE.md`, or a skill file, in the current repository | Propose it, and wait for a yes |
+| 3 | The learnings file that the project's `## Docs` map names. Else a section of `AGENTS.md` or `CLAUDE.md`, or a skill file, in the current repository | Propose it, and wait for a yes |
 | 4 | Your harness's memory, in the format that its memory rules set | Write it |
 
 A test that existed before your fix is not destination 1. It shows that the

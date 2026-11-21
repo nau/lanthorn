@@ -59,7 +59,7 @@ If the project declares a fast check, run it on each commit:
 git rebase --exec "<fast check>" "$BASE"
 ```
 
-## Three cases
+## Four cases
 
 **The whole range becomes one commit.** Skip the todo list:
 `git reset --soft "$BASE" && git commit -q -F "$TMP/msg-1"`. Then check the tree.
@@ -71,3 +71,12 @@ and fold only neighbours.
 **A commit fails the fast check.** `git rebase --exec` stops on it. Run `git rebase --abort`.
 In the todo list, fold that commit into the next commit that passes, then rewrite again. A
 fold changes no file, so the tree check still holds.
+
+**The branch adds a file and later deletes it**, such as a plan that the docs step
+removes. The file must not reach the landed history. In the todo list, `drop` each commit
+that only adds, edits, or deletes that file. A `fixup` of the deletion into the adding commit
+stops the rebase with "No changes", so never fold it that way. For a commit that also touches
+other files, `pick` it, then add `exec git rm -q <file> && git commit -q --amend
+--no-edit`. A later commit that edits the file then stops on a modify/delete conflict:
+resolve it with `git rm -q <file>` and `git rebase --continue`. The tree check still holds,
+because the tip had no such file.

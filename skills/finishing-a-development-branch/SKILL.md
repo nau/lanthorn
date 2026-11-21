@@ -27,7 +27,8 @@ this work."
 
 1. Find the base branch and the remote, then fetch.
 2. Resolve the landing policy.
-3. Rebase on the newest base, then adjust the feature to what the base changed.
+3. Rebase on the newest base, adjust the feature to what the base changed, then run the
+   docs step.
 4. Run the full suite.
 5. Clean the history.
 6. Show the summary, ask one question, then land.
@@ -87,11 +88,18 @@ Fast check: `make build`
 2. Record the merge base: `OLD=$(git merge-base HEAD <newest base>)`.
 3. Rebase: `git rebase <newest base>`.
 4. Resolve each conflict. Record each file and how you resolved it. If a resolution changes
-   behaviour that the design of the feature states, stop and ask.
+   behaviour that the design of the feature states, stop and ask. A conflict in a file of
+   the living spec follows the docs step below.
+   - Each side only adds rules with different IDs: keep both. No question.
+   - Both sides change the same rule ID: stop and ask, naming the ID and both texts.
 5. Read what the base changed: `git log --stat $OLD..<newest base>`. For each change that
    touches code the feature uses or changes, read the diff.
 6. If a base change breaks the feature or duplicates it, fix the feature in a new commit,
    test first. Record each adjustment.
+7. Run the docs step: follow `lanthorn:keeping-project-docs`,
+   `references/docs-step.md`. It runs on every landing, also one with no design doc. In a
+   project with no `## Docs` map, it only proposes a map in the summary. Its changes are
+   part of the landing, and the full suite of step 4 tests them.
 
 ## Step 4: Full suite
 
@@ -113,7 +121,8 @@ to change, and a reader can revert it alone.
 - If the commits are logical already, skip the rewrite.
 - Write each message per `lanthorn:writing-commits`, for the wording only. Add no other
   commit during the landing, such as one that records the commit style in `AGENTS.md`. If a
-  skill asks you to record something, propose it in the summary instead.
+  skill asks you to record something, propose it in the summary instead. The changes of the
+  docs step are part of the landing, and fold into the feature's commits.
 
 | Before | After |
 |---|---|
@@ -144,6 +153,9 @@ Commits:
 Full suite: `<command>` – <result>
 Conflicts resolved: <file and resolution, or None>
 Adjustments for base changes: <what and why, or None>
+Rule changes: <rule IDs added, changed, or withdrawn, or None>
+Planned rules: <rule IDs still planned, or None>
+Docs: <architecture updated, decisions superseded, plans deleted, map proposed, or None>
 Proposals: <anything a skill asked you to record, or None>
 
 Land these <N> commits on <remote>/<base> by fast-forward?
@@ -212,3 +224,5 @@ Type 'discard' to confirm.
 | "The branch is protected, so I'll open a pull request instead" | Stop and report. The protection is someone else's decision. |
 | "`git branch -d` refused, so the branch did not land" | Check `git merge-base --is-ancestor`. It compares with the right base. |
 | "This worktree under `.claude/worktrees/` is clutter" | The harness owns it. Leave it and its branch. |
+| "No design doc on this branch, so no docs step" | The docs step runs on every landing. A refactor can still change the architecture document. |
+| "Both changes to that rule look compatible, so I'll merge them" | Two branches that change one rule is a design question. Ask. |
