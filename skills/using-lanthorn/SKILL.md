@@ -16,6 +16,7 @@ cover. Everything not listed below still comes from superpowers.
 | Turn an idea into a design, including a new spec | `superpowers:brainstorming` |
 | Brainstorming wrote a design doc, before the builder check and the approval | `lanthorn:spec-writing` |
 | Edit an existing spec, or word a single requirement | `lanthorn:spec-writing` |
+| Place a project doc, or update the living spec | `lanthorn:keeping-project-docs` |
 | Write an implementation plan | `superpowers:writing-plans` |
 | Implement a feature or a bugfix | `superpowers:test-driven-development` |
 | Write or change a test, or test code that is private | `lanthorn:writing-tests` |
@@ -39,8 +40,8 @@ the spec says.
 decides how each requirement reads. Run it before the builder check and before
 your human partner approves the doc. An approved doc is not reworded.
 
-The `lanthorn:` and `superpowers:` prefixes are Claude Code namespacing. On
-other harnesses, use the bare skill name.
+On harnesses other than Claude Code, drop the `lanthorn:` and `superpowers:`
+prefixes.
 
 ## Platform adaptation
 
@@ -56,12 +57,11 @@ and the `Skill` tool loads the rest by their prefixed names.
 Read the routing table before you answer. If a row matches, invoke that skill
 first. Announce which skill you use and why.
 
-Precedence depends on whether the lanthorn skill is a fork or an addition.
+Precedence depends on the kind of lanthorn skill.
 
-- A lanthorn **fork** of a superpowers skill replaces the original. It exists
-  because the default was wrong for this work.
+- A lanthorn **fork** of a superpowers skill replaces the original, because
+  the default was wrong for this work.
 - A lanthorn **addition** covers something superpowers does not. It runs
-  alongside the superpowers skills, not instead of them. `spec-writing`,
-  `writing-tests`, `writing-logs`, `writing-less-code`, `writing-scala` and
-  `capturing-learnings` are additions. None
-  displaces brainstorming, planning, or TDD.
+  alongside the superpowers skills, not instead of them. Every lanthorn skill
+  except `finishing-a-development-branch` is an addition. None displaces
+  brainstorming, planning, or TDD.

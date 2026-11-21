@@ -17,6 +17,7 @@ to superpowers. `skills/using-lanthorn` holds the routing table.
 | `writing-commits` | Writing a commit message or a pull request description. |
 | `writing-tests` | Writing or changing a test, or testing code that is private or internal. |
 | `finishing-a-development-branch` | Implementation is complete and the work must reach the base branch. |
+| `keeping-project-docs` | Placing a design doc, an architecture document, or a living spec file. |
 | `capturing-learnings` | A tool behaved against expectation, or a task ends. It records what you learned where the next agent meets it. |
 
 ## The name
