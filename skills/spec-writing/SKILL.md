@@ -86,12 +86,13 @@ An assumption is a fact that the spec relies on and does not enforce. It is not
 informative text. If it is false, the rules no longer give the result that the
 spec promises.
 
-- One assumption per entry, with a stable ID in its own series: `[A-1]`.
+- One assumption per entry, with a stable ID whose second level is `assume`:
+  `[auth.assume.clock-sync]`.
 - Name who or what makes it true.
 - Cite the ID from each rule or "Why" note that depends on it.
 
 > The clocks of all auth service instances agree within 1 second. The
-> deployment platform runs NTP on each instance. `[A-1]`
+> deployment platform runs NTP on each instance. `[auth.assume.clock-sync]`
 
 **Why:** An auditor must know which guarantees come from the system and which
 come from its environment. An assumption stated in passing gets no owner, and
@@ -152,7 +153,7 @@ noise, and noise trains readers to skip examples that matter.
 Worked case. The rule is trivial-looking and is not:
 
 > The auth service MUST reject an access token whose `exp` claim is in the
-> past. `[TR-1]`
+> past. `[auth.exp]`
 >
 > *Example, illustrative.* With `exp = 1700000000`:
 >
@@ -200,15 +201,15 @@ refresh token. Each refresh token works once, because the auth service revokes
 it during the trade. A second use of a refresh token means that someone copied
 it, so the auth service revokes every token in that family.
 
-- The auth service MUST reject an access token whose `exp` claim is in the past. `[TR-1]`
-- The auth service MUST issue a new refresh token on every refresh. `[TR-2]`
+- The auth service MUST reject an access token whose `exp` claim is in the past. `[auth.exp]`
+- The auth service MUST issue a new refresh token on every refresh. `[auth.rotate]`
 - The auth service MUST revoke the presented refresh token before it returns
-  the new one. `[TR-3]`
+  the new one. `[auth.revoke-before-return]`
 - The auth service MUST revoke the whole token family when a client presents an
-  already revoked refresh token. `[TR-4]`
+  already revoked refresh token. `[auth.family-revoke]`
 
-**Why:** `[TR-2]` and `[TR-3]` together make a stolen refresh token single-use.
-`[TR-4]` turns the replay of a stolen token into a detected theft rather than a
+**Why:** `[auth.rotate]` and `[auth.revoke-before-return]` together make a stolen refresh token single-use.
+`[auth.family-revoke]` turns the replay of a stolen token into a detected theft rather than a
 rejected request. Rotation without revocation leaves both tokens valid, so the
 theft stays invisible.
 </Good>
@@ -216,7 +217,7 @@ theft stays invisible.
 The bad version packs three rules into one sentence, hides one in a parenthesis,
 and drops the actor from all three. It uses a lowercase "must" for a normative
 rule. It never says that revocation completes before the new token is returned,
-and `[TR-4]` is missing entirely, so an implementer builds rotation that cannot
+and `[auth.family-revoke]` is missing entirely, so an implementer builds rotation that cannot
 detect theft. The good version also opens with the story, so the reader knows
 what the four rules achieve before the first one.
 
@@ -239,30 +240,61 @@ what the four rules achieve before the first one.
 
 ## Traceability
 
-- Give every normative check a stable ID: a short prefix for the operation, then
-  a number. Example: `[TR-3]` is the third check of "Token refresh".
-- Cite the ID from the implementation and from the tests: `// spec [TR-3]`.
+- Give every rule a stable ID: a short name in brackets that ends the rule
+  sentence. Example: `[auth.revoke-before-return]`.
+- The first level names the area, which is also the stem of its file: `auth`
+  lives in `auth.md`. A spec with no areas uses its own short name.
+- Use only `a-z`, `0-9`, `-`, and `.`. A dot separates levels. A hyphen joins
+  words inside a level.
+- Each level starts with a letter, with no leading, trailing, or doubled
+  hyphen. An ID has 2 to 4 levels and at most 40 characters. A valid ID
+  matches `\[[a-z][a-z0-9]*(-[a-z0-9]+)*(\.[a-z][a-z0-9]*(-[a-z0-9]+)*){1,3}\]`.
+- Put an *Implementation status* or *Withdrawn* note on its own line under the
+  rule, so that the ID stays the last token of the rule.
+- Never start a line with an ID. `[id]:` at a line start becomes a hidden
+  Markdown link definition.
+- Cite the ID from the code and the tests: `// spec [auth.revoke-before-return]`.
+- Search for an ID with a fixed string, single-quoted, with a path:
+  `rg -nF '[auth.revoke-before-return]' .`
 - Record any divergence from the implementation in an *Implementation status*
-  note on that rule.
+  note on that rule. A rule that the code does not build yet carries
+  *Implementation status: planned*.
 
-**An ID is frozen from the moment it is published.** Before you renumber,
-remove, or add a rule in a spec that already has IDs, read
-`references/id-lifecycle.md`. It says what a draft ID and a published ID each
-allow, and how to find the state of an ID.
+| ID | Valid | Why |
+|---|---|---|
+| `[auth.reuse-grace]` | Yes | |
+| `[auth.tokens.reuse-grace]` | Yes | Three levels |
+| `[AUTH.reuse-grace]` | No | Capitals |
+| `[auth:reuse-grace]` | No | A colon |
+| `[auth.reuse_grace]` | No | An underscore |
+| `[reuse-grace]` | No | One level |
+
+**Why:** a name tells the reader what the rule is about, and parallel branches
+rarely pick the same name, where they always pick the same next number.
+Without `-F`, grep reads the brackets as a character class and matches
+unrelated lines. Git reads a bare `auth:reuse-grace` line at the end of a
+commit message as a trailer, so a colon is excluded. Lowercase avoids a case
+clash on a case-insensitive filesystem.
+
+**An ID is frozen from the moment it is published.** Before you rename, remove,
+or add a rule in a spec that already has IDs, read `references/id-lifecycle.md`.
+A spec with numbered IDs, such as `[TR-3]`, keeps them, and its new rules take
+word IDs.
 
 ## Structure
 
 Keep one template per repeated kind of section, and fill every field every time.
 
-For the document, in this order:
+For a design doc, in this order, after a header that holds one key, `area`, which
+names each area that the doc touches, or `none`:
 
 1. **Overview** - *informative.* The main flow as a story, in at most 200 words.
 2. **Goals and non-goals** - *informative.* The problem, why it matters now,
    and the work that the spec leaves out.
 3. **Approaches** - *informative.* Only if the source weighed more than one way
-   to build it. Each way, its trade-off, and why the chosen one won.
+   to build it. One decision block per decision, as below.
 4. **Assumptions** - each fact that the spec relies on and does not enforce,
-   with its `[A-n]` ID.
+   with its `[<area>.assume.<name>]` ID.
 5. **Definitions** - one entry per domain term.
 6. One section per operation, endpoint, or transaction.
 7. **Open questions** - *informative.* Each point that the source left
@@ -276,10 +308,46 @@ For an operation, an endpoint, or a transaction:
 2. **Who** - the actor that invokes it.
 3. **Trigger** - the condition that makes it valid to run.
 4. **Structure** - a table of inputs, outputs, and their types.
-5. **Checks enforced here** - the numbered, ID-tagged rules this component runs.
+5. **Checks enforced here** - the ID-tagged rules this component runs.
 6. **Checks delegated elsewhere** - only if any exist. Name who enforces them.
 
 An empty field is information. Write "None" rather than dropping the heading.
+
+A decision block records one decision, in the form of an ADR. It starts with
+`### Decision:` and a title that states the chosen option. Its lines come in
+this order:
+
+```markdown
+### Decision: Accept a reused refresh token for 10 seconds
+
+Status: Accepted
+Area: auth
+Context: Mobile clients retry on a bad network, and the retry revokes the family.
+Options:
+- A 10-second grace period: no client change. A stolen token works for 10 seconds.
+- A per-client retry token: exact. Every client must change.
+Chosen: The grace period, because the clients ship monthly.
+Consequences: Changes [auth.family-revoke]. Adds [auth.reuse-grace].
+```
+
+A decision that replaces an earlier one adds a `Replaces:` line with the path
+and anchor of the earlier block. Find decisions with
+`rg -n -A2 '^### Decision:' <design docs folder>`.
+
+A living spec file, one per area, holds less than a design doc:
+
+| Part | Design doc | Area file |
+|---|---|---|
+| Header `area:` | Yes | No |
+| Overview, the story | Of the change | Of the area as it works now, at most 200 words |
+| Goals, non-goals, Approaches, Open questions | Yes | No |
+| Assumptions, Definitions | Yes | Yes |
+| Rules with IDs and "Why" notes | Links them by ID | Yes, each "Why" links its decision block |
+| Operation template (Who, Trigger, Structure) | Yes | Only for a public interface, such as an endpoint |
+
+When an area file passes 300 lines, split it into files of sub-areas. Each
+moved rule keeps its ID. `lanthorn:keeping-project-docs` says where each file
+lives.
 
 **Why:** A reader who learns the template once can then find any field in any
 section without reading the section. A missing heading looks like an oversight,
